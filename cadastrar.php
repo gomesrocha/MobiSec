@@ -18,7 +18,7 @@ if(!logged_in()) {
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-10 col-sm-offset-1 col-md-offset-1">
 			<form role="form" method="post" name="cadastro_form">
-				<h2>Cadastrar</h2>
+				<h2 class="alert alert-success" role="alert">Plano de Teste</h2>
 				<hr class="colorgraph">
 				<div class="row">
 					<div class="col-xs-12 col-sm-8 col-md-8">

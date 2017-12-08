@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest android:versionCode="46" android:versionName="3.32" package="com.wireless.macchanger" xmlns:android="http://schemas.android.com/apk/res/android">
+	
+
+	<uses-sdk android:minSdkVersion="16" android:targetSdkVersion="25">
+</uses-sdk>
+	
+
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE">
+</uses-permission>
+	
+
+	<uses-permission android:name="android.permission.INTERNET">
+</uses-permission>
+	
+
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE">
+</uses-permission>
+	
+
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE">
+</uses-permission>
+	
+
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED">
+</uses-permission>
+	
+
+	<meta-data android:name="android.support.VERSION" android:value="25.3.1">
+</meta-data>
+	
+
+	<application android:allowBackup="true" android:configChanges="0x00000480" android:hardwareAccelerated="true" android:icon="@7F080089" android:label="@7F0E0023" android:name="com.wireless.macchanger.AppController" android:theme="@7F0F0005">
+		
+
+		<meta-data android:name="com.revmob.app.id" android:value="53493d8c4585241703ccc087">
+</meta-data>
+		
+
+		<activity android:configChanges="0x000000A0" android:name="com.revmob.FullscreenActivity" android:theme="@android:0103000F">
+</activity>
+		
+
+		<activity android:configChanges="0x00000480" android:label="@7F0E0023" android:name="com.wireless.macchanger.MacChangerActivity">
+			
+
+			<intent-filter>
+				
+
+				<action android:name="android.intent.action.MAIN">
+</action>
+				
+
+				<category android:name="android.intent.category.LAUNCHER">
+</category>
+				
+
+			</intent-filter>
+			
+
+		</activity>
+		
+
+		<activity android:label="Mac Changer - About" android:name="com.wireless.macchanger.about" android:parentActivityName="com.wireless.macchanger.MacChangerActivity">
+</activity>
+		
+
+		<activity android:label="Mac Changer - Help" android:name="com.wireless.macchanger.Help" android:parentActivityName="com.wireless.macchanger.MacChangerActivity">
+</activity>
+		
+
+		<activity android:label="Mac Changer - Saved Macs" android:name="com.wireless.macchanger.savedlist" android:parentActivityName="com.wireless.macchanger.MacChangerActivity">
+</activity>
+		
+
+		<activity android:label="Mac Changer Settings" android:name="com.wireless.macchanger.SettingsActivity" android:parentActivityName="com.wireless.macchanger.MacChangerActivity">
+</activity>
+		
+
+		<receiver android:name="com.wireless.macchanger.WIFIEnabled">
+			
+
+			<intent-filter android:priority="2147483647">
+				
+
+				<action android:name="android.net.wifi.WIFI_STATE_CHANGED">
+</action>
+				
+
+			</intent-filter>
+			
+
+		</receiver>
+		
+
+		<service android:name="com.wireless.macchanger.WIFIONService">
+</service>
+		
+
+		<service android:name="com.wireless.macchanger.AutoChangeService">
+</service>
+		
+
+		<activity android:configChanges="0x00000FB0" android:name="com.google.android.gms.ads.AdActivity" android:theme="@android:0103000F">
+</activity>
+		
+
+		<meta-data android:name="com.google.android.gms.version" android:value="@7F0A0006">
+</meta-data>
+		
+
+		<receiver android:enabled="true" android:exported="true" android:name="com.wireless.macchanger.AirPlaneReceiver">
+			
+
+			<intent-filter android:priority="2147483647">
+				
+
+				<action android:name="android.net.wifi.WIFI_STATE_CHANGED">
+</action>
+				
+
+			</intent-filter>
+			
+
+		</receiver>
+		
+
+		<activity android:configChanges="0x00000480" android:label="@7F0E006F" android:name="com.wireless.macchanger.NetworkScanActivity" android:parentActivityName="com.wireless.macchanger.MacChangerActivity">
+</activity>
+		
+
+		<receiver android:enabled="true" android:exported="true" android:name="com.wireless.macchanger.BootMyReceiver">
+			
+
+			<intent-filter>
+				
+
+				<action android:name="android.intent.action.BOOT_COMPLETED">
+</action>
+				
+
+			</intent-filter>
+			
+
+		</receiver>
+		
+
+		<activity android:exported="false" android:name="com.google.android.gms.common.api.GoogleApiActivity" android:theme="@android:01030010">
+</activity>
+		
+
+		<provider android:authorities="com.wireless.macchanger.firebaseinitprovider" android:exported="false" android:initOrder="100" android:name="com.google.firebase.provider.FirebaseInitProvider">
+</provider>
+		
+
+	</application>
+	
+
+</manifest>

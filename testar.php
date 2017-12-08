@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
 
 <div class="row">
 	<div class="col-xs-12 col-sm-12 col-md-10 col-sm-offset-1 col-md-offset-1">
-		<h3 class="alert alert-success" role="alert">Testar se a aplicação está em conformidade com a proposta.</h3>
+		<h3 class="alert alert-success" role="alert">Upload da aplicação para verificação de conformidade com o plano de teste.</h3>
 		<form class="form-horizontal" data-toggle="validator" role="form" method="post" action="testar.php" enctype="multipart/form-data" name="form1" id="form1">
 			<hr class="colorgraph">
 			<div class="form-group">

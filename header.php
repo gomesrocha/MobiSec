@@ -37,6 +37,7 @@ include_once "includes/init.php";
 							<li><a href="admin.php">Admin</a></li>
 							<li><a href="cadastrar.php">Cadastrar</a></li>
 							<li><a href="testar.php">Testar</a></li>
+							<li><a href="relatorio.php">Relatório</a></li>
 							<li><a href="logout.php">Logout</a></li>
 						<?php endif; ?>
 					</ul>

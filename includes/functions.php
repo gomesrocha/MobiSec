@@ -95,4 +95,66 @@ function ListProjeto($email){
 	}	
 }
 
+function ListProjetoRel($email, $projeto){
+	global $conn;
+
+	$sql = "SELECT * FROM projeto_rel WHERE email = '$email' and id_fk_projeto = '$projeto' ORDER BY date_added DESC LIMIT 50";
+	$result = $conn->query($sql);
+
+	if($result->num_rows >= 1 ) {
+		return $result;
+	}else{
+		return null;
+	}	
+}
+
+function ListPermissoesRel($id){
+	global $conn;
+
+	$sql = "SELECT * FROM projpermiss_rel WHERE id_fk_projeto_rel = '$id'";
+	$result = $conn->query($sql);
+
+	if($result->num_rows >= 1 ) {
+		return $result;
+	}else{
+		return null;
+	}	
+
+}
+
+function ListProjetoImp($email, $id){
+	global $conn;
+
+	$sql = "SELECT * FROM projeto WHERE email = '$email' and id = '$id' ORDER BY date_added ";
+	$result = $conn->query($sql);
+
+	if($result->num_rows >= 1 ) {
+		return $result;
+	}else{
+		return null;
+	}	
+}
+
+function ListProjetoRelImp($email, $projeto, $id){
+	global $conn;
+
+	$sql = "SELECT * FROM projeto_rel WHERE email = '$email' and id_fk_projeto = '$projeto' and id = '$id' ORDER BY date_added";
+	$result = $conn->query($sql);
+
+	if($result->num_rows >= 1 ) {
+		return $result;
+	}else{
+		return null;
+	}	
+}
+
+function ArrayJoin($a,$b)
+{
+if ($a===$b)
+  {
+  return 0;
+  }
+  return ($a>$b)?1:-1;
+}
+
 ?>
