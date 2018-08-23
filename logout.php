@@ -7,5 +7,5 @@
 		setcookie('email', '', time()-86400);
 	}
 
-redirect("login.php");
+redirect("index.php");
 ?>

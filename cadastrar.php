@@ -3,57 +3,80 @@ include_once "header.php";
 include_once "includes/cadastrar.inc.php";
 
 $arquivo = fopen('includes/permissoes.txt','r');
-?>
 
-<?php 
 if(!logged_in()) {
 	redirect("index.php");
 }
 ?>
-	<div class="row">
-		<div class="col-md-12">
-			<?php display_message(); ?>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12 col-sm-12 col-md-10 col-sm-offset-1 col-md-offset-1">
-			<form role="form" method="post" name="cadastro_form">
-				<h2 class="alert alert-success" role="alert">Plano de Teste</h2>
-				<hr class="colorgraph">
-				<div class="row">
-					<div class="col-xs-12 col-sm-8 col-md-8">
-						<div class="form-group">
-							<input type="text" name="titulo" id="titulo" class="form-control input-lg" placeholder="Titulo" tabindex="1" required>
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-4 col-md-4">
-						<div class="form-group">
-							<input type="number" name="QtdActiv" id="QtdActiv" class="form-control input-lg" placeholder="Activitys" tabindex="2" required>
-						</div>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-md-12">
-						<div class="form-group">
-							<select multiple name="perm_sel[]" class="form-control selectpicker" multiple data-live-search="true" data-live-search-placeholder="Search" data-actions-box="true"> 
-								<?php while(!feof($arquivo)) { ?>
-								<?php $valor = fgets($arquivo); ?>
-								<option value="<?php echo $valor ?>"><?php echo $valor ?></option>
-								<?php } ?>
-							</select>
-							<!--<input type="text" name="titulo" id="titulo" class="form-control input-lg" placeholder="Titulo" tabindex="1" required>-->
-						</div>
-					</div>
-				</div>
 
-				<hr class="colorgraph">
-				<div class="row">
-					<div class="col-xs-12 col-md-4"><input type="submit" name="submit" value="Cadastrar" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+		<!-- MAIN -->
+		<div class="main">
+			<!-- MAIN CONTENT -->
+			<div class="main-content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<!-- RECENT PURCHASES -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title"><?php echo $lang['CADASTRAR_HEADING']; ?></h3>
+									<div class="right">
+										<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>										
+									</div>
+								</div>
+								<div class="panel-body no-padding">
+									<div class="row">
+										<div class="col-xs-12 col-sm-12 col-md-10 col-sm-offset-1 col-md-offset-1">
+											<?php display_message(); ?>
+											<form role="form" method="post" name="cadastro_form">
+												<div class="row">
+													<div class="col-xs-12 col-sm-8 col-md-8">
+														<div class="form-group">
+															<input type="text" name="titulo" id="titulo" class="form-control input-lg" placeholder="<?php echo $lang['CADASTRAR_TITLE']; ?>" tabindex="1" required>
+														</div>
+													</div>
+													<div class="col-xs-12 col-sm-4 col-md-4">
+														<div class="form-group">
+															<input type="number" name="QtdActiv" id="QtdActiv" class="form-control input-lg" placeholder="<?php echo $lang['CADASTRAR_ACTIVITYS']; ?>" tabindex="2" required>
+														</div>
+													</div>
+												</div>
+												
+												<div class="row">
+													<div class="col-xs-12 col-sm-12 col-md-12">
+														<div class="form-group">
+															<select name="perm_sel[]" class="form-control selectpicker" multiple data-live-search="true" data-live-search-placeholder="Search" data-actions-box="true"> 
+																<?php while(!feof($arquivo)) { ?>
+																<?php $valor = fgets($arquivo); ?>
+																<option value="<?php echo $valor ?>"><?php echo $valor ?></option>
+																<?php } ?>
+															</select>
+														</div>
+													</div>
+												</div>
+						
+												<div class="row">
+													<div class="col-xs-12 col-md-4"><input type="submit" name="submit" value="<?php echo $lang['CADASTRAR_BTN_REG']; ?>" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+												</div>
+												<br>
+											</form>
+										</div>
+									</div>
+								</div>
+								<div class="panel-footer">
+									<div class="row">
+										<div class="col-md-6"><span class="panel-note"></i>GPITIC - UNIT</span></div>
+									</div>
+								</div>
+							</div>
+							<!-- END RECENT PURCHASES -->
+						</div>
+					</div>
 				</div>
-			</form>
+			</div>
+			<!-- END MAIN CONTENT -->
 		</div>
-	</div>
+		<!-- END MAIN -->
 <?php
 include_once "footer.php";
 ?>

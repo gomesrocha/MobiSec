@@ -157,4 +157,17 @@ if ($a===$b)
   return ($a>$b)?1:-1;
 }
 
+function ValProjeto($email, $projeto){
+	global $conn;
+
+	$sql = "SELECT * FROM projeto WHERE email = '$email' and titulo = '$projeto' ORDER BY date_added ";
+	$result = $conn->query($sql);
+
+	if($result->num_rows >= 1 ) {
+		return $result;
+	}else{
+		return null;
+	}	
+}
+
 ?>

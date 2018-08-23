@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 	if (email_exists($email))
 	{
-		$errors[] = "$email is already registered.";
+		$errors[] = $email . ' ' . $lang['REGISTER_ERRO2'];
 	}
 
 	if (!empty($errors)) {
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		VALUES ('$first_name', '$last_name', '$display_name', '$email', '$password', now())";
 
 		if ($conn->query($sql) === TRUE) {
-			redirect("index.php");
+			redirect("login.php");
 			exit;
 
 		} else {

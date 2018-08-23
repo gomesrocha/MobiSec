@@ -3,8 +3,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 	$email		= $_POST['email'];
 	$password	= md5($_POST['password']);
-
 	$sql = "SELECT email, password FROM member WHERE email = '$email' AND password = '$password'";
+	
 	$result = $conn->query($sql);
 
 	if ($result->num_rows == 1) {
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		redirect("admin.php");
 		exit;
 	} else {
-		set_message('<div class="alert alert-warning" role="alert" col-md-12"><p>Usuario ou senha invalidos!</p></div>');
+		set_message('<div class="alert alert-warning" role="alert" col-md-12"><p>'.$lang['LOGIN_ERROR'].'</p></div>');
 	}
 }
 ?>

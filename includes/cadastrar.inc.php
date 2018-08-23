@@ -6,10 +6,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	$Email              = $_SESSION['email'];
 	
 	$errors = [];
-	
-	if (email_exists($titulo))
+	$existe = ValProjeto($Email, $titulo);
+
+	if ($existe != null)
 	{
-		$errors[] = "$titulo j? cadastrado.";
+		$errors[] = $titulo.' '.$lang['CADASTRAR_ERR_JA_CAD'].'.';
 	}
 
 	if (!empty($errors)) {
@@ -31,13 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 				}
 			}
 			redirect("admin.php");
+			$conn->close();
 			exit;
 
 		} else {
 			set_message("<p>Error: " . $sql . "<br>" . $conn->error . "</p>");
+			$conn->close();
 		}
-
-		$conn->close();
 	}
 }
 ?>
