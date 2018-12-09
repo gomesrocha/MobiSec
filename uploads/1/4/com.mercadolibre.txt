@@ -1,0 +1,936 @@
+*************************************************************************
+**   AndroBugs Framework - Android App Security Vulnerability Scanner  **
+**                            version: 1.0.0                           **
+**     author: Yu-Cheng Lin (@AndroBugs, http://www.AndroBugs.com)     **
+**               contact: androbugs.framework@gmail.com                **
+*************************************************************************
+Platform: Android
+Package Name: com.mercadolibre
+Package Version Name: 9.11.6
+Package Version Code: 1316140571
+Min Sdk: 16
+Target Sdk: 27
+MD5   : a6390d4b64acdf34da5802e0ec8ed87c
+SHA1  : a2137db534bfa272db04185299b45fdf5bde0bfc
+SHA256: f8248a8b04c3a722b44493d444ade743c5e702b1c446a39ced70ae9e19be64eb
+SHA512: 7573576965ccb06b523599cc47f4e63b936cc1813ce55dac19d898e89fc969a05046c3fd2f6a975040d63c13e3de1e7ff6b54108fe93f86cf9fc7068e3049be7
+Analyze Signature: 6ed45cb2d2928a86f6a580f140e39b33508541bf32bf7da6cbf158abb13fb7e516c07b1c4576c0757c816771320a7944eb9568dd0e9796ccba90b254454bc9ca
+------------------------------------------------------------------------------------------------
+[Critical] <Command> Runtime Command Checking:
+           This app is using critical function 'Runtime.getRuntime().exec("...")'.
+           Please confirm these following code secions are not harmful:
+               => Lcom/mercadolibre/android/authentication/MobileDeviceProfileSession;->a(Ljava/lang/String;)Ljava/lang/String; (0x26) --->
+                    Ljava/lang/Runtime;->exec(Ljava/lang/String;)Ljava/lang/Process;
+[Critical]  App Sandbox Permission Checking:
+           Security issues "MODE_WORLD_READABLE" or "MODE_WORLD_WRITEABLE" found (Please check:
+           https://www.owasp.org/index.php/Mobile_Top_10_2014-M2):
+               [getSharedPreferences]
+               => Lcom/google/android/gms/ads/a/a;->a(Landroid/content/Context;)Lcom/google/android/gms/ads/a/a$a; (0x16) --->
+                    Landroid/content/Context;->getSharedPreferences(Ljava/lang/String; I)Landroid/content/SharedPreferences;
+               => Lcom/google/android/gms/flags/impl/b$1;->call()Ljava/lang/Object; (0xa) --->
+                    Landroid/content/Context;->getSharedPreferences(Ljava/lang/String; I)Landroid/content/SharedPreferences;
+               => Lcom/google/android/gms/internal/mh$1;->a()Ljava/lang/Void; (0x4a) --->
+                    Landroid/content/Context;->getSharedPreferences(Ljava/lang/String; I)Landroid/content/SharedPreferences;
+               => Lcom/google/android/gms/internal/wi$1;->call()Ljava/lang/Object; (0x1e) --->
+                    Landroid/content/Context;->getSharedPreferences(Ljava/lang/String; I)Landroid/content/SharedPreferences;
+               --------------------------------------------------
+[Critical] <Implicit_Intent> Implicit Service Checking:
+           To ensure your app is secure, always use an explicit intent when starting a Service and DO NOT declare intent filters for your
+           services. Using an implicit intent to start a service is a security hazard because you cannot be certain what service will
+           respond to the intent, and the user cannot see which service starts.
+           Reference: http://developer.android.com/guide/components/intents-filters.html#Types
+               => com.mercadolibre.android.notifications.services.MeliInstanceIDListenerService
+               => com.mercadolibre.android.notifications.services.MeliFirebaseMessagingService
+               => com.google.firebase.messaging.FirebaseMessagingService
+               => com.google.firebase.iid.FirebaseInstanceIdService
+[Critical] <SSL_Security> SSL Connection Checking:
+           URLs that are NOT under SSL (Total:12):
+               http://ayuda.mercadolibre
+                   => Lcom/mercadolibre/activities/cx/CXPortalWebViewActivity$1;-><init>()V
+               http://chat.mercadolibre
+                   => Lcom/mercadolibre/activities/cx/CXPortalWebViewActivity$1;-><init>()V
+               http://chat.mercadolivre
+                   => Lcom/mercadolibre/activities/cx/CXPortalWebViewActivity$1;-><init>()V
+               http://clicktocall.mercadolibre
+                   => Lcom/mercadolibre/activities/cx/CXPortalWebViewActivity$1;-><init>()V
+               http://clicktocall.mercadolivre
+                   => Lcom/mercadolibre/activities/cx/CXPortalWebViewActivity$1;-><init>()V
+               http://contato.mercadolivre
+                   => Lcom/mercadolibre/activities/cx/CXPortalWebViewActivity$1;-><init>()V
+               http://data.mercadolibre.com/
+                   => Lcom/mercadolibre/android/melidata/e;-><init>()V
+               http://mobile.mercadolibre.com.ar
+                   => Lcom/mercadolibre/android/sdk/navigation/profile/b;->b()Lcom/mercadolibre/android/sdk/navigation/profile/a;
+               http://play.google.com/store/apps/details?id=
+                   => Lcom/mercadolibre/activities/settings/AboutActivity$3;->onClick(Landroid/view/View;)V
+                   => Lcom/mercadolibre/android/apprater/a/a$1;->onClick(Landroid/view/View;)V
+               http://www.dummy.com?
+                   => Lcom/mercadolibre/a/a;->onEventAsync(Lcom/mercadolibre/android/sdk/notifications/ActivityOnCreateEventMessage;)V
+               http://www.google.com
+                   => Lcom/google/android/gms/internal/to$a;-><init>(Landroid/content/Context;)V
+               http://www.mercadolibre.com.mx/precios_de_autos
+                   => Lcom/mercadolibre/android/classifieds/homes/view/activities/PriceGuideWebViewActivity;-><init>()V
+[Critical] <WebView><Remote Code Execution><#CVE-2013-4710#> WebView RCE Vulnerability Checking:
+           Found a critical WebView "addJavascriptInterface" vulnerability. This method can be used to allow JavaScript to control the host
+           application.
+           This is a powerful feature, but also presents a security risk for applications targeted to API level JELLY_BEAN(4.2) or below,
+           because JavaScript could use reflection to access an injected object's public fields. Use of this method in a WebView containing
+           untrusted content could allow an attacker to manipulate the host application in unintended ways, executing Java code with the
+           permissions of the host application.
+           Reference:
+             1."http://developer.android.com/reference/android/webkit/WebView.html#addJavascriptInterface(java.lang.Object,
+           java.lang.String) "
+             2.https://labs.mwrinfosecurity.com/blog/2013/09/24/webview-addjavascriptinterface-remote-code-execution/
+             3.http://50.56.33.56/blog/?p=314
+             4.http://blog.trustlook.com/2013/09/04/alert-android-webview-addjavascriptinterface-code-execution-vulnerability/
+           Please modify the below code:
+               => Lcom/google/android/gms/internal/xg;-><init>(Lcom/google/android/gms/internal/xg$a; Lcom/google/android/gms/internal/km; Z
+                    Lcom/google/android/gms/internal/fl; Lcom/google/android/gms/internal/wn; Lcom/google/android/gms/internal/mp;
+                    Lcom/google/android/gms/ads/internal/u; Lcom/google/android/gms/ads/internal/e;)V (0x10c) --->
+                    Lcom/google/android/gms/internal/xg;->addJavascriptInterface(Ljava/lang/Object; Ljava/lang/String;)V
+               => Lcom/mercadolibre/activities/myaccount/SimpleWebViewFragment;->onCreateView(Landroid/view/LayoutInflater;
+                    Landroid/view/ViewGroup; Landroid/os/Bundle;)Landroid/view/View; (0xce) --->
+                    Landroid/webkit/WebView;->addJavascriptInterface(Ljava/lang/Object; Ljava/lang/String;)V
+[Warning]  Dynamic Code Loading:
+           Dynamic code loading(DexClassLoader) found:
+               => Lcom/google/android/gms/internal/gh;->a(Ljava/lang/String;)Z (0xba) --->
+                    Ldalvik/system/DexClassLoader;-><init>(Ljava/lang/String; Ljava/lang/String; Ljava/lang/String;
+                    Ljava/lang/ClassLoader;)V
+               => Lcom/google/android/gms/internal/ik;->a(Lcom/google/android/gms/internal/ik;)V (0x1c) --->
+                    Ldalvik/system/DexClassLoader;->loadClass(Ljava/lang/String;)Ljava/lang/Class;
+[Warning]  External Storage Accessing:
+           External storage access found (Remember DO NOT write important files to external storages):
+               => Lcom/facebook/common/statfs/StatFsHelper;->b()V (0x26) --->
+                    Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
+               => Lcom/facebook/internal/x;->a(Lorg/json/JSONObject; Landroid/content/Context;)V (0xb2) --->
+                    Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
+               => Lcom/facebook/internal/x;->a(Lorg/json/JSONObject; Landroid/content/Context;)V (0x104) --->
+                    Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
+               => Lcom/google/android/gms/internal/mj;-><init>(Landroid/content/Context; Ljava/lang/String; Ljava/lang/String;
+                    Ljava/util/Map;)V (0x78) ---> Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
+               => Lcom/mercadolibre/android/authentication/MobileDeviceProfileSession$SecureRandomId;->a()V (0x1e) --->
+                    Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
+               => Lcom/mercadolibre/android/authentication/MobileDeviceProfileSession$SecureRandomId;->c()V (0x12) --->
+                    Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
+               => Lcom/mercadolibre/android/authentication/MobileDeviceProfileSession$SecureRandomId;->d()V (0x6) --->
+                    Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
+               => Lcom/facebook/cache/disk/DefaultDiskStorage;->a(Ljava/io/File;)Z (0x0) --->
+                    Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
+               => Lcom/flurry/sdk/hk;->a(Z)V (0x4c) ---> Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
+               => Lcom/bugsnag/android/DeviceData;->getFreeDisk()Ljava/lang/Long; (0x4) --->
+                    Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
+[Warning]  AndroidManifest Exported Components Checking:
+           Found "exported" components(except for Launcher) for receiving outside applications' actions (AndroidManifest.xml).
+           These components can be initilized by other apps. You should add or modify the attribute to [exported="false"] if you don't want
+           to.
+           You can also protect it with a customized permission with "signature" or higher protectionLevel and specify in
+           "android:permission" attribute.
+                 activity => com.mercadolibre.mercadopago.GoogleStoreInterceptorActivity
+                 activity => com.mercadolibre.activities.syi.MultipleSelectionGalleryActivity
+                  service => com.mercadolibre.android.notifications.services.MeliInstanceIDListenerService
+                  service => com.mercadolibre.android.notifications.services.MeliFirebaseMessagingService
+                  service => com.google.firebase.messaging.FirebaseMessagingService
+                  service => com.google.firebase.iid.FirebaseInstanceIdService
+[Warning] <Sensitive_Information> Getting IMEI and Device ID:
+           This app has code getting the "device id(IMEI)" but there are problems with this "TelephonyManager.getDeviceId()" approach.
+           1.Non-phones: Wifi-only devices or music players that don't have telephony hardware just don't have this kind of unique
+           identifier.
+           2.Persistence: On devices which do have this, it persists across device data wipes and factory resets. It's not clear at all if,
+           in this situation, your app should regard this as the same device.
+           3.Privilege:It requires READ_PHONE_STATE permission, which is irritating if you don't otherwise use or need telephony.
+           4.Bugs: We have seen a few instances of production phones for which the implementation is buggy and returns garbage, for example
+           zeros or asterisks.
+           If you want to get an unique id for the device, we suggest you use "Installation" framework in the following article.
+           Please check the reference: http://android-developers.blogspot.tw/2011/03/identifying-app-installations.html
+               => Lcom/flurry/sdk/hn;->w()V (0x26) ---> Landroid/telephony/TelephonyManager;->getDeviceId()Ljava/lang/String;
+[Warning] <Sensitive_Information> Getting ANDROID_ID:
+           This app has code getting the 64-bit number "Settings.Secure.ANDROID_ID".
+           ANDROID_ID seems a good choice for a unique device identifier. There are downsides: First, it is not 100% reliable on releases of
+           Android prior to 2.2 (Froyo).
+           Also, there has been at least one widely-observed bug in a popular handset from a major manufacturer, where every instance has
+           the same ANDROID_ID.
+           If you want to get an unique id for the device, we suggest you use "Installation" framework in the following article.
+           Please check the reference: http://android-developers.blogspot.tw/2011/03/identifying-app-installations.html
+               => Lcom/flurry/sdk/hn;->p()Ljava/lang/String; (0x1c) --->
+                    Landroid/provider/Settings$Secure;->getString(Landroid/content/ContentResolver; Ljava/lang/String;)Ljava/lang/String;
+               => Lcom/google/android/gms/internal/hg;->a(Landroid/content/Context;)I (0xc) --->
+                    Landroid/provider/Settings$Secure;->getString(Landroid/content/ContentResolver; Ljava/lang/String;)Ljava/lang/String;
+               => Lcom/google/android/gms/internal/wk;->a(Landroid/content/Context;)Ljava/lang/String; (0x14) --->
+                    Landroid/provider/Settings$Secure;->getString(Landroid/content/ContentResolver; Ljava/lang/String;)Ljava/lang/String;
+               => Lcom/google/android/gms/internal/wk;->b(Landroid/content/Context;)Ljava/lang/String; (0x14) --->
+                    Landroid/provider/Settings$Secure;->getString(Landroid/content/ContentResolver; Ljava/lang/String;)Ljava/lang/String;
+               => Lcom/google/android/gms/internal/zzaue;->a(Lcom/google/android/gms/internal/ea; Lcom/google/android/gms/internal/dr;)V
+                    (0x13e) ---> Landroid/provider/Settings$Secure;->getString(Landroid/content/ContentResolver;
+                    Ljava/lang/String;)Ljava/lang/String;
+               => Lcom/mercadolibre/android/authentication/MobileDeviceProfileSession;-><init>(Landroid/content/Context;)V (0x14c) --->
+                    Landroid/provider/Settings$Secure;->getString(Landroid/content/ContentResolver; Ljava/lang/String;)Ljava/lang/String;
+[Warning] <WebView> WebView Local File Access Attacks Checking:
+           Found "setAllowFileAccess(true)" or not set(enabled by default) in WebView. The attackers could inject malicious script into
+           WebView and exploit the opportunity to access local resources. This can be mitigated or prevented by disabling local file system
+           access. (It is enabled by default)
+           Note that this enables or disables file system access only. Assets and resources are still accessible using file:///android_asset
+           and file:///android_res.
+           The attackers can use "mWebView.loadUrl("file:///data/data/[Your_Package_Name]/[File]");" to access app's local file.
+           Reference: (1)https://labs.mwrinfosecurity.com/blog/2012/04/23/adventures-with-android-webviews/
+                      (2)http://developer.android.com/reference/android/webkit/WebSettings.html#setAllowFileAccess(boolean)
+           Please add or modify "yourWebView.getSettings().setAllowFileAccess(false)" to your WebView:
+               Lcom/facebook/internal/z;->onCreate(Landroid/os/Bundle;)V
+               Lcom/google/android/gms/ads/internal/v;-><init>(Landroid/content/Context; Lcom/google/android/gms/internal/km;
+                    Ljava/lang/String; Lcom/google/android/gms/internal/wn;)V
+               Lcom/google/android/gms/internal/jj$2;->run()V
+               Lcom/google/android/gms/internal/vu;->b(Landroid/content/Context;)Ljava/lang/String;
+               Lcom/google/android/gms/internal/vv$b$1;->call()Ljava/lang/Object;
+               Lcom/google/android/gms/internal/vv$d;->a(Landroid/content/Context; Landroid/webkit/WebSettings;)Z
+               Lcom/google/android/gms/internal/vv$d;->b(Landroid/content/Context;)V
+               Lcom/google/android/gms/internal/vv$f;->a(Landroid/content/Context; Landroid/webkit/WebSettings;)Z
+               Lcom/google/android/gms/internal/wi$1;->call()Ljava/lang/Object;
+               Lcom/mercadolibre/activities/ClaimWebViewActivity;->onCreate(Landroid/os/Bundle;)V
+               Lcom/mercadolibre/activities/RBAWebViewActivity;->onCreate(Landroid/os/Bundle;)V
+               Lcom/mercadolibre/activities/cx/CXPortalWebViewActivity;->onCreate(Landroid/os/Bundle;)V
+               Lcom/mercadolibre/activities/myaccount/SimpleWebViewFragment;->onCreateView(Landroid/view/LayoutInflater;
+                    Landroid/view/ViewGroup; Landroid/os/Bundle;)Landroid/view/View;
+               Lcom/mercadolibre/activities/security/SiteSecurityWebViewActivity;->a()V
+               Lcom/mercadolibre/activities/settings/a;->onViewCreated(Landroid/view/View; Landroid/os/Bundle;)V
+               Lcom/mercadolibre/activities/syi/f;->onCreateView(Landroid/view/LayoutInflater; Landroid/view/ViewGroup;
+                    Landroid/os/Bundle;)Landroid/view/View;
+               Lcom/mercadolibre/activities/vip/subsections/UserReputationDetailActivity;->onCreate(Landroid/os/Bundle;)V
+               Lcom/mercadolibre/android/checkout/common/activities/webview/CheckoutWebViewActivity;->onCreate(Landroid/os/Bundle;)V
+               Lcom/mercadolibre/android/classifieds/homes/view/activities/PriceGuideWebViewActivity;->onCreate(Landroid/os/Bundle;)V
+[Warning] <WebView> WebView Potential XSS Attacks Checking:
+           Found "setJavaScriptEnabled(true)" in WebView, which could exposed to potential XSS attacks. Please check the web page code
+           carefully and sanitize the output:
+               => Lcom/facebook/internal/z;->onCreate(Landroid/os/Bundle;)V (0x17c) --->
+                    Landroid/webkit/WebSettings;->setJavaScriptEnabled(Z)V
+               => Lcom/google/android/gms/ads/internal/v;-><init>(Landroid/content/Context; Lcom/google/android/gms/internal/km;
+                    Ljava/lang/String; Lcom/google/android/gms/internal/wn;)V (0x68) --->
+                    Landroid/webkit/WebSettings;->setJavaScriptEnabled(Z)V
+               => Lcom/google/android/gms/internal/xg;-><init>(Lcom/google/android/gms/internal/xg$a; Lcom/google/android/gms/internal/km; Z
+                    Lcom/google/android/gms/internal/fl; Lcom/google/android/gms/internal/wn; Lcom/google/android/gms/internal/mp;
+                    Lcom/google/android/gms/ads/internal/u; Lcom/google/android/gms/ads/internal/e;)V (0x8a) --->
+                    Landroid/webkit/WebSettings;->setJavaScriptEnabled(Z)V
+               => Lcom/mercadolibre/activities/myaccount/SimpleWebViewFragment;->onCreateView(Landroid/view/LayoutInflater;
+                    Landroid/view/ViewGroup; Landroid/os/Bundle;)Landroid/view/View; (0x5e) --->
+                    Landroid/webkit/WebSettings;->setJavaScriptEnabled(Z)V
+               => Lcom/mercadolibre/activities/settings/a;->onViewCreated(Landroid/view/View; Landroid/os/Bundle;)V (0xf0) --->
+                    Landroid/webkit/WebSettings;->setJavaScriptEnabled(Z)V
+               => Lcom/mercadolibre/activities/syi/f;->onCreateView(Landroid/view/LayoutInflater; Landroid/view/ViewGroup;
+                    Landroid/os/Bundle;)Landroid/view/View; (0x80) ---> Landroid/webkit/WebSettings;->setJavaScriptEnabled(Z)V
+               => Lcom/mercadolibre/android/classifieds/homes/view/activities/PriceGuideWebViewActivity;->onCreate(Landroid/os/Bundle;)V
+                    (0x124) ---> Landroid/webkit/WebSettings;->setJavaScriptEnabled(Z)V
+               => Lcom/mercadolibre/activities/ClaimWebViewActivity;->onCreate(Landroid/os/Bundle;)V (0x52) --->
+                    Landroid/webkit/WebSettings;->setJavaScriptEnabled(Z)V
+               => Lcom/mercadolibre/activities/RBAWebViewActivity;->onCreate(Landroid/os/Bundle;)V (0x4c) --->
+                    Landroid/webkit/WebSettings;->setJavaScriptEnabled(Z)V
+               => Lcom/mercadolibre/activities/cx/CXPortalWebViewActivity;->onCreate(Landroid/os/Bundle;)V (0x1dc) --->
+                    Landroid/webkit/WebSettings;->setJavaScriptEnabled(Z)V
+               => Lcom/mercadolibre/activities/security/SiteSecurityWebViewActivity;->a()V (0x46) --->
+                    Landroid/webkit/WebSettings;->setJavaScriptEnabled(Z)V
+               => Lcom/mercadolibre/activities/vip/subsections/UserReputationDetailActivity;->onCreate(Landroid/os/Bundle;)V (0x72) --->
+                    Landroid/webkit/WebSettings;->setJavaScriptEnabled(Z)V
+               => Lcom/mercadolibre/android/checkout/common/activities/webview/CheckoutWebViewActivity;->onCreate(Landroid/os/Bundle;)V
+                    (0x82) ---> Landroid/webkit/WebSettings;->setJavaScriptEnabled(Z)V
+               => Lcom/mercadolibre/android/checkout/common/activities/webview/CheckoutWebViewActivity;->onCreate(Landroid/os/Bundle;)V
+                    (0x102) ---> Landroid/webkit/WebSettings;->setJavaScriptEnabled(Z)V
+[Notice]  AndroidManifest Adb Backup Checking:
+           ADB Backup is ENABLED for this app (default: ENABLED). ADB Backup is a good tool for backing up all of your files. If it's open
+           for this app, people who have your phone can copy all of the sensitive data for this app in your phone (Prerequisite: 1.Unlock
+           phone's screen 2.Open the developer mode). The sensitive data may include lifetime access token, username or password, etc.
+           Security case related to ADB Backup:
+           1.http://www.securityfocus.com/archive/1/530288/30/0/threaded
+           2.http://blog.c22.cc/advisories/cve-2013-5112-evernote-android-insecure-storage-of-pin-data-bypass-of-pin-protection/
+           3.http://nelenkov.blogspot.co.uk/2012/06/unpacking-android-backups.html
+           Reference: http://developer.android.com/guide/topics/manifest/application-element.html#allowbackup
+[Notice] <Command> Executing "root" or System Privilege Checking:
+           The app may has the code checking for "root" permission, mounting filesystem operations or monitoring system:
+               Lcom/bugsnag/android/DeviceDataSummary;-><clinit>()V  => '/system/bin/su'
+[Notice] <Database><#CVE-2011-3901#> Android SQLite Databases Vulnerability Checking:
+           This app is using Android SQLite databases but it's "NOT" suffering from SQLite Journal Information Disclosure Vulnerability.
+[Notice]  File Unsafe Delete Checking:
+           Everything you delete may be recovered by any user or attacker, especially rooted devices.
+           Please make sure do not use "file.delete()" to delete essential files.
+           Check this video: https://www.youtube.com/watch?v=tGw1fxUD-uY
+               => Lcom/bugsnag/android/FileStore;->write(Lcom/bugsnag/android/JsonStream$Streamable;)Ljava/lang/String; (0x74) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/bugsnag/android/SessionTracker;->deleteStoredFiles(Ljava/util/Collection;)V (0x20) ---> Ljava/io/File;->delete()Z
+               => Lcom/facebook/appevents/AppEventsLogger$c;->a(Landroid/content/Context;)Lcom/facebook/appevents/AppEventsLogger$c; (0x52)
+                    ---> Ljava/io/File;->delete()Z
+               => Lcom/facebook/common/file/FileUtils;->a(Ljava/io/File;)V (0x1a) ---> Ljava/io/File;->delete()Z
+               => Lcom/facebook/common/file/a;->b(Ljava/io/File;)Z (0x12) ---> Ljava/io/File;->delete()Z
+               => Lcom/facebook/internal/k$a;->a(Ljava/io/File;)V (0x1c) ---> Ljava/io/File;->delete()Z
+               => Lcom/facebook/internal/k;->a(Lcom/facebook/internal/k; Ljava/lang/String; Ljava/io/File;)V (0x22) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/facebook/internal/k;->b(Lcom/facebook/internal/k;)V (0x1a8) ---> Ljava/io/File;->delete()Z
+               => Lcom/facebook/internal/k;->b(Ljava/lang/String; Ljava/lang/String;)Ljava/io/OutputStream; (0xc) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/facebook/internal/r;->a(Ljava/util/Collection;)V (0x166) ---> Ljava/io/File;->delete()Z
+               => Lcom/facebook/internal/x;->a(Ljava/io/File;)V (0x3a) ---> Ljava/io/File;->delete()Z
+               => Lcom/flurry/sdk/gh;->a()V (0x6) ---> Ljava/io/File;->delete()Z
+               => Lcom/flurry/sdk/ig;->a()Ljava/lang/Object; (0xfc) ---> Ljava/io/File;->delete()Z
+               => Lcom/flurry/sdk/ig;->a(Ljava/lang/Object;)V (0x104) ---> Ljava/io/File;->delete()Z
+               => Lcom/flurry/sdk/ig;->b()Z (0x10) ---> Ljava/io/File;->delete()Z
+               => Lcom/flurry/sdk/jb;->i(Ljava/lang/String;)V (0xb2) ---> Ljava/io/File;->delete()Z
+               => Lcom/flurry/sdk/jb;->l(Ljava/lang/String;)V (0xb2) ---> Ljava/io/File;->delete()Z
+               => Lcom/flurry/sdk/jy;->a(Ljava/io/File; Ljava/lang/String;)V (0x48) ---> Ljava/io/File;->delete()Z
+               => Lcom/flurry/sdk/jy;->b(Ljava/io/File;)Z (0x44) ---> Ljava/io/File;->delete()Z
+               => Lcom/google/android/gms/internal/dx$c;->getWritableDatabase()Landroid/database/sqlite/SQLiteDatabase; (0xb2) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/google/android/gms/internal/ej$a;->getWritableDatabase()Landroid/database/sqlite/SQLiteDatabase; (0x58) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/google/android/gms/internal/gh;->a(Ljava/io/File;)V (0x38) ---> Ljava/io/File;->delete()Z
+               => Lcom/google/android/gms/internal/ym$a;->getWritableDatabase()Landroid/database/sqlite/SQLiteDatabase; (0x74) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/mercadolibre/android/authentication/MobileDeviceProfileSession$SecureRandomId;->c()V (0x5e) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/mercadolibre/android/commons/core/file/FileDeletionService;->onHandleIntent(Landroid/content/Intent;)V (0x42) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/bugsnag/android/ErrorStore;->flushErrorReport(Ljava/io/File; Lcom/bugsnag/android/ErrorReportApiClient;)V (0x5e) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/bugsnag/android/ErrorStore;->flushErrorReport(Ljava/io/File; Lcom/bugsnag/android/ErrorReportApiClient;)V (0x7e) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/facebook/cache/disk/DefaultDiskStorage$d;->a()Lcom/facebook/b/a; (0x20) ---> Ljava/io/File;->delete()Z
+               => Lcom/facebook/cache/disk/DefaultDiskStorage$d;->b()Z (0x14) ---> Ljava/io/File;->delete()Z
+               => Lcom/facebook/cache/disk/DefaultDiskStorage$e;->b(Ljava/io/File;)V (0x72) ---> Ljava/io/File;->delete()Z
+               => Lcom/facebook/cache/disk/DefaultDiskStorage$e;->c(Ljava/io/File;)V (0x20) ---> Ljava/io/File;->delete()Z
+               => Lcom/facebook/cache/disk/DefaultDiskStorage;->b(Ljava/io/File;)J (0x1a) ---> Ljava/io/File;->delete()Z
+               => Lcom/facebook/internal/k$1;->a()V (0x24) ---> Ljava/io/File;->delete()Z
+               => Lcom/flurry/sdk/hk;->i()V (0xb6) ---> Ljava/io/File;->delete()Z
+               => Lcom/google/android/gms/internal/abo;->b(Ljava/lang/String;)V (0xa) ---> Ljava/io/File;->delete()Z
+               => Lcom/google/android/gms/internal/abo;->a()V (0xb4) ---> Ljava/io/File;->delete()Z
+               => Lcom/google/android/gms/internal/abo;->a(Ljava/lang/String; Lcom/google/android/gms/internal/fm$a;)V (0x98) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/google/android/gms/internal/abo;->a(Ljava/lang/String; Lcom/google/android/gms/internal/fm$a;)V (0x208) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/mercadolibre/android/dynamic_resources/internal/cache/b;->a(Ljava/io/File; Ljava/io/InputStream;)Z (0xa6) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/mercadolibre/android/dynamic_resources/internal/cache/b;->c(Ljava/lang/String;)Z (0x22) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/google/android/gms/common/data/BitmapTeleporter;->b()Ljava/io/FileOutputStream; (0x46) ---> Ljava/io/File;->delete()Z
+               => Lcom/google/android/gms/internal/pa;->a(Ljava/lang/String;)Z (0xf4) ---> Ljava/io/File;->delete()Z
+               => Lcom/google/android/gms/internal/pa;->a(Ljava/lang/String;)Z (0x110) ---> Ljava/io/File;->delete()Z
+               => Lcom/google/android/gms/internal/pa;->a(Ljava/lang/String;)Z (0x982) ---> Ljava/io/File;->delete()Z
+[Notice] <Debug><Hacker> Codes for Checking Android Debug Mode:
+           Found codes for checking "ApplicationInfo.FLAG_DEBUGGABLE" in AndroidManifest.xml:
+               => Lcom/bugsnag/android/AppDataSummary;->guessReleaseStage (Landroid/content/Context;)Ljava/lang/String;
+[Notice] <Hacker> APK Installing Source Checking:
+           This app has code checking APK installer sources(e.g. from Google Play, from Amazon, etc.). It might be used to check for whether
+           the app is hacked by the attackers.
+               => Lcom/facebook/internal/b;->a(Landroid/content/Context;)Lcom/facebook/internal/b; (0xd6) --->
+                    Landroid/content/pm/PackageManager;->getInstallerPackageName(Ljava/lang/String;)Ljava/lang/String;
+               => Lcom/google/android/gms/a/n;->a()Lcom/google/android/gms/internal/xq; (0x38) --->
+                    Landroid/content/pm/PackageManager;->getInstallerPackageName(Ljava/lang/String;)Ljava/lang/String;
+               => Lcom/google/android/gms/internal/ei;->a()V (0x56) --->
+                    Landroid/content/pm/PackageManager;->getInstallerPackageName(Ljava/lang/String;)Ljava/lang/String;
+[Notice] <Signature><Hacker> Getting Signature Code Checking:
+           This app has code checking the package signature in the code. It might be used to check for whether the app is hacked by the
+           attackers.
+               => Lcom/facebook/internal/s$c;->a(Landroid/content/Context; Ljava/lang/String;)Z (0x3a) --->
+                    Landroid/content/pm/PackageManager;->getPackageInfo(Ljava/lang/String; I)Landroid/content/pm/PackageInfo;
+               => Lcom/google/android/gms/common/l;->d(Landroid/content/Context;)I (0x176) --->
+                    Landroid/content/pm/PackageManager;->getPackageInfo(Ljava/lang/String; I)Landroid/content/pm/PackageInfo;
+               => Lcom/google/android/gms/common/util/o;->a(Landroid/content/Context; I)Z (0x24) --->
+                    Landroid/content/pm/PackageManager;->getPackageInfo(Ljava/lang/String; I)Landroid/content/pm/PackageInfo;
+               => Lcom/mercadolibre/android/authentication/o;->a(Landroid/content/Context; Ljava/lang/String;)Ljava/lang/String; (0x18) --->
+                    Landroid/content/pm/PackageManager;->getPackageInfo(Ljava/lang/String; I)Landroid/content/pm/PackageInfo;
+               => Lcom/mercadolibre/android/authentication/r;->a(Ljava/lang/String; Lcom/mercadolibre/android/authentication/Session;)V
+                    (0xce) ---> Landroid/content/pm/PackageManager;->getPackageInfo(Ljava/lang/String; I)Landroid/content/pm/PackageInfo;
+               => Lcom/mercadolibre/android/authentication/r;->a(Ljava/lang/String; Lcom/mercadolibre/android/authentication/Session;)V
+                    (0x1ce) ---> Landroid/content/pm/PackageManager;->getPackageInfo(Ljava/lang/String; I)Landroid/content/pm/PackageInfo;
+               => Lcom/mercadolibre/android/authentication/SingleSignOnActivity;->a(Ljava/lang/String;)Ljava/lang/Boolean; (0x10) --->
+                    Landroid/content/pm/PackageManager;->getPackageInfo(Ljava/lang/String; I)Landroid/content/pm/PackageInfo;
+               => Lcom/mercadolibre/android/authentication/core/SSOActivity;->a(Ljava/lang/String;)Ljava/lang/Boolean; (0x10) --->
+                    Landroid/content/pm/PackageManager;->getPackageInfo(Ljava/lang/String; I)Landroid/content/pm/PackageInfo;
+[Notice]  Native Methods Checking:
+           Native methods found:
+               Class: Lcom/facebook/imagepipeline/memory/NativeMemoryChunk;
+                  ->Methods:
+                       nativeAllocate(I)J
+                       nativeCopyFromByteArray(J [B I I)V
+                       nativeCopyToByteArray(J [B I I)V
+                       nativeFree(J)V
+                       nativeMemcpy(J J I)V
+                       nativeReadByte(J)B
+               Class: Lcom/facebook/imagepipeline/nativecode/Bitmaps;
+                  ->Methods:
+                       nativeCopyBitmap(Landroid/graphics/Bitmap; I Landroid/graphics/Bitmap; I I)V
+                       nativeGetByteBuffer(Landroid/graphics/Bitmap; J J)Ljava/nio/ByteBuffer;
+                       nativePinBitmap(Landroid/graphics/Bitmap;)V
+                       nativeReleaseByteBuffer(Landroid/graphics/Bitmap;)V
+               Class: Lcom/facebook/imagepipeline/nativecode/JpegTranscoder;
+                  ->Methods:
+                       nativeTranscodeJpeg(Ljava/io/InputStream; Ljava/io/OutputStream; I I I)V
+               Class: Lcom/facebook/imagepipeline/nativecode/NativeBlurFilter;
+                  ->Methods:
+                       nativeIterativeBoxBlur(Landroid/graphics/Bitmap; I I)V
+               Class: Lcom/facebook/imagepipeline/nativecode/WebpTranscoderImpl;
+                  ->Methods:
+                       nativeTranscodeWebpToJpeg(Ljava/io/InputStream; Ljava/io/OutputStream; I)V
+                       nativeTranscodeWebpToPng(Ljava/io/InputStream; Ljava/io/OutputStream;)V
+               Class: Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;
+                  ->Methods:
+                       nativeDecodeByteArray([B I I Landroid/graphics/BitmapFactory$Options; F [B)Landroid/graphics/Bitmap;
+                       nativeDecodeStream(Ljava/io/InputStream; Landroid/graphics/BitmapFactory$Options; F [B)Landroid/graphics/Bitmap;
+                       nativeSeek(Ljava/io/FileDescriptor; J Z)J
+[Notice]  AndroidManifest Exported Components Checking 2:
+           Found "exported" components(except for Launcher) for receiving Google's "Android" actions (AndroidManifest.xml):
+                 activity => com.mercadolibre.activities.marketing.BrowseCampaignActivity
+                 activity => com.mercadolibre.activities.syi.core.SellCoreFlowActivity
+                 activity => com.mercadolibre.activities.syi.classifieds.motors.SellMotorsFlowActivity
+                 activity => com.mercadolibre.activities.syi.classifieds.realestate.SellRealEstateFlowActivity
+                 activity => com.mercadolibre.activities.syi.classifieds.services.SellServicesFlowActivity
+                 activity => com.mercadolibre.activities.vip.subsections.VIPSubsectionActivity
+                 activity => com.mercadolibre.activities.myaccount.ReputationActivity
+                 activity => com.mercadolibre.activities.checkout.CheckoutWrapperActivity
+                 activity => com.mercadolibre.activities.myaccount.RegisterActivity
+                 activity => com.mercadolibre.activities.myaccount.FBRegisterActivity
+                 activity => com.mercadolibre.activities.categories.CategoryListingActivity
+                 activity => com.mercadolibre.activities.settings.SettingsActivity
+                 activity => com.mercadolibre.activities.notifications.NotificationsPreferencesActivity
+                 activity => com.mercadolibre.activities.mytransactions.MySalesActivity
+                 activity => com.mercadolibre.activities.mytransactions.ShippingTrackingLandingActivity
+                 activity => com.mercadolibre.activities.mytransactions.MyPurchasesActivity
+                 activity => com.mercadolibre.activities.mytransactions.wrapper.MyMLWrapperActivity
+                 activity => com.mercadolibre.activities.mylistings.list.MyListingsRoutingActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.sip.SellSIPActivity
+                 activity => com.mercadolibre.activities.ClaimWebViewActivity
+                 activity => com.mercadolibre.activities.cx.CXPortalWebViewActivity
+                 activity => com.mercadolibre.android.authentication.core.SSOActivity
+                 activity => com.mercadolibre.android.authentication.SingleSignOnActivity
+                 activity => com.mercadolibre.activities.security.SiteSecurityWebViewActivity
+                 activity => com.mercadolibre.activities.notifications.GenericNotificationLandingWebViewActivity
+                 activity => com.mercadolibre.navigation.activities.MyAccountFragmentContainerActivity
+                 activity => com.mercadolibre.android.vip.presentation.components.activities.VIPActivity
+                 activity => com.mercadolibre.android.vip.presentation.components.activities.sections.ReviewsActivity
+                 activity => com.mercadolibre.android.reviews.activities.ReviewsLandingActivity
+                 activity => com.mercadolibre.android.checkout.common.components.map.payment.PayPointStoreMapActivity
+                 activity => com.mercadolibre.android.cart.scp.cart.CartActivity
+                 activity => com.mercadolibre.android.cart.scp.congrats.view.CongratsActivity
+                 activity => com.mercadolibre.android.myml.orders.core.purchases.intents.PurchasesDeepLinkHandlerActivity
+                 activity => com.mercadolibre.android.myml.orders.core.sales.intents.SalesDeepLinkHandlerActivity
+                 activity => com.mercadolibre.android.order.delivered.view.flowselector.FlowSelectorScreen
+                 activity => com.mercadolibre.android.feedback.view.review.ReviewScreen
+                 activity => com.mercadolibre.android.quotation.QuotationActivity
+                 activity => com.mercadolibre.android.returns.core.ReturnsFlowMainActivity
+                 activity => com.mercadolibre.android.credits.activities.CreditsMainScreen
+                 activity => com.mercadolibre.android.shipping.component.map.view.ShippingComponentStoreMapActivity
+                 activity => com.mercadolibre.android.shipping.component.pdfviewer.PDFViewerViewActivity
+                 activity => com.mercadolibre.android.officialstores.activities.OfficialStoresListActivity
+                 activity => com.mercadolibre.notificationcenter.mvp.view.NotifCenterActivity
+                 activity => com.mercadolibre.android.loyalty.presentation.components.activities.LoyaltyScoreActivity
+                 activity => com.mercadolibre.android.loyalty.presentation.components.activities.LoyaltyMilestonesActivity
+                 activity => com.mercadolibre.android.loyalty.presentation.components.activities.RewardsLevelActivity
+                 activity => com.mercadolibre.android.loyalty.presentation.components.activities.LoyaltyActivityDetailActivity
+                 activity => com.mercadolibre.android.loyalty.presentation.components.activities.LoyaltyBenefitAndMilestoneDetailActivity
+                 activity => com.mercadolibre.android.loyalty.presentation.components.activities.LoyaltyBuyLevel
+                 activity => com.mercadolibre.android.mp.balance.activities.AccountBalanceActivity
+                 activity => com.mercadolibre.android.mp.balance.activities.MPDownloadActivity
+                 activity => com.mercadolibre.android.mp.qrpromo.activities.QRPromoRouterActivity
+                 activity => com.mercadolibre.android.mp.qrpromo.activities.QRPromoOnboardingActivity
+                 activity => com.mercadolibre.android.mp.qrpromo.activities.QRPromoStartActivity
+                 activity => com.mercadolibre.android.mp.qrpromo.activities.QRPromoResultActivity
+                 activity => com.mercadolibre.android.mp.qrpromo.activities.QRPromoHowToActivity
+                 activity => com.mercadolibre.android.mp.qrpromo.activities.QRPromoPendingActivity
+                 activity => com.mercadolibre.android.mp.qrpromo.activities.QRPromoRejectedActivity
+                 activity => com.mercadolibre.android.mp.qrpromo.activities.QRPromoCouchmarkActivity
+                 activity => com.mercadolibre.android.mp.balance.activities.OperationsDeepLinkHandler
+                 activity => com.mercadolibre.android.myml.billing.core.presenterview.billresume.BillResumeActivity
+                 activity => com.mercadolibre.android.myml.messages.core.deeplink.MessagesDeeplinkHandlerActivity
+                 activity => com.mercadolibre.android.mlwallet.wallet.feature.home.WalletHomeActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.pictures.view.SellPicturesStepActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.pictures.picturesgallery.view.SellPicturesStepActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.inputstep.text.SellTextInputStepActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.inputstep.numbers.price.SellPriceStepActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.congrats.SellCongratsActivity
+                 activity => com.mercadolibre.android.sell.presentation.flowinit.list.SellListLoaderActivity
+                 activity => com.mercadolibre.android.sell.presentation.flowinit.modify.SellModifyLoaderActivity
+                 activity => com.mercadolibre.android.sell.presentation.flowinit.upgrade.SellUpgradeLoaderActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.drafts.SellDraftsActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.hub.SellHubActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.hub.SellOldHubActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.lists.SellBaseListActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.walkthrough.SellWalkthroughActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.landing.SellLandingActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.inputstep.shipping_options.ShippingOptionsActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.listingtypes.SellListingTypesActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.freeshipping.SellFreeShippingActivity
+                 activity =>
+                    com.mercadolibre.android.sell.presentation.presenterview.freeshippingexclusionarea.SellFreeShippingExclusionAreaActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.inputstep.payment_method.PaymentMethodActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.categorysuggestion.SellCategorySuggestionActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.colorlist.SellBaseColorListActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.form.SellRegistrationActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.inputstep.zip_code.SellZipCodeInputActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.inputstep.numbers.units.NumberUnitStepActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.map.SellMapActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.inputstep.numbers.number_input.SellNumberInputActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.inputstep.phone.SellPhoneInputActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.statistics.SellStatisticsActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.variations.SellVariationsStepActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.csip.SellCSIPActivity
+                 activity =>
+                    com.mercadolibre.android.sell.presentation.presenterview.technicalspecifications.SellTechnicalSpecificationsStepActivity
+                 activity => com.mercadolibre.android.sell.presentation.presenterview.goals.SellGoalsActivity
+                 activity => com.mercadolibre.android.checkout.subscriptions.frequency.FrequencyIntentHandler
+                 activity => com.mercadolibre.android.myml.subscriptions.core.intents.DeepLinkHandlerActivity
+                 activity => com.mercadolibre.android.myml.listings.list.ListingsActivity
+                 activity => com.mercadolibre.android.singleplayer.cellphonerecharge.activities.DeepLinkHandlerActivity
+                 activity => com.mercadolibre.android.classifieds.homes.view.activities.ClassifiedHomesActivity
+                 activity => com.mercadolibre.android.identityvalidation.activities.LandingActivity
+                 activity => com.mercadolibre.android.identityvalidation.activities.PhoneLandingActivity
+                 activity => com.mercadolibre.android.identityvalidation.activities.PhoneValidationActivity
+                 activity => com.mercadolibre.android.identityvalidation.activities.DocumentationActivity
+                 activity => com.mercadolibre.android.identityvalidation.activities.DocumentationNumberActivity
+                 activity => com.mercadolibre.android.identityvalidation.activities.CongratsActivity
+                 activity => com.mercadolibre.android.search.activities.MainActivity
+                 activity => com.mercadolibre.home.home.history.NavigationHistoryActivity
+                 activity => com.mercadolibre.android.search.input.activities.SearchInputActivity
+                 activity => com.mercadolibre.android.questions.ui.seller.activities.SellerDeepLinkHandlerActivity
+                 activity => com.mercadolibre.android.questions.ui.buyer.activities.BuyerDeepLinkHandlerActivity
+                 activity => com.mercadolibre.android.mydata.ui.activities.profile.MyDataActivity
+                 activity => com.mercadolibre.android.mydata.ui.activities.inferred.ModifyInferredDataActivity
+                 activity => com.mercadolibre.android.mydata.ui.webview.RegistrationWebViewActivity
+                 activity => com.mercadolibre.android.traffic.registration.register.view.flowselector.FlowSelectorScreen
+                 activity => com.mercadolibre.android.traffic.registration.register.view.RegistrationScreen
+                 activity => com.mercadopago.android.google.connect.core.webview.WebviewActivity
+                 activity => com.mercadolibre.android.instore.activities.QRCodeActivity
+                 activity => com.mercadolibre.android.instore.activities.OnWaitingScreenActivity
+                 activity => com.mercadolibre.android.instore.activities.GenericErrorScreenActivity
+                 activity => com.mercadolibre.android.instore.activities.ManualPriceActivity
+                 activity => com.mercadolibre.android.instore.activities.SelectProductActivity
+                 activity => com.mercadolibre.android.instore.activities.EnableCameraActivity
+                 activity => com.mercadolibre.android.instore.activities.FTUActivity
+                 activity => com.mercadolibre.android.discovery.activities.StoresMapActivity
+                 activity => com.mercadopago.android.moneyin.activities.SelectMethodActivity
+                 activity => com.mercadolibre.android.login.activities.UsernameActivity
+                 activity => com.mercadolibre.android.pms.activities.PmsDeeplinkHandlerActivity
+                 activity => com.mercadolibre.android.checkout.CheckoutEntryPointActivity
+                 activity => com.mercadolibre.android.checkout.paymentonly.PaymentOnlyEntryPointActivity
+                 activity => com.mercadolibre.android.checkout.shipping.map.PickupPointMapActivity
+                 activity => com.mercadolibre.android.checkout.subscription.SubscriptionEntryPointActivity
+                 activity => com.mercadolibre.android.checkout.cart.CartEntryPointActivity
+                 activity => com.mercadolibre.android.checkout.cart.CartDeeplinkUrlParserActivity
+                  service => com.mercadolibre.android.authentication.core.SSOService
+                  service => com.mercadolibre.android.authentication.SingleSignOnService
+                  service => com.mercadolibre.android.authentication.CompatSingleSignOnService
+                 receiver => com.mercadolibre.receivers.ReferredDeepLinkReceiver
+[Notice]  Security Classes Checking:
+           Find some security-related class names:
+               Lcom/bugsnag/android/BuildConfig;
+               Lcom/bugsnag/android/Configuration;
+               Lcom/flurry/android/Constants;
+               Lcom/google/android/gms/auth/api/credentials/CredentialPickerConfig$a;
+               Lcom/google/zxing/DecodeHintType;
+               Lcom/google/zxing/aztec/decoder/Decoder$1;
+               Lcom/google/zxing/aztec/decoder/Decoder$Table;
+               Lcom/google/zxing/aztec/decoder/Decoder;
+               Lcom/google/zxing/datamatrix/decoder/DecodedBitStreamParser$1;
+               Lcom/google/zxing/datamatrix/decoder/DecodedBitStreamParser$Mode;
+               Lcom/google/zxing/datamatrix/decoder/DecodedBitStreamParser;
+               Lcom/google/zxing/datamatrix/decoder/a;
+               Lcom/google/zxing/datamatrix/decoder/b;
+               Lcom/google/zxing/datamatrix/decoder/c;
+               Lcom/google/zxing/datamatrix/decoder/d$a;
+               Lcom/google/zxing/datamatrix/decoder/d$b;
+               Lcom/google/zxing/datamatrix/decoder/d;
+               Lcom/google/zxing/oned/rss/expanded/decoders/CurrentParsingState$State;
+               Lcom/google/zxing/oned/rss/expanded/decoders/CurrentParsingState;
+               Lcom/google/zxing/oned/rss/expanded/decoders/j;
+               Lcom/google/zxing/oned/rss/expanded/decoders/l;
+               Lcom/google/zxing/oned/rss/expanded/decoders/p;
+               Lcom/google/zxing/oned/rss/expanded/decoders/q;
+               Lcom/google/zxing/oned/rss/expanded/decoders/r;
+               Lcom/google/zxing/pdf417/decoder/DecodedBitStreamParser$1;
+               Lcom/google/zxing/pdf417/decoder/DecodedBitStreamParser$Mode;
+               Lcom/google/zxing/pdf417/decoder/DecodedBitStreamParser;
+               Lcom/google/zxing/pdf417/decoder/a/a;
+               Lcom/google/zxing/pdf417/decoder/a/b;
+               Lcom/google/zxing/pdf417/decoder/a/c;
+               Lcom/google/zxing/pdf417/decoder/a;
+               Lcom/google/zxing/pdf417/decoder/b;
+               Lcom/google/zxing/pdf417/decoder/c;
+               Lcom/google/zxing/pdf417/decoder/d;
+               Lcom/google/zxing/pdf417/decoder/e;
+               Lcom/google/zxing/pdf417/decoder/f;
+               Lcom/google/zxing/pdf417/decoder/h;
+               Lcom/google/zxing/pdf417/decoder/i;
+               Lcom/google/zxing/qrcode/decoder/DataMask;
+               Lcom/google/zxing/qrcode/decoder/ErrorCorrectionLevel;
+               Lcom/google/zxing/qrcode/decoder/Mode;
+               Lcom/google/zxing/qrcode/decoder/a;
+               Lcom/google/zxing/qrcode/decoder/b;
+               Lcom/google/zxing/qrcode/decoder/c;
+               Lcom/google/zxing/qrcode/decoder/d;
+               Lcom/google/zxing/qrcode/decoder/e;
+               Lcom/google/zxing/qrcode/decoder/f;
+               Lcom/google/zxing/qrcode/decoder/g$a;
+               Lcom/google/zxing/qrcode/decoder/g$b;
+               Lcom/google/zxing/qrcode/decoder/g;
+               Lcom/journeyapps/barcodescanner/BarcodeView$DecodeMode;
+               Lcom/journeyapps/barcodescanner/camera/CameraSettings$FocusMode;
+               Lcom/journeyapps/barcodescanner/camera/CameraSettings;
+               Lcom/mercadolibre/activities/settings/AboutActivity$1;
+               Lcom/mercadolibre/activities/settings/AboutActivity$2;
+               Lcom/mercadolibre/activities/settings/AboutActivity$3;
+               Lcom/mercadolibre/activities/settings/AboutActivity$BugsnagTestCase;
+               Lcom/mercadolibre/activities/settings/SettingsActivity$a;
+               Lcom/mercadolibre/activities/settings/SettingsFragment$1;
+               Lcom/mercadolibre/activities/settings/SettingsFragment$2;
+               Lcom/mercadolibre/activities/settings/SettingsFragment$3;
+               Lcom/mercadolibre/activities/settings/SettingsFragment$4;
+               Lcom/mercadolibre/activities/settings/SettingsFragment$a;
+               Lcom/mercadolibre/activities/settings/a$a;
+               Lcom/mercadolibre/activities/settings/a$b;
+               Lcom/mercadolibre/activities/settings/a$c;
+               Lcom/mercadolibre/activities/settings/a$d;
+               Lcom/mercadolibre/activities/settings/country/adapter/CountrySelectorItem;
+               Lcom/mercadolibre/activities/settings/country/adapter/a;
+               Lcom/mercadolibre/activities/settings/country/fragments/CountrySelectorFragment$1;
+               Lcom/mercadolibre/activities/settings/country/fragments/CountrySelectorFragment$a;
+               Lcom/mercadolibre/android/apprater/domains/Configuration;
+               Lcom/mercadolibre/android/checkout/cart/components/payment/api/CardConfigResponseDto;
+               Lcom/mercadolibre/android/checkout/cart/dto/CartSettingsDto$1;
+               Lcom/mercadolibre/android/checkout/cart/dto/CartSettingsDto;
+               Lcom/mercadolibre/android/checkout/cart/dto/packageselection/packconfig/CartPackConfigDto$1;
+               Lcom/mercadolibre/android/checkout/cart/dto/packageselection/packconfig/CartPackConfigDto;
+               Lcom/mercadolibre/android/checkout/cart/dto/packageselection/packconfig/shippingconfig/CartShippingConfigDto$1;
+               Lcom/mercadolibre/android/checkout/cart/dto/packageselection/packconfig/shippingconfig/CartShippingConfigDto;
+               Lcom/mercadolibre/android/checkout/cart/dto/packageselection/packconfig/shippingconfig/CartShippingConfigItemDto$1;
+               Lcom/mercadolibre/android/checkout/cart/dto/packageselection/packconfig/shippingconfig/CartShippingConfigItemDto;
+               Lcom/mercadolibre/android/checkout/cart/dto/purchase/response/sections/PackConfigItemDto$1;
+               Lcom/mercadolibre/android/checkout/cart/dto/purchase/response/sections/PackConfigItemDto;
+               Lcom/mercadolibre/android/checkout/cart/dto/purchase/response/sections/PackConfigSectionModelDto$1;
+               Lcom/mercadolibre/android/checkout/common/components/payment/addcard/configselection/SelectPaymentBankActivity$1;
+               Lcom/mercadolibre/android/checkout/common/components/payment/addcard/configselection/a;
+               Lcom/mercadolibre/android/checkout/common/components/payment/addcard/configselection/b$1;
+               Lcom/mercadolibre/android/checkout/common/components/payment/addcard/configselection/b;
+               Lcom/mercadolibre/android/checkout/common/components/payment/addcard/configselection/d;
+               Lcom/mercadolibre/android/checkout/common/components/payment/api/cardconfig/CardConfigRequestEvent;
+               Lcom/mercadolibre/android/checkout/common/components/payment/api/cardconfig/CardConfigurationEvent;
+               Lcom/mercadolibre/android/checkout/common/components/payment/api/cardconfig/a$1;
+               Lcom/mercadolibre/android/checkout/common/dto/payment/EncryptedSecurityCodeDto$1;
+               Lcom/mercadolibre/android/checkout/common/dto/payment/EncryptedSecurityCodeDto;
+               Lcom/mercadolibre/android/checkout/common/dto/payment/options/model/card/CardConfigDto$1;
+               Lcom/mercadolibre/android/checkout/common/dto/payment/options/model/card/CardConfigDto;
+               Lcom/mercadolibre/android/checkout/common/dto/payment/options/model/card/configuration/CardConfigurationDto$1;
+               Lcom/mercadolibre/android/checkout/common/dto/payment/options/model/card/configuration/CardConfigurationDto;
+               Lcom/mercadolibre/android/checkout/common/dto/payment/options/model/card/configuration/CardSettingsDto$1;
+               Lcom/mercadolibre/android/checkout/common/dto/payment/options/model/card/configuration/CardSettingsDto;
+               Lcom/mercadolibre/android/checkout/common/dto/payment/options/model/card/configuration/CardValidationsDto$1;
+               Lcom/mercadolibre/android/checkout/common/dto/payment/options/model/card/configuration/CardValidationsDto;
+               Lcom/mercadolibre/android/checkout/common/dto/payment/options/model/card/configuration/DefaultCardConfigurationDto$1;
+               Lcom/mercadolibre/android/checkout/common/dto/payment/options/model/card/configuration/DefaultCardConfigurationDto;
+               Lcom/mercadolibre/android/checkout/common/dto/shipping/contactinfo/ContactInfoSettingDto$1;
+               Lcom/mercadolibre/android/checkout/common/dto/shipping/contactinfo/ContactInfoSettingDto;
+               Lcom/mercadolibre/android/checkout/dto/payment/SettingsDto$1;
+               Lcom/mercadolibre/android/checkout/dto/payment/SettingsDto;
+               Lcom/mercadolibre/android/checkout/payment/api/CardConfigurationApiInterface$CardConfigurationList;
+               Lcom/mercadolibre/android/checkout/payment/api/CardConfigurationApiInterface;
+               Lcom/mercadolibre/android/commons/core/model/CountryConfig;
+               Lcom/mercadolibre/android/commons/core/model/IdNumberConfiguration;
+               Lcom/mercadolibre/android/commons/core/utils/CountryConfigManager$SiteIdNotResolvedException;
+               Lcom/mercadolibre/android/commons/core/utils/CountryConfigManager;
+               Lcom/mercadolibre/android/configuration/manager/Configurable;
+               Lcom/mercadolibre/android/configuration/manager/a$1;
+               Lcom/mercadolibre/android/configuration/manager/a;
+               Lcom/mercadolibre/android/melidata/behaviour/MelidataBehaviour$MelidataBehaviourConfiguration;
+               Lcom/mercadolibre/android/networking/annotation/PerCallConfiguration;
+               Lcom/mercadolibre/android/notifications/managers/NotificationManager$Configuration;
+               Lretrofit/http/EncodedPath;
+               Lretrofit/http/EncodedQuery;
+               Lretrofit/http/EncodedQueryMap;
+               Lretrofit/http/FormUrlEncoded;
+               Lcom/google/zxing/oned/rss/expanded/decoders/h;
+               Lcom/google/zxing/oned/rss/expanded/decoders/k;
+               Lcom/google/zxing/oned/rss/expanded/decoders/m;
+               Lcom/google/zxing/oned/rss/expanded/decoders/n;
+               Lcom/google/zxing/oned/rss/expanded/decoders/o;
+               Lcom/google/zxing/pdf417/decoder/g;
+               Lcom/google/zxing/qrcode/decoder/DataMask$1;
+               Lcom/google/zxing/qrcode/decoder/DataMask$2;
+               Lcom/google/zxing/qrcode/decoder/DataMask$3;
+               Lcom/google/zxing/qrcode/decoder/DataMask$4;
+               Lcom/google/zxing/qrcode/decoder/DataMask$5;
+               Lcom/google/zxing/qrcode/decoder/DataMask$6;
+               Lcom/google/zxing/qrcode/decoder/DataMask$7;
+               Lcom/google/zxing/qrcode/decoder/DataMask$8;
+               Lcom/mercadolibre/activities/settings/a$e;
+               Lcom/mercadolibre/activities/settings/country/a/a;
+               Lcom/mercadolibre/activities/settings/country/adapter/b;
+               Lcom/mercadolibre/activities/settings/country/adapter/c;
+               Lcom/mercadolibre/android/behaviour/configurator/BehavioursConfigurator;
+               Lcom/mercadolibre/android/checkout/cart/dto/purchase/CartItemsConfigsDto;
+               Lcom/mercadolibre/android/checkout/cart/dto/purchase/CartPaymentsConfigs;
+               Lcom/mercadolibre/android/checkout/cart/dto/purchase/CartPurchasesPackConfigDto;
+               Lcom/mercadolibre/android/checkout/cart/dto/purchase/response/sections/PackConfigSectionModelDto;
+               Lcom/mercadolibre/android/checkout/common/components/payment/addcard/configselection/SelectPaymentConfigurationActivity$1;
+               Lcom/mercadolibre/android/checkout/common/components/payment/addcard/configselection/e$a;
+               Lcom/mercadolibre/android/checkout/common/components/payment/addcard/configselection/e;
+               Lcom/mercadolibre/android/checkout/common/components/payment/addcard/configselection/f;
+               Lcom/mercadolibre/android/checkout/common/components/payment/api/cardconfig/a;
+               Lcom/mercadolibre/android/checkout/common/components/payment/api/cardconfig/b;
+               Lcom/mercadolibre/android/commons/core/utils/CountryConfigManager$1;
+               Lcom/mercadolibre/android/crashtracking/CrashTrackConfigurator$1;
+               Lcom/mercadolibre/android/crashtracking/CrashTrackConfigurator;
+               Lcom/mercadolibre/android/discovery/utils/MelidataBehaviourConfiguration;
+               Lcom/mercadolibre/business/notifications/MeliNotificationConfiguration;
+               Lcom/google/android/gms/auth/api/credentials/CredentialPickerConfig;
+               Lcom/google/android/gms/auth/api/signin/internal/SignInConfiguration;
+               Lcom/google/zxing/oned/rss/expanded/decoders/c;
+               Lcom/google/zxing/oned/rss/expanded/decoders/d;
+               Lcom/google/zxing/oned/rss/expanded/decoders/g;
+               Lcom/google/zxing/oned/rss/expanded/decoders/i;
+               Lcom/mercadolibre/android/checkout/common/components/payment/addcard/configselection/c$a;
+               Lcom/mercadolibre/android/checkout/common/components/payment/addcard/configselection/c$b;
+               Lcom/mercadolibre/android/checkout/common/components/payment/addcard/configselection/c;
+               Lcom/mercadolibre/android/checkout/common/components/payment/addcard/configselection/g;
+               Lcom/google/zxing/oned/rss/expanded/decoders/e;
+               Lcom/google/zxing/oned/rss/expanded/decoders/f;
+               Lcom/google/zxing/oned/rss/expanded/decoders/a;
+               Lcom/google/zxing/oned/rss/expanded/decoders/b;
+               Lcom/mercadolibre/activities/settings/SettingsFragment;
+               Lcom/mercadolibre/activities/settings/a;
+               Lcom/mercadolibre/activities/settings/country/fragments/CountrySelectorFragment;
+               Lcom/mercadolibre/activities/settings/SettingsActivity;
+               Lcom/mercadolibre/activities/settings/country/CountrySelectorActivity;
+               Lcom/mercadolibre/activities/settings/AboutActivity;
+               Lcom/mercadolibre/android/checkout/common/components/payment/addcard/configselection/SelectPaymentBankActivity;
+               Lcom/mercadolibre/android/checkout/common/components/payment/addcard/configselection/SelectPaymentConfigurationActivity;
+[Notice]  Security Methods Checking:
+           Find some security-related method names:
+               Lcom/bugsnag/android/Client;->createNewConfiguration(Landroid/content/Context; Ljava/lang/String;
+                    Z)Lcom/bugsnag/android/Configuration;
+               Lcom/bugsnag/android/Client;->populateConfigFromManifest(Lcom/bugsnag/android/Configuration;
+                    Landroid/os/Bundle;)Lcom/bugsnag/android/Configuration;
+               Lcom/bugsnag/android/Client;->getConfig()Lcom/bugsnag/android/Configuration;
+               Lcom/bugsnag/android/NativeInterface;->configureClientObservers(Lcom/bugsnag/android/Client;)V
+               Lcom/google/android/gms/internal/lc;->getMobileAdsSettingsManager(Lcom/google/android/gms/dynamic/a;)Lcom/google/android/gms/
+                    internal/le;
+               Lcom/google/android/gms/internal/lc;->getMobileAdsSettingsManagerWithClientJarVersion(Lcom/google/android/gms/dynamic/a;
+                    I)Lcom/google/android/gms/internal/le;
+               Lcom/google/firebase/perf/network/c;->getContentEncoding()Ljava/lang/String;
+               Lcom/google/firebase/perf/network/d;->getContentEncoding()Ljava/lang/String;
+               Lcom/journeyapps/barcodescanner/CameraPreview;->getCameraSettings()Lcom/journeyapps/barcodescanner/camera/CameraSettings;
+               Lcom/journeyapps/barcodescanner/CameraPreview;->setCameraSettings(Lcom/journeyapps/barcodescanner/camera/CameraSettings;)V
+               Lcom/mercadolibre/activities/myaccount/registration/views/IdentificationView;->getIdNumberConfiguration()Lcom/mercadolibre/an
+                    droid/commons/core/model/IdNumberConfiguration;
+               Lcom/mercadolibre/activities/myaccount/registration/views/IdentificationView;->setIdNumberConfiguration(Lcom/mercadolibre/and
+                    roid/commons/core/model/IdNumberConfiguration;)V
+               Lcom/mercadolibre/android/checkout/cart/components/payment/api/a;->getCardConfigForBin(Ljava/lang/String; Ljava/lang/String;
+                    Ljava/lang/String;)Lcom/mercadolibre/android/networking/common/PendingRequest;
+               Lcom/mercadolibre/android/checkout/payment/api/CardConfigurationApiInterface;->getCardConfigForBin(Ljava/lang/String;
+                    Ljava/lang/String; Ljava/lang/String; I)Lcom/mercadolibre/android/networking/common/PendingRequest;
+               Lcom/mercadolibre/android/checkout/payment/api/CardConfigurationApiInterface;->getSubscriptionCardConfigForBin(Ljava/lang/Str
+                    ing; Ljava/lang/String; Ljava/lang/String; I)Lcom/mercadolibre/android/networking/common/PendingRequest;
+               Lcom/mercadolibre/android/configuration/manager/Configurable;->configure(Landroid/content/Context;)V
+               Lcom/mercadolibre/android/networking/annotation/Body;->encoding()Ljava/lang/String;
+               Lcom/mercadolibre/android/networking/annotation/Path;->encode()Z
+               Lcom/mercadolibre/android/networking/annotation/Query;->encodeName()Z
+               Lcom/mercadolibre/android/networking/annotation/Query;->encodeValue()Z
+               Lcom/mercadolibre/android/networking/annotation/QueryMap;->encodeNames()Z
+               Lcom/mercadolibre/android/networking/annotation/QueryMap;->encodeValues()Z
+               Lcom/mercadolibre/apprater/a;->getConfiguration(I
+                    Ljava/lang/String;)Lcom/mercadolibre/android/apprater/domains/Configuration;
+               Lcom/mercadopago/android/moneyin/d/b;->getConfiguration()Lcom/mercadolibre/android/networking/common/PendingRequest;
+               Lokhttp3/CertificatePinner;->sha1(Ljava/security/cert/X509Certificate;)Lokio/ByteString;
+               Lokhttp3/CertificatePinner;->sha256(Ljava/security/cert/X509Certificate;)Lokio/ByteString;
+               Lokhttp3/HttpUrl$Builder;->addEncodedPathSegment(Ljava/lang/String;)Lokhttp3/HttpUrl$Builder;
+               Lokhttp3/HttpUrl$Builder;->addEncodedPathSegments(Ljava/lang/String;)Lokhttp3/HttpUrl$Builder;
+               Lokhttp3/HttpUrl$Builder;->addEncodedQueryParameter(Ljava/lang/String; Ljava/lang/String;)Lokhttp3/HttpUrl$Builder;
+               Lokhttp3/HttpUrl$Builder;->encodedFragment(Ljava/lang/String;)Lokhttp3/HttpUrl$Builder;
+               Lokhttp3/HttpUrl$Builder;->encodedPassword(Ljava/lang/String;)Lokhttp3/HttpUrl$Builder;
+               Lokhttp3/HttpUrl$Builder;->encodedPath(Ljava/lang/String;)Lokhttp3/HttpUrl$Builder;
+               Lokhttp3/HttpUrl$Builder;->encodedQuery(Ljava/lang/String;)Lokhttp3/HttpUrl$Builder;
+               Lokhttp3/HttpUrl$Builder;->encodedUsername(Ljava/lang/String;)Lokhttp3/HttpUrl$Builder;
+               Lokhttp3/HttpUrl$Builder;->reencodeForUri()Lokhttp3/HttpUrl$Builder;
+               Lokhttp3/HttpUrl$Builder;->removeAllEncodedQueryParameters(Ljava/lang/String;)Lokhttp3/HttpUrl$Builder;
+               Lokhttp3/HttpUrl$Builder;->setEncodedPathSegment(I Ljava/lang/String;)Lokhttp3/HttpUrl$Builder;
+               Lokhttp3/HttpUrl$Builder;->setEncodedQueryParameter(Ljava/lang/String; Ljava/lang/String;)Lokhttp3/HttpUrl$Builder;
+               Lokhttp3/HttpUrl;->percentDecode(Ljava/lang/String; I I Z)Ljava/lang/String;
+               Lokhttp3/HttpUrl;->percentDecode(Ljava/lang/String; Z)Ljava/lang/String;
+               Lokhttp3/HttpUrl;->percentDecode(Ljava/util/List; Z)Ljava/util/List;
+               Lokhttp3/HttpUrl;->percentDecode(Lokio/Buffer; Ljava/lang/String; I I Z)V
+               Lokhttp3/HttpUrl;->percentEncoded(Ljava/lang/String; I I)Z
+               Lokhttp3/HttpUrl;->encodedFragment()Ljava/lang/String;
+               Lokhttp3/HttpUrl;->encodedPassword()Ljava/lang/String;
+               Lokhttp3/HttpUrl;->encodedPath()Ljava/lang/String;
+               Lokhttp3/HttpUrl;->encodedPathSegments()Ljava/util/List;
+               Lokhttp3/HttpUrl;->encodedQuery()Ljava/lang/String;
+               Lokhttp3/HttpUrl;->encodedUsername()Ljava/lang/String;
+               Lokhttp3/internal/Util;->decodeHexDigit(C)I
+               Lokhttp3/internal/Util;->decodeIpv4Suffix(Ljava/lang/String; I I [B I)Z
+               Lokhttp3/internal/Util;->decodeIpv6(Ljava/lang/String; I I)Ljava/net/InetAddress;
+               Lokhttp3/internal/http2/Http2Connection$Listener;->onSettings(Lokhttp3/internal/http2/Http2Connection;)V
+               Lokhttp3/internal/platform/Platform;->configureTlsExtensions(Ljavax/net/ssl/SSLSocket; Ljava/lang/String; Ljava/util/List;)V
+               Lretrofit/http/Field;->encodeName()Z
+               Lretrofit/http/Field;->encodeValue()Z
+               Lretrofit/http/FieldMap;->encodeNames()Z
+               Lretrofit/http/FieldMap;->encodeValues()Z
+               Lretrofit/http/Part;->encoding()Ljava/lang/String;
+               Lretrofit/http/PartMap;->encoding()Ljava/lang/String;
+               Lretrofit/http/Path;->encode()Z
+               Lretrofit/http/Query;->encodeName()Z
+               Lretrofit/http/Query;->encodeValue()Z
+               Lretrofit/http/QueryMap;->encodeNames()Z
+               Lretrofit/http/QueryMap;->encodeValues()Z
+               Lcom/facebook/drawee/drawable/g;->getConstantState()Landroid/graphics/drawable/Drawable$ConstantState;
+               Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;->hookDecodeByteArray([B I I)Landroid/graphics/Bitmap;
+               Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;->hookDecodeByteArray([B I I
+                    Landroid/graphics/BitmapFactory$Options;)Landroid/graphics/Bitmap;
+               Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;->hookDecodeFile(Ljava/lang/String;)Landroid/graphics/Bitmap;
+               Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;->hookDecodeFile(Ljava/lang/String;
+                    Landroid/graphics/BitmapFactory$Options;)Landroid/graphics/Bitmap;
+               Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;->hookDecodeFileDescriptor(Ljava/io/FileDescriptor;)Landroid/graphics/Bitmap;
+               Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;->hookDecodeFileDescriptor(Ljava/io/FileDescriptor; Landroid/graphics/Rect;
+                    Landroid/graphics/BitmapFactory$Options;)Landroid/graphics/Bitmap;
+               Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;->hookDecodeResource(Landroid/content/res/Resources;
+                    I)Landroid/graphics/Bitmap;
+               Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;->hookDecodeResource(Landroid/content/res/Resources; I
+                    Landroid/graphics/BitmapFactory$Options;)Landroid/graphics/Bitmap;
+               Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;->hookDecodeResourceStream(Landroid/content/res/Resources;
+                    Landroid/util/TypedValue; Ljava/io/InputStream; Landroid/graphics/Rect;
+                    Landroid/graphics/BitmapFactory$Options;)Landroid/graphics/Bitmap;
+               Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;->hookDecodeStream(Ljava/io/InputStream;)Landroid/graphics/Bitmap;
+               Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;->hookDecodeStream(Ljava/io/InputStream; Landroid/graphics/Rect;
+                    Landroid/graphics/BitmapFactory$Options;)Landroid/graphics/Bitmap;
+               Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;->nativeDecodeByteArray([B I I Landroid/graphics/BitmapFactory$Options; F
+                    [B)Landroid/graphics/Bitmap;
+               Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;->nativeDecodeStream(Ljava/io/InputStream;
+                    Landroid/graphics/BitmapFactory$Options; F [B)Landroid/graphics/Bitmap;
+               Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;->originalDecodeByteArray([B I I)Landroid/graphics/Bitmap;
+               Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;->originalDecodeByteArray([B I I
+                    Landroid/graphics/BitmapFactory$Options;)Landroid/graphics/Bitmap;
+               Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;->originalDecodeFile(Ljava/lang/String;)Landroid/graphics/Bitmap;
+               Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;->originalDecodeFile(Ljava/lang/String;
+                    Landroid/graphics/BitmapFactory$Options;)Landroid/graphics/Bitmap;
+               Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;->originalDecodeFileDescriptor(Ljava/io/FileDescriptor;)Landroid/graphics/Bit
+                    map;
+               Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;->originalDecodeFileDescriptor(Ljava/io/FileDescriptor;
+                    Landroid/graphics/Rect; Landroid/graphics/BitmapFactory$Options;)Landroid/graphics/Bitmap;
+               Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;->originalDecodeResource(Landroid/content/res/Resources;
+                    I)Landroid/graphics/Bitmap;
+               Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;->originalDecodeResource(Landroid/content/res/Resources; I
+                    Landroid/graphics/BitmapFactory$Options;)Landroid/graphics/Bitmap;
+               Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;->originalDecodeResourceStream(Landroid/content/res/Resources;
+                    Landroid/util/TypedValue; Ljava/io/InputStream; Landroid/graphics/Rect;
+                    Landroid/graphics/BitmapFactory$Options;)Landroid/graphics/Bitmap;
+               Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;->originalDecodeStream(Ljava/io/InputStream;)Landroid/graphics/Bitmap;
+               Lcom/facebook/webpsupport/WebpBitmapFactoryImpl;->originalDecodeStream(Ljava/io/InputStream; Landroid/graphics/Rect;
+                    Landroid/graphics/BitmapFactory$Options;)Landroid/graphics/Bitmap;
+               Lcom/google/android/gms/internal/lc$a$a;->getMobileAdsSettingsManager(Lcom/google/android/gms/dynamic/a;)Lcom/google/android/
+                    gms/internal/le;
+               Lcom/google/android/gms/internal/lc$a$a;->getMobileAdsSettingsManagerWithClientJarVersion(Lcom/google/android/gms/dynamic/a;
+                    I)Lcom/google/android/gms/internal/le;
+               Lcom/journeyapps/barcodescanner/BarcodeView;->getDecoderFactory()Lcom/journeyapps/barcodescanner/e;
+               Lcom/journeyapps/barcodescanner/BarcodeView;->setDecoderFactory(Lcom/journeyapps/barcodescanner/e;)V
+               Lcom/mercadolibre/android/behaviour/configurator/BehavioursConfigurator;->configure(Landroid/content/Context;)V
+               Lcom/mercadolibre/android/checkout/common/components/payment/api/cardconfig/b;->onGetCardConfigForBinFail(Lcom/mercadolibre/a
+                    ndroid/networking/exception/RequestException;)V
+               Lcom/mercadolibre/android/checkout/common/components/payment/api/cardconfig/b;->onGetCardConfigForBinSuccess(Ljava/util/Array
+                    List;)V
+               Lcom/mercadolibre/android/crashtracking/CrashTrackConfigurator;->configure(Landroid/content/Context;)V
+               Lokhttp3/FormBody;->encodedName(I)Ljava/lang/String;
+               Lokhttp3/FormBody;->encodedValue(I)Ljava/lang/String;
+               Lokhttp3/internal/connection/RealConnection;->onSettings(Lokhttp3/internal/http2/Http2Connection;)V
+               Lokhttp3/internal/platform/AndroidPlatform;->configureTlsExtensions(Ljavax/net/ssl/SSLSocket; Ljava/lang/String;
+                    Ljava/util/List;)V
+               Lokhttp3/internal/platform/ConscryptPlatform;->configureTlsExtensions(Ljavax/net/ssl/SSLSocket; Ljava/lang/String;
+                    Ljava/util/List;)V
+               Lokhttp3/internal/platform/Jdk9Platform;->configureTlsExtensions(Ljavax/net/ssl/SSLSocket; Ljava/lang/String;
+                    Ljava/util/List;)V
+               Lokhttp3/internal/platform/JdkWithJettyBootPlatform;->configureTlsExtensions(Ljavax/net/ssl/SSLSocket; Ljava/lang/String;
+                    Ljava/util/List;)V
+               Lcom/google/android/gms/ads/internal/ClientApi;->getMobileAdsSettingsManager(Lcom/google/android/gms/dynamic/a;)Lcom/google/a
+                    ndroid/gms/internal/le;
+               Lcom/google/android/gms/ads/internal/ClientApi;->getMobileAdsSettingsManagerWithClientJarVersion(Lcom/google/android/gms/dyna
+                    mic/a; I)Lcom/google/android/gms/internal/le;
+               Lcom/mercadolibre/android/checkout/cart/components/payment/api/b;->onGetCardConfigForBinFail(Lcom/mercadolibre/android/networ
+                    king/exception/RequestException;)V
+               Lcom/mercadolibre/android/checkout/cart/components/payment/api/b;->onGetCardConfigForBinSuccess(Lcom/mercadolibre/android/che
+                    ckout/cart/components/payment/api/CardConfigResponseDto;)V
+               Lcom/mercadolibre/android/c/a/a;->onRetainCustomNonConfigurationInstance()Ljava/lang/Object;
+               Lcom/mercadolibre/android/sdk/AbstractMeLiActivity;->getBestLayoutForCurrentDeviceConfiguration(Landroid/util/DisplayMetrics;
+                    I I)I
+               Lcom/mercadolibre/activities/AbstractActivity;->onRetainCustomNonConfigurationInstance()Ljava/lang/Object;
+               Lcom/mercadolibre/android/mvp/view/MvpAbstractMeLiActivity;->onRetainCustomNonConfigurationInstance()Ljava/lang/Object;
+               Lcom/mercadolibre/activities/vip/subsections/VIPSubsectionActivity;->onRetainCustomNonConfigurationInstance()Ljava/lang/Objec
+                    t;
+               Lcom/mercadolibre/activities/myaccount/addresses/MyAccountAddUserAddressActivity;->onRetainCustomNonConfigurationInstance()Lj
+                    ava/lang/Object;
+               Lcom/mercadolibre/activities/myaccount/addresses/MyAccountModifyUserAddressActivity;->onRetainCustomNonConfigurationInstance(
+                    )Ljava/lang/Object;
+               Lcom/mercadolibre/activities/myaccount/registration/RegisterAddAddressActivity;->onRetainCustomNonConfigurationInstance()Ljav
+                    a/lang/Object;
+               Lcom/mercadolibre/activities/myaccount/registration/SellerRegistrationAddAddressActivity;->onRetainCustomNonConfigurationInst
+                    ance()Ljava/lang/Object;
+               Lcom/mercadolibre/android/checkout/common/activities/CheckoutAbstractActivity;->onRetainCustomNonConfigurationInstance()Ljava
+                    /lang/Object;
+[Info] <Database> SQLiteDatabase Transaction Deprecated Checking:
+           Ignore checking "SQLiteDatabase:beginTransactionNonExclusive" because your set minSdk >= 11.
+[Info] <Database> Android SQLite Databases Encryption (SQLite Encryption Extension (SEE)):
+           This app is "NOT" using SQLite Encryption Extension (SEE) on Android (http://www.sqlite.org/android) to encrypt or decrpyt
+           databases.
+[Info] <Database> Android SQLite Databases Encryption (SQLCipher):
+           This app is "NOT" using SQLCipher(http://sqlcipher.net/) to encrypt or decrpyt databases.
+[Info] <Debug> Android Debug Mode Checking:
+           DEBUG mode is OFF(android:debuggable="false") in AndroidManifest.xml.
+[Info] <#BID 64208, CVE-2013-6271#> Fragment Vulnerability Checking:
+           Did not detect the vulnerability of "Fragment" dynamically loading into "PreferenceActivity" or "SherlockPreferenceActivity"
+[Info] <Framework> Framework - MonoDroid:
+           This app is NOT using MonoDroid Framework (http://xamarin.com/android).
+[Info] <Hacker> Base64 String Encryption:
+           No encoded Base64 String or Urls found.
+[Info] <Database><Hacker> Key for Android SQLite Databases Encryption:
+           Did not find using the symmetric key(PRAGMA key) to encrypt the SQLite databases (It's still possible that it might use but we
+           did not find out).
+[Info] <KeyStore><Hacker> KeyStore File Location:
+           Did not find any possible BKS keystores or certificate keystore file (Notice: It does not mean this app does not use keysotre):
+[Info] <KeyStore><Hacker> KeyStore Protection Checking:
+           Ignore checking KeyStore protected by password or not because you're not using KeyStore.
+[Info] <Hacker> Code Setting Preventing Screenshot Capturing:
+           Did not detect this app has code setting preventing screenshot capturing.
+[Info]  HttpURLConnection Android Bug Checking:
+           Ignore checking "http.keepAlive" because you're not using "HttpURLConnection" and min_Sdk > 8.
+[Info] <KeyStore> KeyStore Type Checking:
+           KeyStore 'BKS' type check OK
+[Info]  Google Cloud Messaging Suggestion:
+           Nothing to suggest.
+[Info] <#CVE-2013-4787#> Master Key Type I Vulnerability:
+           No Master Key Type I Vulnerability in this APK.
+[Info]  Native Library Loading Checking:
+           No native library loaded.
+[Info]  AndroidManifest Dangerous ProtectionLevel of Permission Checking:
+           No "dangerous" protection level customized permission found (AndroidManifest.xml).
+[Info]  AndroidManifest PermissionGroup Checking:
+           PermissionGroup in permission tag of AndroidManifest sets correctly.
+[Info]  AndroidManifest "intent-filter" Settings Checking:
+           "intent-filter" of AndroidManifest.xml check OK.
+[Info]  AndroidManifest Normal ProtectionLevel of Permission Checking:
+           No default or "normal" protection level customized permission found (AndroidManifest.xml).
+[Info] <#CVE-2013-6272#> AndroidManifest Exported Lost Prefix Checking:
+           No exported components that forgot to add "android:" prefix.
+[Info]  AndroidManifest ContentProvider Exported Checking:
+           No exported "ContentProvider" found (AndroidManifest.xml).
+[Info]  Codes for Sending SMS:
+           Did not detect this app has code for sending SMS messages (sendDataMessage, sendMultipartTextMessage or sendTextMessage).
+[Info] <System> AndroidManifest sharedUserId Checking:
+           This app does not use "android.uid.system" sharedUserId.
+[Info] <SSL_Security> SSL Implementation Checking (Verifying Host Name in Custom Classes):
+           Self-defined HOSTNAME VERIFIER checking OK.
+[Info] <SSL_Security> SSL Implementation Checking (Verifying Host Name in Fields):
+           Critical vulnerability "ALLOW_ALL_HOSTNAME_VERIFIER" field setting or "AllowAllHostnameVerifier" class instance not found.
+[Info] <SSL_Security> SSL Implementation Checking (Insecure component):
+           Did not detect SSLSocketFactory by insecure method "getInsecure".
+[Info] <SSL_Security> SSL Implementation Checking (HttpHost):
+           DEFAULT_SCHEME_NAME for HttpHost check: OK
+[Info] <SSL_Security> SSL Implementation Checking (WebViewClient for WebView):
+           Did not detect critical usage of "WebViewClient"(MITM Vulnerability).
+[Info] <SSL_Security> SSL Certificate Verification Checking:
+           Did not find vulnerable X509Certificate code.
+[Info]  Unnecessary Permission Checking:
+           Permission 'android.permission.ACCESS_MOCK_LOCATION' sets correctly.
+[Info]  Accessing the Internet Checking:
+           This app is using the Internet via HTTP protocol.
+[Info]  AndroidManifest System Use Permission Checking:
+           No system-level critical use-permission found.
+------------------------------------------------------------
+AndroBugs analyzing time: 25.065676 secs
+Total elapsed time: 152.34676 secs

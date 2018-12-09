@@ -1,0 +1,901 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest android:installLocation="0" android:versionCode="63" android:versionName="5.60.build63" package="com.rarlab.rar" xmlns:android="http://schemas.android.com/apk/res/android">
+	
+
+	<uses-sdk android:minSdkVersion="17" android:targetSdkVersion="27">
+</uses-sdk>
+	
+
+	<uses-permission android:name="com.android.vending.BILLING">
+</uses-permission>
+	
+
+	<uses-permission android:name="android.permission.INTERNET">
+</uses-permission>
+	
+
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE">
+</uses-permission>
+	
+
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE">
+</uses-permission>
+	
+
+	<uses-permission android:name="android.permission.WAKE_LOCK">
+</uses-permission>
+	
+
+	<uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES">
+</uses-permission>
+	
+
+	<supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:smallScreens="true" android:xlargeScreens="true">
+</supports-screens>
+	
+
+	<application android:allowBackup="true" android:icon="@7F0C0000" android:label="@7F0D0029" android:largeHeap="true" android:name="com.rarlab.rar.App" android:supportsRtl="true" android:theme="@7F0E00A7">
+		
+
+		<meta-data android:name="com.google.android.gms.version" android:value="@7F090004">
+</meta-data>
+		
+
+		<activity android:configChanges="0x00000FB0" android:exported="false" android:name="com.google.android.gms.ads.AdActivity" android:theme="@android:0103000F">
+</activity>
+		
+
+		<meta-data android:name="android.max_aspect" android:value="3.100000">
+</meta-data>
+		
+
+		<provider android:authorities="com.rarlab.rar.provider" android:exported="false" android:grantUriPermissions="true" android:name="android.support.v4.content.FileProvider">
+			
+
+			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@7F100000">
+</meta-data>
+			
+
+		</provider>
+		
+
+		<receiver android:exported="false" android:name="com.rarlab.rar.CleanTemp">
+			
+
+			<intent-filter>
+				
+
+				<action android:name="com.rarlab.rar.CLEAN_TEMP">
+</action>
+				
+
+			</intent-filter>
+			
+
+		</receiver>
+		
+
+		<activity android:label="@7F0D0029" android:name="com.rarlab.rar.MainActivity" android:theme="@7F0E00A8">
+			
+
+			<intent-filter>
+				
+
+				<action android:name="android.intent.action.MAIN">
+</action>
+				
+
+				<category android:name="android.intent.category.LAUNCHER">
+</category>
+				
+
+			</intent-filter>
+			
+
+			<intent-filter>
+				
+
+				<action android:name="android.intent.action.SEND">
+</action>
+				
+
+				<category android:name="android.intent.category.DEFAULT">
+</category>
+				
+
+				<data android:mimeType="*/*">
+</data>
+				
+
+			</intent-filter>
+			
+
+			<intent-filter>
+				
+
+				<action android:name="android.intent.action.SEND_MULTIPLE">
+</action>
+				
+
+				<category android:name="android.intent.category.DEFAULT">
+</category>
+				
+
+				<data android:mimeType="*/*">
+</data>
+				
+
+			</intent-filter>
+			
+
+			<intent-filter>
+				
+
+				<action android:name="android.intent.action.VIEW">
+</action>
+				
+
+				<category android:name="android.intent.category.DEFAULT">
+</category>
+				
+
+				<category android:name="android.intent.category.BROWSABLE">
+</category>
+				
+
+				<data android:mimeType="application/rar">
+</data>
+				
+
+				<data android:mimeType="application/x-rar-compressed">
+</data>
+				
+
+				<data android:mimeType="application/zip">
+</data>
+				
+
+				<data android:mimeType="application/x-zip">
+</data>
+				
+
+				<data android:mimeType="application/x-zip-compressed">
+</data>
+				
+
+				<data android:mimeType="application/multipart/x-zip">
+</data>
+				
+
+				<data android:mimeType="application/x-7z-compressed">
+</data>
+				
+
+				<data android:mimeType="application/x-tar">
+</data>
+				
+
+				<data android:mimeType="application/x-bzip2">
+</data>
+				
+
+				<data android:mimeType="application/x-gzip">
+</data>
+				
+
+				<data android:mimeType="application/x-gtar">
+</data>
+				
+
+				<data android:mimeType="application/x-xz">
+</data>
+				
+
+				<data android:mimeType="application/x-iso9660-image">
+</data>
+				
+
+				<data android:mimeType="application/x-lha">
+</data>
+				
+
+				<data android:mimeType="application/x-lzh">
+</data>
+				
+
+				<data android:mimeType="application/x-arj">
+</data>
+				
+
+				<data android:mimeType="application/octet-stream">
+</data>
+				
+
+				<data android:mimeType="application/x-compress">
+</data>
+				
+
+				<data android:mimeType="application/x-compressed">
+</data>
+				
+
+			</intent-filter>
+			
+
+			<intent-filter>
+				
+
+				<action android:name="android.intent.action.VIEW">
+</action>
+				
+
+				<category android:name="android.intent.category.DEFAULT">
+</category>
+				
+
+				<category android:name="android.intent.category.BROWSABLE">
+</category>
+				
+
+				<data android:scheme="file">
+</data>
+				
+
+				<data android:scheme="content">
+</data>
+				
+
+				<data android:host="*" android:mimeType="*/*">
+</data>
+				
+
+				<data android:pathPattern=".*\.RAR">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\.RAR">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\.RAR">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\.RAR">
+</data>
+				
+
+				<data android:pathPattern=".*\.rar">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\.rar">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\.rar">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\.rar">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\.rar">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\..*\.rar">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\..*\..*\.rar">
+</data>
+				
+
+				<data android:pathPattern=".*\.ZIP">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\.ZIP">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\.ZIP">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\.ZIP">
+</data>
+				
+
+				<data android:pathPattern=".*\.zip">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\.zip">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\.zip">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\.zip">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\.zip">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\..*\.zip">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\..*\..*\.zip">
+</data>
+				
+
+				<data android:pathPattern=".*\.ZIPX">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\.ZIPX">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\.ZIPX">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\.ZIPX">
+</data>
+				
+
+				<data android:pathPattern=".*\.zipx">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\.zipx">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\.zipx">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\.zipx">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\.zipx">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\..*\.zipx">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\..*\..*\.zipx">
+</data>
+				
+
+				<data android:pathPattern=".*\.7Z">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\.7Z">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\.7Z">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\.7Z">
+</data>
+				
+
+				<data android:pathPattern=".*\.7z">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\.7z">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\.7z">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\.7z">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\.7z">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\..*\.7z">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\..*\..*\.7z">
+</data>
+				
+
+				<data android:pathPattern=".*\.ARJ">
+</data>
+				
+
+				<data android:pathPattern=".*\.arj">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\.arj">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\.arj">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\.arj">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\.arj">
+</data>
+				
+
+				<data android:pathPattern=".*\.BZ2">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\.BZ2">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\.BZ2">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\.BZ2">
+</data>
+				
+
+				<data android:pathPattern=".*\.bz2">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\.bz2">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\.bz2">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\.bz2">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\.bz2">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\..*\.bz2">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\..*\..*\.bz2">
+</data>
+				
+
+				<data android:pathPattern=".*\.GZ">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\.GZ">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\.GZ">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\.GZ">
+</data>
+				
+
+				<data android:pathPattern=".*\.gz">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\.gz">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\.gz">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\.gz">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\.gz">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\..*\.gz">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\..*\..*\.gz">
+</data>
+				
+
+				<data android:pathPattern=".*\.ISO">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\.ISO">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\.ISO">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\.ISO">
+</data>
+				
+
+				<data android:pathPattern=".*\.iso">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\.iso">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\.iso">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\.iso">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\.iso">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\..*\.iso">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\..*\..*\.iso">
+</data>
+				
+
+				<data android:pathPattern=".*\.lz">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\.lz">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\.lz">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\.lz">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\.lz">
+</data>
+				
+
+				<data android:pathPattern=".*\.LHA">
+</data>
+				
+
+				<data android:pathPattern=".*\.LZH">
+</data>
+				
+
+				<data android:pathPattern=".*\.lzh">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\.lzh">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\.lzh">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\.lzh">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\.lzh">
+</data>
+				
+
+				<data android:pathPattern=".*\.TAR">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\.TAR">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\.TAR">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\.TAR">
+</data>
+				
+
+				<data android:pathPattern=".*\.tar">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\.tar">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\.tar">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\.tar">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\.tar">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\..*\.tar">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\..*\..*\.tar">
+</data>
+				
+
+				<data android:pathPattern=".*\.XZ">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\.XZ">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\.XZ">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\.XZ">
+</data>
+				
+
+				<data android:pathPattern=".*\.xz">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\.xz">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\.xz">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\.xz">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\.xz">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\..*\.xz">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\..*\..*\.xz">
+</data>
+				
+
+				<data android:pathPattern=".*\.Z">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\.Z">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\.Z">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\.Z">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\.Z">
+</data>
+				
+
+				<data android:pathPattern=".*\.z">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\.z">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\.z">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\.z">
+</data>
+				
+
+				<data android:pathPattern=".*\..*\..*\..*\..*\.z">
+</data>
+				
+
+			</intent-filter>
+			
+
+		</activity>
+		
+
+		<activity android:label="@7F0D003E" android:name="com.rarlab.rar.GetArcNameActivity" android:parentActivityName="com.rarlab.rar.MainActivity" android:theme="@7F0E00AA">
+			
+
+			<meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.rarlab.rar.MainActivity">
+</meta-data>
+			
+
+		</activity>
+		
+
+		<activity android:label="@7F0D00F4" android:name="com.rarlab.rar.GetExtrOptActivity" android:parentActivityName="com.rarlab.rar.MainActivity" android:theme="@7F0E00AA">
+			
+
+			<meta-data android:name="android.support.PARENT_ACTIVITY" android:value="com.rarlab.rar.MainActivity">
+</meta-data>
+			
+
+		</activity>
+		
+
+		<activity android:name="com.rarlab.rar.Browse" android:theme="@7F0E00A8">
+</activity>
+		
+
+		<activity android:name="com.rarlab.rar.BackgroundCommand" android:theme="@7F0E00AA">
+</activity>
+		
+
+		<activity android:label="@7F0D0053" android:name="com.rarlab.rar.AskReplace" android:theme="@7F0E00AA">
+</activity>
+		
+
+		<activity android:label="@7F0D0103" android:name="com.rarlab.rar.Help">
+</activity>
+		
+
+		<activity android:label="@7F0D0102" android:name="com.rarlab.rar.GetPassword" android:theme="@7F0E00AA">
+</activity>
+		
+
+		<activity android:label="@7F0D004F" android:name="com.rarlab.rar.AskNextVolume" android:theme="@7F0E00AA">
+</activity>
+		
+
+		<activity android:label="@7F0D0046" android:name="com.rarlab.rar.AskCreateVolume" android:theme="@7F0E00AA">
+</activity>
+		
+
+		<activity android:label="@7F0D01A8" android:name="com.rarlab.rar.ProfilesAdd" android:theme="@7F0E00AA">
+</activity>
+		
+
+		<activity android:label="@7F0D01AC" android:name="com.rarlab.rar.ProfilesOrganize" android:theme="@7F0E00AA">
+</activity>
+		
+
+		<activity android:label="@7F0D00F8" android:name="com.rarlab.rar.FavoritesAdd" android:theme="@7F0E00AA" android:windowSoftInputMode="0x00000014">
+</activity>
+		
+
+		<activity android:label="@7F0D00F9" android:name="com.rarlab.rar.FavoritesOrganize" android:theme="@7F0E00AA">
+</activity>
+		
+
+		<activity android:label="@7F0D0125" android:name="com.rarlab.rar.CmdRepair" android:theme="@7F0E00A9">
+</activity>
+		
+
+		<activity android:name="com.rarlab.rar.MessageBox" android:theme="@7F0E00A9">
+</activity>
+		
+
+		<activity android:name="com.rarlab.rar.NewFolder" android:theme="@7F0E00A9" android:windowSoftInputMode="0x00000004">
+</activity>
+		
+
+		<activity android:name="com.rarlab.rar.SelectionMenu" android:theme="@7F0E00A9" android:windowSoftInputMode="0x00000004">
+</activity>
+		
+
+		<activity android:label="@7F0D01CC" android:name="com.rarlab.rar.SettingsActivity">
+</activity>
+		
+
+		<activity android:label="@7F0D0022" android:name="com.rarlab.rar.AboutRAR" android:theme="@7F0E00A9">
+</activity>
+		
+
+		<activity android:name="com.rarlab.rar.CmdRename" android:theme="@7F0E00A9" android:windowSoftInputMode="0x00000004">
+</activity>
+		
+
+		<activity android:label="@7F0D0123" android:name="com.rarlab.rar.InfoFiles">
+</activity>
+		
+
+		<activity android:label="@7F0D0123" android:name="com.rarlab.rar.InfoArchive">
+</activity>
+		
+
+		<activity android:label="@7F0D0106" android:name="com.rarlab.rar.InfoComment">
+</activity>
+		
+
+		<activity android:label="@7F0D00DF" android:name="com.rarlab.rar.ExternalCard" android:theme="@7F0E00A9">
+</activity>
+		
+
+		<activity android:name="com.rarlab.rar.OneTimeNotify" android:theme="@7F0E00A9">
+</activity>
+		
+
+		<activity android:label="@7F0D01E4" android:name="com.rarlab.rar.UpMultiple" android:theme="@7F0E00A9">
+</activity>
+		
+
+		<activity android:name="com.rarlab.rar.PopupList" android:theme="@7F0E00A9">
+</activity>
+		
+
+		<activity android:label="@7F0D00DF" android:name="com.rarlab.rar.ExFileInfo" android:theme="@7F0E00A9">
+</activity>
+		
+
+		<activity android:label="@7F0D01B4" android:name="com.rarlab.rar.OpenExternalStream" android:theme="@7F0E00A9">
+</activity>
+		
+
+		<activity android:label="@7F0D0186" android:name="com.rarlab.rar.AdsNotify" android:theme="@7F0E00A9">
+</activity>
+		
+
+	</application>
+	
+
+</manifest>

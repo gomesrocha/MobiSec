@@ -1,0 +1,1836 @@
+*************************************************************************
+**   AndroBugs Framework - Android App Security Vulnerability Scanner  **
+**                            version: 1.0.0                           **
+**     author: Yu-Cheng Lin (@AndroBugs, http://www.AndroBugs.com)     **
+**               contact: androbugs.framework@gmail.com                **
+*************************************************************************
+Platform: Android
+Package Name: com.microsoft.office.word
+Package Version Name: 16.0.10827.20078
+Package Version Code: 2001605405
+Min Sdk: 23
+Target Sdk: 26
+MD5   : 6b898ce14010bc243caa5c9cb4fa6662
+SHA1  : c2b29182e6d9d1d49c26fdbb5ae42ad8f674c983
+SHA256: cf16843c6e32f6edb3f0647a7bcbdc47cda30ad798b25e2163687ef7e60f36c8
+SHA512: c358d7a607dd7019cdfbddce44e297ed5c887a5a945f98df2de425115a8465aec91a9345d93309ec64ed9e6b77de15a04eadcaa470d996aba6d0a8fae152c89a
+Analyze Signature: e4b433555e9897b90c09a379f26f64d4bf541563a5aa6298f1f8cd5e2d0a09834e7068f0f6673ef2b86f7067193b334c31b223cc1af544f45c7ac7f9828de032
+------------------------------------------------------------------------------------------------
+[Critical] <#BID 64208, CVE-2013-6271#> Fragment Vulnerability Checking:
+           'Fragment' or 'Fragment for ActionbarSherlock' has a severe vulnerability prior to Android 4.4 (API 19).
+           Please check:
+           (1)http://developer.android.com/reference/android/os/Build.VERSION_CODES.html#KITKAT
+           (2)http://developer.android.com/reference/android/preference/PreferenceActivity.html#isValidFragment(java.lang.String)
+           (3)http://stackoverflow.com/questions/19973034/isvalidfragment-android-api-19
+           (4)http://securityintelligence.com/new-vulnerability-android-framework-fragment-injection/
+           (5)http://securityintelligence.com/wp-content/uploads/2013/12/android-collapses-into-fragments.pdf
+           (6)https://cureblog.de/2013/11/cve-2013-6271-remove-device-locks-from-android-phone/
+               You MUST override 'isValidFragment' method in every "PreferenceActivity" class to avoid Exception throwing in Android 4.4:
+                   Lcom/facebook/react/devsupport/DevSettingsActivity;
+                   Lcom/microsoft/intune/mam/client/preference/MAMPreferenceActivity;
+               All of the potential vulnerable "fragment":
+                   Lcom/google/android/gms/common/api/g;
+                   Lcom/microsoft/intune/mam/client/app/MAMFragment;
+                   Lcom/microsoft/intune/mam/client/support/v4/app/MAMFragment;
+[Critical] <Hacker> Base64 String Encryption:
+           Found Base64 encoding "String(s)" (Total: 12). We cannot guarantee all of the Strings are Base64 encoding and also we will not
+           show you the decoded binary file:
+               com.tool.creehackpro
+                   ->Original Encoding String: Y29tLnRvb2wuY3JlZWhhY2twcm8=
+                   ->From class: Lcom/microsoft/office/inapppurchase/h;-><clinit>()V
+               com.android.vending.billing.InAppBillingService.LACK
+                   ->Original Encoding String: Y29tLmFuZHJvaWQudmVuZGluZy5iaWxsaW5nLkluQXBwQmlsbGluZ1NlcnZpY2UuTEFDSw==
+                   ->From class: Lcom/microsoft/office/inapppurchase/h;-><clinit>()V
+               com.chelpus.lackypatch
+                   ->Original Encoding String: Y29tLmNoZWxwdXMubGFja3lwYXRjaA==
+                   ->From class: Lcom/microsoft/office/inapppurchase/h;-><clinit>()V
+               com.dimonvideo.luckypatcher
+                   ->Original Encoding String: Y29tLmRpbW9udmlkZW8ubHVja3lwYXRjaGVy
+                   ->From class: Lcom/microsoft/office/inapppurchase/h;-><clinit>()V
+               com.android.vending.licensing.ILicensingService
+                   ->Original Encoding String: Y29tLmFuZHJvaWQudmVuZGluZy5saWNlbnNpbmcuSUxpY2Vuc2luZ1NlcnZpY2U=
+                   ->From class: Lcom/google/android/vending/licensing/j;->a(Lcom/google/android/vending/licensing/n;)V
+               com.forpda.lp
+                   ->Original Encoding String: Y29tLmZvcnBkYS5scA==
+                   ->From class: Lcom/microsoft/office/inapppurchase/h;-><clinit>()V
+               com.android.vending.billing.InAppBillingService.LOCK
+                   ->Original Encoding String: Y29tLmFuZHJvaWQudmVuZGluZy5iaWxsaW5nLkluQXBwQmlsbGluZ1NlcnZpY2UuTE9DSw==
+                   ->From class: Lcom/microsoft/office/inapppurchase/h;-><clinit>()V
+               com.leo.playcard
+                   ->Original Encoding String: Y29tLmxlby5wbGF5Y2FyZA==
+                   ->From class: Lcom/microsoft/office/inapppurchase/h;-><clinit>()V
+               org.creeplays.hack
+                   ->Original Encoding String: b3JnLmNyZWVwbGF5cy5oYWNr
+                   ->From class: Lcom/microsoft/office/inapppurchase/h;-><clinit>()V
+               cc.madkite.freedom
+                   ->Original Encoding String: Y2MubWFka2l0ZS5mcmVlZG9t
+                   ->From class: Lcom/microsoft/office/inapppurchase/h;-><clinit>()V
+               apps.zhasik007.hack
+                   ->Original Encoding String: YXBwcy56aGFzaWswMDcuaGFjaw==
+                   ->From class: Lcom/microsoft/office/inapppurchase/h;-><clinit>()V
+               com.appsara.app
+                   ->Original Encoding String: Y29tLmFwcHNhcmEuYXBw
+                   ->From class: Lcom/microsoft/office/inapppurchase/h;-><clinit>()V
+[Critical] <Implicit_Intent> Implicit Service Checking:
+           To ensure your app is secure, always use an explicit intent when starting a Service and DO NOT declare intent filters for your
+           services. Using an implicit intent to start a service is a security hazard because you cannot be certain what service will
+           respond to the intent, and the user cannot see which service starts.
+           Reference: http://developer.android.com/guide/components/intents-filters.html#Types
+               => com.microsoft.android.crosssell.CrossSellAgentMarker
+               => com.microsoft.tokenshare.TokenSharingService
+[Critical] <SSL_Security> SSL Connection Checking:
+           URLs that are NOT under SSL (Total:21):
+               http://%s/%s
+                   => Lcom/facebook/react/devsupport/DevServerHelper;->createResourceURL(Ljava/lang/String;
+                    Ljava/lang/String;)Ljava/lang/String;
+               http://%s/%s.bundle?platform=android&dev=%s&minify=%s
+                   => Lcom/facebook/react/devsupport/DevServerHelper;-><clinit>()V
+                   => Lcom/facebook/react/devsupport/DevServerHelper;->createBundleURL(Ljava/lang/String; Ljava/lang/String; Z
+                    Z)Ljava/lang/String;
+                   => Lcom/facebook/react/devsupport/DevServerHelper;->getSourceUrl(Ljava/lang/String;)Ljava/lang/String;
+               http://%s/inspector/device?name=%s&app=%s
+                   => Lcom/facebook/react/devsupport/DevServerHelper;->getInspectorDeviceUrl()Ljava/lang/String;
+               http://%s/jscheapcaptureupload
+                   => Lcom/facebook/react/devsupport/DevServerHelper;->getHeapCaptureUploadUrl()Ljava/lang/String;
+               http://%s/launch-js-devtools
+                   => Lcom/facebook/react/devsupport/DevServerHelper;->createLaunchJSDevtoolsCommandUrl()Ljava/lang/String;
+               http://%s/onchange
+                   => Lcom/facebook/react/devsupport/DevServerHelper;->createOnChangeEndpointUrl()Ljava/lang/String;
+               http://%s/open-stack-frame
+                   => Lcom/facebook/react/devsupport/DevServerHelper;->createOpenStackFrameURL(Ljava/lang/String;)Ljava/lang/String;
+               http://%s/status
+                   => Lcom/facebook/react/devsupport/DevServerHelper;->createPackagerStatusURL(Ljava/lang/String;)Ljava/lang/String;
+               http://%s/symbolicate
+                   => Lcom/facebook/react/devsupport/DevServerHelper;->createSymbolicateURL(Ljava/lang/String;)Ljava/lang/String;
+               http://plus.google.com/
+                   => Lcom/google/android/gms/internal/ae;-><clinit>()V
+               http://schemas.microsoft.com/ado/2007/08/dataservices/metadata
+                   => Lcom/microsoft/office/dataop/http/f;->b(Lcom/microsoft/office/plat/http/HttpRequestHelper$HttpResponse;)I
+               http://schemas.microsoft.com/rel/trusted-realm
+                   => Lcom/microsoft/aad/adal/ADFSWebFingerValidator;-><clinit>()V
+               http://schemas.microsoft.com/sharepoint/soap/
+                   => Lcom/microsoft/office/dataop/http/ab;->a(Lcom/microsoft/office/plat/http/HttpRequestHelper$HttpResponse;)Lcom/microsof
+                    t/office/dataop/http/ad;
+                   => Lcom/microsoft/office/dataop/objectmodel/s;->a(Lcom/microsoft/office/plat/http/HttpRequestHelper$HttpResponse;)Lcom/mi
+                    crosoft/office/dataop/objectmodel/s;
+                   => Lcom/microsoft/office/dataop/am;->a(Ljava/lang/String;)Lcom/microsoft/office/dataop/objectmodel/a;
+                   => Lcom/microsoft/office/dataop/al;->a(Ljava/lang/String;)Lcom/microsoft/office/dataop/objectmodel/f;
+                   => Lcom/microsoft/office/dataop/http/y;->a(Lcom/microsoft/office/plat/http/HttpRequestHelper$HttpResponse;)Lcom/microsoft
+                    /office/dataop/http/aa;
+               http://schemas.microsoft.com/sharepoint/soap/GetListCollection
+                   => Lcom/microsoft/office/dataop/http/p;->e()Ljava/lang/String;
+               http://schemas.microsoft.com/sharepoint/soap/GetListItemChangesSinceToken
+                   => Lcom/microsoft/office/dataop/http/r;->e()Ljava/lang/String;
+               http://schemas.microsoft.com/sharepoint/soap/GetWeb
+                   => Lcom/microsoft/office/dataop/http/ab;->e()Ljava/lang/String;
+               http://schemas.microsoft.com/sharepoint/soap/WebUrlFromPageUrl
+                   => Lcom/microsoft/office/dataop/http/y;->e()Ljava/lang/String;
+               http://schemas.xmlsoap.org/soap/envelope/
+                   => Lcom/microsoft/office/dataop/http/ab;->a(Lcom/microsoft/office/plat/http/HttpRequestHelper$HttpResponse;)Lcom/microsof
+                    t/office/dataop/http/ad;
+                   => Lcom/microsoft/office/dataop/al;->a(Ljava/lang/String;)Lcom/microsoft/office/dataop/objectmodel/f;
+                   => Lcom/microsoft/office/dataop/objectmodel/s;->a(Lcom/microsoft/office/plat/http/HttpRequestHelper$HttpResponse;)Lcom/mi
+                    crosoft/office/dataop/objectmodel/s;
+                   => Lcom/microsoft/office/dataop/am;->a(Ljava/lang/String;)Lcom/microsoft/office/dataop/objectmodel/a;
+                   => Lcom/microsoft/office/dataop/http/y;->a(Lcom/microsoft/office/plat/http/HttpRequestHelper$HttpResponse;)Lcom/microsoft
+                    /office/dataop/http/aa;
+               http://state/path?
+                   => Lcom/microsoft/aad/adal/Oauth2;->getToken(Ljava/lang/String;)Lcom/microsoft/aad/adal/AuthenticationResult;
+               http://www.android.com/
+                   => Lcom/facebook/soloader/q;->a(Ljava/lang/String;)V
+               http://xmlpull.org/v1/doc/features.html#process-namespaces
+                   => Lcom/microsoft/applauncher/b;->a(Ljava/io/InputStream;)Ljava/util/ArrayList;
+[Critical] <WebView><Remote Code Execution><#CVE-2013-4710#> WebView RCE Vulnerability Checking:
+           Found a critical WebView "addJavascriptInterface" vulnerability. This method can be used to allow JavaScript to control the host
+           application.
+           This is a powerful feature, but also presents a security risk for applications targeted to API level JELLY_BEAN(4.2) or below,
+           because JavaScript could use reflection to access an injected object's public fields. Use of this method in a WebView containing
+           untrusted content could allow an attacker to manipulate the host application in unintended ways, executing Java code with the
+           permissions of the host application.
+           Reference:
+             1."http://developer.android.com/reference/android/webkit/WebView.html#addJavascriptInterface(java.lang.Object,
+           java.lang.String) "
+             2.https://labs.mwrinfosecurity.com/blog/2013/09/24/webview-addjavascriptinterface-remote-code-execution/
+             3.http://50.56.33.56/blog/?p=314
+             4.http://blog.trustlook.com/2013/09/04/alert-android-webview-addjavascriptinterface-code-execution-vulnerability/
+           Please modify the below code:
+               => Lcom/facebook/react/views/webview/ReactWebViewManager$ReactWebView;->setMessagingEnabled(Z)V (0x1e) --->
+                    Lcom/facebook/react/views/webview/ReactWebViewManager$ReactWebView;->addJavascriptInterface(Ljava/lang/Object;
+                    Ljava/lang/String;)V
+[Warning]  External Storage Accessing:
+           External storage access found (Remember DO NOT write important files to external storages):
+               => Lcom/facebook/cache/disk/a;->a(Ljava/io/File; Lcom/facebook/cache/common/a;)Z (0x4) --->
+                    Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
+               => Lcom/facebook/common/statfs/a;->b()V (0x26) ---> Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
+               => Lcom/google/android/vending/expansion/downloader/h;->a(Ljava/lang/String;)Ljava/io/File; (0x1e) --->
+                    Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
+               => Lcom/google/android/vending/expansion/downloader/h;->a(Landroid/content/Context;)Ljava/lang/String; (0x0) --->
+                    Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
+               => Lcom/google/android/vending/expansion/downloader/h;->b(Ljava/lang/String;)Z (0x2c) --->
+                    Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
+               => Lcom/microsoft/intune/mam/client/MAMInfo;->getOverrides()V (0x10) --->
+                    Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
+               => Lcom/microsoft/office/BackgroundTasks/LocalFilesTelemetryTask;->execute(Landroid/content/Context;)V (0x76) --->
+                    Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
+               => Lcom/microsoft/office/apphost/bs;->a(Ljava/lang/String;)Z (0x0) --->
+                    Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
+[Warning]  AndroidManifest Exported Components Checking:
+           Found "exported" components(except for Launcher) for receiving outside applications' actions (AndroidManifest.xml).
+           These components can be initilized by other apps. You should add or modify the attribute to [exported="false"] if you don't want
+           to.
+           You can also protect it with a customized permission with "signature" or higher protectionLevel and specify in
+           "android:permission" attribute.
+                 activity => com.microsoft.office.word.WordActivity
+                 activity => com.microsoft.android.crosssell.activities.PowerpointCrossSellHandlerActivity
+                 activity => com.microsoft.android.crosssell.activities.ExcelCrossSellHandlerActivity
+                 activity => com.microsoft.android.crosssell.activities.WordCrossSellHandlerActivity
+                  service => com.microsoft.android.crosssell.CrossSellAgentMarker
+                  service => com.microsoft.tokenshare.TokenSharingService
+                 receiver => com.microsoft.office.notification.SystemBroadcastReceiver
+                 receiver => com.microsoft.office.appwarmup.service.AppWarmUpBroadcastReceiver
+                 receiver => com.microsoft.android.crosssell.CrossSellReceiver
+[Warning] <Sensitive_Information> Getting ANDROID_ID:
+           This app has code getting the 64-bit number "Settings.Secure.ANDROID_ID".
+           ANDROID_ID seems a good choice for a unique device identifier. There are downsides: First, it is not 100% reliable on releases of
+           Android prior to 2.2 (Froyo).
+           Also, there has been at least one widely-observed bug in a popular handset from a major manufacturer, where every instance has
+           the same ANDROID_ID.
+           If you want to get an unique id for the device, we suggest you use "Installation" framework in the following article.
+           Please check the reference: http://android-developers.blogspot.tw/2011/03/identifying-app-installations.html
+               => Lcom/adjust/sdk/plugin/AndroidIdUtil;->getAndroidId(Landroid/content/Context;)Ljava/lang/String; (0xc) --->
+                    Landroid/provider/Settings$Secure;->getString(Landroid/content/ContentResolver; Ljava/lang/String;)Ljava/lang/String;
+               => Lcom/google/android/vending/expansion/downloader/impl/s;->run()V (0x2c) --->
+                    Landroid/provider/Settings$Secure;->getString(Landroid/content/ContentResolver; Ljava/lang/String;)Ljava/lang/String;
+               => Lcom/microsoft/aad/adal/DefaultEvent;->setDefaults(Landroid/content/Context; Ljava/lang/String;)V (0x3a) --->
+                    Landroid/provider/Settings$Secure;->getString(Landroid/content/ContentResolver; Ljava/lang/String;)Ljava/lang/String;
+               => Lcom/microsoft/applications/telemetry/pal/hardware/a;->a(Landroid/content/Context;)V (0x12) --->
+                    Landroid/provider/Settings$Secure;->getString(Landroid/content/ContentResolver; Ljava/lang/String;)Ljava/lang/String;
+               => Lcom/microsoft/office/docsui/settingsview/SettingsView;->getGUIDforAndroidID()Ljava/lang/String; (0x18) --->
+                    Landroid/provider/Settings$Secure;->getString(Landroid/content/ContentResolver; Ljava/lang/String;)Ljava/lang/String;
+[Warning] <SSL_Security> SSL Certificate Verification Checking:
+           Please make sure this app has the conditions to check the validation of SSL Certificate. If it's not properly checked, it MAY
+           allows self-signed, expired or mismatch CN certificates for SSL connection.
+           This is a critical vulnerability and allows attackers to do MITM attacks without your knowledge.
+           If you are transmitting users' username or password, these sensitive information may be leaking.
+           Reference:
+           (1)OWASP Mobile Top 10 doc: https://www.owasp.org/index.php/Mobile_Top_10_2014-M3
+           (2)Android Security book: http://goo.gl/BFb65r
+           (3)https://www.securecoding.cert.org/confluence/pages/viewpage.action?pageId=134807561
+           This vulnerability is much more severe than Apple's "goto fail" vulnerability: http://goo.gl/eFlovw
+           Please do not try to create a "X509Certificate" and override "checkClientTrusted", "checkServerTrusted", and "getAcceptedIssuers"
+           functions with blank implementation.
+           We strongly suggest you use the existing API instead of creating your own X509Certificate class.
+           Please modify or remove these vulnerable code:
+               --------------------------------------------------
+               [Maybe Vulnerable (Please manually confirm)]
+               => Lcom/microsoft/intune/mam/http/MAMTrustManager;
+                     -> used by:
+                    Lcom/microsoft/intune/mam/http/MAMTrustManager;->createSslContext(Ljava/lang/String;)Ljavax/net/ssl/SSLContext;
+[Warning] <WebView> WebView Local File Access Attacks Checking:
+           Found "setAllowFileAccess(true)" or not set(enabled by default) in WebView. The attackers could inject malicious script into
+           WebView and exploit the opportunity to access local resources. This can be mitigated or prevented by disabling local file system
+           access. (It is enabled by default)
+           Note that this enables or disables file system access only. Assets and resources are still accessible using file:///android_asset
+           and file:///android_res.
+           The attackers can use "mWebView.loadUrl("file:///data/data/[Your_Package_Name]/[File]");" to access app's local file.
+           Reference: (1)https://labs.mwrinfosecurity.com/blog/2012/04/23/adventures-with-android-webviews/
+                      (2)http://developer.android.com/reference/android/webkit/WebSettings.html#setAllowFileAccess(boolean)
+           Please add or modify "yourWebView.getSettings().setAllowFileAccess(false)" to your WebView:
+               Lcom/facebook/react/views/webview/ReactWebViewManager$ReactWebView;->a()V
+               Lcom/facebook/react/views/webview/ReactWebViewManager;->createViewInstance(Lcom/facebook/react/uimanager/aq;)Landroid/webkit/
+                    WebView;
+               Lcom/facebook/react/views/webview/ReactWebViewManager;->setAllowUniversalAccessFromFileURLs(Landroid/webkit/WebView; Z)V
+               Lcom/facebook/react/views/webview/ReactWebViewManager;->setDomStorageEnabled(Landroid/webkit/WebView; Z)V
+               Lcom/facebook/react/views/webview/ReactWebViewManager;->setJavaScriptEnabled(Landroid/webkit/WebView; Z)V
+               Lcom/facebook/react/views/webview/ReactWebViewManager;->setMediaPlaybackRequiresUserAction(Landroid/webkit/WebView; Z)V
+               Lcom/facebook/react/views/webview/ReactWebViewManager;->setMixedContentMode(Landroid/webkit/WebView; Ljava/lang/String;)V
+               Lcom/facebook/react/views/webview/ReactWebViewManager;->setSaveFormDataDisabled(Landroid/webkit/WebView; Z)V
+               Lcom/facebook/react/views/webview/ReactWebViewManager;->setScalesPageToFit(Landroid/webkit/WebView; Z)V
+               Lcom/facebook/react/views/webview/ReactWebViewManager;->setSource(Landroid/webkit/WebView; Lcom/facebook/react/bridge/bw;)V
+               Lcom/facebook/react/views/webview/ReactWebViewManager;->setUserAgent(Landroid/webkit/WebView; Ljava/lang/String;)V
+               Lcom/microsoft/aad/adal/AuthenticationActivity;->onMAMCreate(Landroid/os/Bundle;)V
+               Lcom/microsoft/aad/adal/AuthenticationActivity;->setupWebView()V
+               Lcom/microsoft/aad/adal/AuthenticationDialog$1;->run()V
+               Lcom/microsoft/office/docsui/controls/OfficeFeedbackView$UserVoicePromptCustomViewProvider$2;->onClick(Landroid/view/View;)V
+               Lcom/microsoft/office/docsui/controls/SettingUpPlacesView;->CreateView(Landroid/content/Context;)Landroid/view/View;
+               Lcom/microsoft/office/docsui/settingsview/SettingsWebView;->startLoading(Ljava/lang/String;)V
+               Lcom/microsoft/office/hockeyapp/activities/HockeyWebViewActivity;->a(Ljava/lang/String;)Landroid/webkit/WebView;
+               Lcom/microsoft/office/identity/idcrl/d;->show()V
+               Lcom/microsoft/office/identity/oauth2/c;->a()V
+[Warning] <WebView> WebView Potential XSS Attacks Checking:
+           Found "setJavaScriptEnabled(true)" in WebView, which could exposed to potential XSS attacks. Please check the web page code
+           carefully and sanitize the output:
+               => Lcom/microsoft/aad/adal/AuthenticationActivity;->setupWebView()V (0xe) --->
+                    Landroid/webkit/WebSettings;->setJavaScriptEnabled(Z)V
+               => Lcom/microsoft/aad/adal/AuthenticationDialog$1;->run()V (0x156) --->
+                    Landroid/webkit/WebSettings;->setJavaScriptEnabled(Z)V
+               =>
+                    Lcom/microsoft/office/docsui/controls/OfficeFeedbackView$UserVoicePromptCustomViewProvider$2;->onClick(Landroid/view/Vie
+                    w;)V (0x98) ---> Landroid/webkit/WebSettings;->setJavaScriptEnabled(Z)V
+               => Lcom/microsoft/office/docsui/settingsview/SettingsWebView;->startLoading(Ljava/lang/String;)V (0x24) --->
+                    Landroid/webkit/WebSettings;->setJavaScriptEnabled(Z)V
+               => Lcom/microsoft/office/hockeyapp/activities/HockeyWebViewActivity;->a(Ljava/lang/String;)Landroid/webkit/WebView; (0x60)
+                    ---> Landroid/webkit/WebSettings;->setJavaScriptEnabled(Z)V
+               => Lcom/microsoft/office/identity/idcrl/d;->show()V (0xa0) ---> Landroid/webkit/WebSettings;->setJavaScriptEnabled(Z)V
+               => Lcom/microsoft/office/identity/oauth2/c;->a()V (0x22) ---> Landroid/webkit/WebSettings;->setJavaScriptEnabled(Z)V
+[Notice] <Command> Executing "root" or System Privilege Checking:
+           The app may has the code checking for "root" permission, mounting filesystem operations or monitoring system:
+               Lcom/microsoft/office/inapppurchase/h;-><clinit>()V  => '/system/bin/su'
+               Lcom/microsoft/office/inapppurchase/h;-><clinit>()V  => '/system/bin/failsafe/su'
+[Notice] <Database><#CVE-2011-3901#> Android SQLite Databases Vulnerability Checking:
+           This app is using Android SQLite databases but it's "NOT" suffering from SQLite Journal Information Disclosure Vulnerability.
+[Notice]  File Unsafe Delete Checking:
+           Everything you delete may be recovered by any user or attacker, especially rooted devices.
+           Please make sure do not use "file.delete()" to delete essential files.
+           Check this video: https://www.youtube.com/watch?v=tGw1fxUD-uY
+               => Lcom/facebook/cache/disk/a;->a(Ljava/io/File;)J (0x1a) ---> Ljava/io/File;->delete()Z
+               => Lcom/facebook/cache/disk/h;->a()Z (0x14) ---> Ljava/io/File;->delete()Z
+               => Lcom/facebook/cache/disk/i;->b(Ljava/io/File;)V (0x14) ---> Ljava/io/File;->delete()Z
+               => Lcom/facebook/cache/disk/i;->c(Ljava/io/File;)V (0x20) ---> Ljava/io/File;->delete()Z
+               => Lcom/facebook/common/file/a;->b(Ljava/io/File;)Z (0x12) ---> Ljava/io/File;->delete()Z
+               => Lcom/facebook/common/file/c;->a(Ljava/io/File;)V (0x1a) ---> Ljava/io/File;->delete()Z
+               => Lcom/facebook/common/file/c;->a(Ljava/io/File; Ljava/io/File;)V (0xc) ---> Ljava/io/File;->delete()Z
+               => Lcom/facebook/react/devsupport/JSCHeapCapture;->captureHeap(Ljava/lang/String;
+                    Lcom/facebook/react/devsupport/JSCHeapCapture$CaptureCallback;)V (0x52) ---> Ljava/io/File;->delete()Z
+               => Lcom/facebook/react/modules/camera/f;->a(Ljava/io/File;)V (0x22) ---> Ljava/io/File;->delete()Z
+               => Lcom/facebook/soloader/v;->a(Lcom/facebook/soloader/z; [B)V (0x128) ---> Ljava/io/File;->delete()Z
+               => Lcom/facebook/soloader/t;->a(Ljava/io/File;)V (0x32) ---> Ljava/io/File;->delete()Z
+               => Lcom/google/android/gms/common/data/a;->gU()Ljava/io/FileOutputStream; (0x46) ---> Ljava/io/File;->delete()Z
+               => Lcom/google/android/gms/tagmanager/bu;->getWritableDatabase()Landroid/database/sqlite/SQLiteDatabase; (0x32) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/google/android/vending/expansion/downloader/h;->a(Landroid/content/Context; Ljava/lang/String; J Z)Z (0x36) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/google/android/vending/expansion/downloader/impl/DownloaderService;->a(Lcom/google/android/vending/expansion/download
+                    er/impl/u; I Ljava/lang/String; J)Z (0x44) ---> Ljava/io/File;->delete()Z
+               => Lcom/google/android/vending/expansion/downloader/impl/k;->a(Lcom/google/android/vending/expansion/downloader/impl/o; I)V
+                    (0x28) ---> Ljava/io/File;->delete()Z
+               => Lcom/google/android/vending/expansion/downloader/impl/k;->d(Lcom/google/android/vending/expansion/downloader/impl/o;
+                    Lcom/google/android/vending/expansion/downloader/impl/m;)V (0x5c) ---> Ljava/io/File;->delete()Z
+               => Lcom/google/android/vending/expansion/downloader/impl/k;->d(Lcom/google/android/vending/expansion/downloader/impl/o;
+                    Lcom/google/android/vending/expansion/downloader/impl/m;)V (0x84) ---> Ljava/io/File;->delete()Z
+               => Lcom/microsoft/aad/adal/StorageHelper;->deleteKeyFile()V (0x46) ---> Ljava/io/File;->delete()Z
+               => Lcom/microsoft/applications/telemetry/core/am;->d()V (0x70) ---> Ljava/io/File;->delete()Z
+               => Lcom/microsoft/applications/telemetry/core/am;->d()V (0x8a) ---> Ljava/io/File;->delete()Z
+               => Lcom/microsoft/applications/telemetry/core/am;->d()V (0xa4) ---> Ljava/io/File;->delete()Z
+               => Lcom/microsoft/applications/telemetry/core/am;->d()V (0xbe) ---> Ljava/io/File;->delete()Z
+               => Lcom/microsoft/applications/telemetry/core/am;->d()V (0xd8) ---> Ljava/io/File;->delete()Z
+               => Lcom/microsoft/applications/telemetry/core/av;->c(Ljava/lang/String;)V (0xc) ---> Ljava/io/File;->delete()Z
+               => Lcom/microsoft/intune/mam/client/telemetry/FileCacheTelemetryLogger;->closeAndDelete()V (0x36) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/BackgroundTasks/FileSuggestionNotifierBackgroundTask;->ClearTempFolder()V (0x78) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/BackgroundTasks/TempFilesCleanupBackgroundTask;->deleteDirectory(Ljava/io/File;)V (0x7a) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/BackgroundTasks/TempFilesCleanupBackgroundTask;->deleteDirectory(Ljava/io/File;)V (0xca) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/activation/FilePathProvider;->deleteFile(Ljava/lang/String; Ljava/lang/String;)V (0x40) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/activation/FilePathProvider;->deleteStaleFiles(Ljava/io/File;)V (0x36) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/clipboard/ClipboardImpl;->DeleteStaleFiles()V (0x4e) ---> Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/crashreporting/CrashUtils;->readFromFile(Ljava/lang/String;)Ljava/lang/StringBuilder; (0x94) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/docsui/cache/BaseCachedDataFile;->updateCachedDataFile()Z (0xee) ---> Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/docsui/commands/LocalBrowseAction;->delete(Lcom/microsoft/office/officehub/objectmodel/IBrowseListIt
+                    em;)V (0x32) ---> Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/docsui/common/AndroidFrameworkPrintFileController;->deleteTempFiles()V (0xc) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/docsui/common/AndroidFrameworkPrintFileController;->deleteTempFiles()V (0x1e) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/docsui/common/AndroidFrameworkPrintFileController;->deleteTempFiles()V (0x30) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/docsui/common/DocsUIIntuneManager;->createFile(Ljava/lang/String;)I (0xb8) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/docsui/common/FileCache;->cacheFile(Landroid/graphics/Bitmap; Ljava/lang/String;)I (0xa8) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/docsui/common/TemplateViewArrayAdapter;->ensureAndGetBitmapFromCache(Ljava/lang/String;)Landroid/gra
+                    phics/Bitmap; (0xae) ---> Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/docsui/common/UpgradeDB;->deleteFile(Ljava/lang/String;)Z (0x18) ---> Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/docsui/wopi/WOPIService$ThumbnailDownloadTask;->cacheIconImage(Landroid/graphics/Bitmap;
+                    Ljava/io/File;)I (0x80) ---> Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/insertpictureui/InsertPictureUI;->GetLocalFilePathAsActivityResult(Landroid/app/Activity;
+                    Landroid/net/Uri; Lcom/microsoft/office/insertpictureui/InsertPictureUI$MediaType;)Ljava/lang/String; (0xa6) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/insertpictureui/InsertPictureUI;->createMediaFile(Ljava/lang/String;)Ljava/io/File; (0x58) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/lensactivitycore/documentmodel/e;->delete(Ljava/lang/String;)Ljava/lang/Boolean; (0x60) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/lensactivitycore/documentmodel/document/LensDocument;->deleteInternal(Ljava/io/File;)Ljava/lang/Bool
+                    ean; (0x56) ---> Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/lensactivitycore/documentmodel/image/LensImage;->remove()Ljava/lang/Boolean; (0x42) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/lensactivitycore/documentmodel/image/LensImage;->remove()Ljava/lang/Boolean; (0x6c) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/lensactivitycore/documentmodel/image/LensImage;->remove()Ljava/lang/Boolean; (0x96) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/lensactivitycore/documentmodel/image/LensImage;->remove()Ljava/lang/Boolean; (0xc0) --->
+                    Ljava/io/File;->delete()Z
+               => Lcom/microsoft/office/lensactivitycore/documentmodel/image/LensImage;->remove()Ljava/lang/Boolean; (0x16a) --->
+                    Ljava/io/File;->delete()Z
+[Notice] <Debug><Hacker> Codes for Checking Android Debug Mode:
+           Found codes for checking "ApplicationInfo.FLAG_DEBUGGABLE" in AndroidManifest.xml:
+               => Lcom/microsoft/intune/mam/client/MetaDataReader;-><init> (Landroid/content/Context; Ljava/lang/String;)V
+[Notice] <Hacker> APK Installing Source Checking:
+           This app has code checking APK installer sources(e.g. from Google Play, from Amazon, etc.). It might be used to check for whether
+           the app is hacked by the attackers.
+               => Lcom/microsoft/intune/mam/client/content/pm/OfflinePackageManagementBehavior;->getInstallerPackageName(Landroid/content/pm
+                    /PackageManager; Ljava/lang/String;)Ljava/lang/String; (0x0) --->
+                    Landroid/content/pm/PackageManager;->getInstallerPackageName(Ljava/lang/String;)Ljava/lang/String;
+[Notice] <Hacker> Code Setting Preventing Screenshot Capturing:
+           This app has code setting the preventing screenshot capturing.
+           Example: getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+           It is used by the developers to protect the app:
+               => Lcom/microsoft/office/intune/OfficeIntuneManager;->handleScreenCapture(Landroid/app/Activity;)Z (0x4a) --->
+                    Landroid/view/Window;->setFlags(I I)V
+[Notice] <Signature><Hacker> Getting Signature Code Checking:
+           This app has code checking the package signature in the code. It might be used to check for whether the app is hacked by the
+           attackers.
+               => Lcom/google/android/gms/common/GooglePlayServicesUtil;->b(Landroid/content/pm/PackageManager;)Z (0x1c) --->
+                    Landroid/content/pm/PackageManager;->getPackageInfo(Ljava/lang/String; I)Landroid/content/pm/PackageInfo;
+               => Lcom/google/android/gms/common/GooglePlayServicesUtil;->b(Landroid/content/pm/PackageManager; Ljava/lang/String;)Z (0x4)
+                    ---> Landroid/content/pm/PackageManager;->getPackageInfo(Ljava/lang/String; I)Landroid/content/pm/PackageInfo;
+               => Lcom/google/android/gms/common/GooglePlayServicesUtil;->isGooglePlayServicesAvailable(Landroid/content/Context;)I (0x42)
+                    ---> Landroid/content/pm/PackageManager;->getPackageInfo(Ljava/lang/String; I)Landroid/content/pm/PackageInfo;
+               => Lcom/google/android/gms/common/GooglePlayServicesUtil;->isGooglePlayServicesAvailable(Landroid/content/Context;)I (0xe4)
+                    ---> Landroid/content/pm/PackageManager;->getPackageInfo(Ljava/lang/String; I)Landroid/content/pm/PackageInfo;
+               => Lcom/google/android/gms/common/GooglePlayServicesUtil;->isGooglePlayServicesAvailable(Landroid/content/Context;)I (0x1a8)
+                    ---> Landroid/content/pm/PackageManager;->getPackageInfo(Ljava/lang/String; I)Landroid/content/pm/PackageInfo;
+               => Lcom/microsoft/intune/mam/client/app/MAMComponents;->getAgentPackageInfo(Landroid/content/Context;)Landroid/content/pm/Pac
+                    kageInfo; (0x1a) ---> Landroid/content/pm/PackageManager;->getPackageInfo(Ljava/lang/String;
+                    I)Landroid/content/pm/PackageInfo;
+               => Lcom/microsoft/intune/mam/client/app/MAMComponents;->getAgentPackageInfo(Landroid/content/Context;)Landroid/content/pm/Pac
+                    kageInfo; (0x88) ---> Landroid/content/pm/PackageManager;->getPackageInfo(Ljava/lang/String;
+                    I)Landroid/content/pm/PackageInfo;
+[Notice]  Native Library Loading Checking:
+           Native library loading codes(System.loadLibrary(...)) found:
+               [libpixsdk.OfficeLensProductivity.so]
+               => Lcom/microsoft/ai/OfficeLensProductivity;->e()V (0x6) ---> Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
+[Notice]  Native Methods Checking:
+           Native methods found:
+               Class: Lcom/facebook/imagepipeline/memory/NativeMemoryChunk;
+                  ->Methods:
+                       nativeAllocate(I)J
+                       nativeCopyFromByteArray(J [B I I)V
+                       nativeCopyToByteArray(J [B I I)V
+                       nativeFree(J)V
+                       nativeMemcpy(J J I)V
+                       nativeReadByte(J)B
+               Class: Lcom/facebook/imagepipeline/nativecode/Bitmaps;
+                  ->Methods:
+                       nativeCopyBitmap(Landroid/graphics/Bitmap; I Landroid/graphics/Bitmap; I I)V
+                       nativeGetByteBuffer(Landroid/graphics/Bitmap; J J)Ljava/nio/ByteBuffer;
+                       nativePinBitmap(Landroid/graphics/Bitmap;)V
+                       nativeReleaseByteBuffer(Landroid/graphics/Bitmap;)V
+               Class: Lcom/facebook/imagepipeline/nativecode/JpegTranscoder;
+                  ->Methods:
+                       nativeTranscodeJpeg(Ljava/io/InputStream; Ljava/io/OutputStream; I I I)V
+               Class: Lcom/facebook/imagepipeline/nativecode/NativeBlurFilter;
+                  ->Methods:
+                       nativeIterativeBoxBlur(Landroid/graphics/Bitmap; I I)V
+               Class: Lcom/facebook/jni/Countable;
+                  ->Methods:
+                       dispose()V
+               Class: Lcom/facebook/jni/CpuCapabilitiesJni;
+                  ->Methods:
+                       nativeDeviceSupportsNeon()Z
+                       nativeDeviceSupportsVFPFP16()Z
+                       nativeDeviceSupportsX86()Z
+               Class: Lcom/facebook/jni/HybridData$Destructor;
+                  ->Methods:
+                       deleteNative(J)V
+               Class: Lcom/facebook/jni/NativeRunnable;
+                  ->Methods:
+                       run()V
+               Class: Lcom/facebook/jni/ThreadScopeSupport;
+                  ->Methods:
+                       runStdFunctionImpl(J)V
+               Class: Lcom/facebook/react/bridge/CatalystInstanceImpl;
+                  ->Methods:
+                       createModuleRegistry(Lcom/facebook/react/bridge/queue/MessageQueueThread;
+                    Lcom/facebook/react/bridge/queue/MessageQueueThread; Ljava/util/Collection; Ljava/util/Collection;)V
+                       getJavaScriptContext()J
+                       initHybrid()Lcom/facebook/jni/HybridData;
+                       initializeBridge(Lcom/facebook/react/bridge/ReactCallback; Lcom/facebook/react/bridge/JavaScriptExecutor;
+                    Lcom/facebook/react/bridge/queue/MessageQueueThread;)V
+                       jniCallJSCallback(I Lcom/facebook/react/bridge/NativeArray;)V
+                       jniCallJSFunction(Ljava/lang/String; Ljava/lang/String; Lcom/facebook/react/bridge/NativeArray;)V
+                       jniExtendNativeModules(Ljava/util/Collection; Ljava/util/Collection;)V
+                       jniHandleMemoryPressure(I)V
+                       jniLoadScriptFromAssets(Landroid/content/res/AssetManager; Ljava/lang/String; Z)V
+                       jniLoadScriptFromFile(Ljava/lang/String; Ljava/lang/String; Z)V
+                       jniReactConfigurationData(Lcom/facebook/react/bridge/WritableNativeMap;)V
+                       jniSetSourceURL(Ljava/lang/String;)V
+                       getPointerOfInstancePointer()J
+                       setGlobalVariable(Ljava/lang/String; Ljava/lang/String;)V
+               Class: Lcom/facebook/react/bridge/CxxCallbackImpl;
+                  ->Methods:
+                       nativeInvoke(Lcom/facebook/react/bridge/NativeArray;)V
+               Class: Lcom/facebook/react/bridge/CxxModuleWrapper;
+                  ->Methods:
+                       makeDsoNative(Ljava/lang/String; Ljava/lang/String;)Lcom/facebook/react/bridge/CxxModuleWrapper;
+               Class: Lcom/facebook/react/bridge/CxxModuleWrapperBase;
+                  ->Methods:
+                       getName()Ljava/lang/String;
+               Class: Lcom/facebook/react/bridge/Inspector$LocalConnection;
+                  ->Methods:
+                       disconnect()V
+                       sendMessage(Ljava/lang/String;)V
+               Class: Lcom/facebook/react/bridge/Inspector;
+                  ->Methods:
+                       connectNative(I
+                    Lcom/facebook/react/bridge/Inspector$RemoteConnection;)Lcom/facebook/react/bridge/Inspector$LocalConnection;
+                       getPagesNative()[Lcom/facebook/react/bridge/Inspector$Page;
+                       instance()Lcom/facebook/react/bridge/Inspector;
+               Class: Lcom/facebook/react/bridge/JSCJavaScriptExecutor;
+                  ->Methods:
+                       initHybrid(Lcom/facebook/react/bridge/ReadableNativeMap;)Lcom/facebook/jni/HybridData;
+               Class: Lcom/facebook/react/bridge/NativeArray;
+                  ->Methods:
+                       toString()Ljava/lang/String;
+               Class: Lcom/facebook/react/bridge/NativeMap;
+                  ->Methods:
+                       toString()Ljava/lang/String;
+               Class: Lcom/facebook/react/bridge/ProxyJavaScriptExecutor;
+                  ->Methods:
+                       initHybrid(Lcom/facebook/react/bridge/JavaJSExecutor;)Lcom/facebook/jni/HybridData;
+               Class: Lcom/facebook/react/bridge/ReadableNativeArray;
+                  ->Methods:
+                       getArray(I)Lcom/facebook/react/bridge/ReadableNativeArray;
+                       getBoolean(I)Z
+                       getDouble(I)D
+                       getInt(I)I
+                       getMap(I)Lcom/facebook/react/bridge/ReadableNativeMap;
+                       getString(I)Ljava/lang/String;
+                       getType(I)Lcom/facebook/react/bridge/ReadableType;
+                       isNull(I)Z
+                       size()I
+               Class: Lcom/facebook/react/bridge/ReadableNativeMap$ReadableNativeMapKeySetIterator;
+                  ->Methods:
+                       initHybrid(Lcom/facebook/react/bridge/ReadableNativeMap;)Lcom/facebook/jni/HybridData;
+                       hasNextKey()Z
+                       nextKey()Ljava/lang/String;
+               Class: Lcom/facebook/react/bridge/ReadableNativeMap;
+                  ->Methods:
+                       getArray(Ljava/lang/String;)Lcom/facebook/react/bridge/ReadableNativeArray;
+                       getBoolean(Ljava/lang/String;)Z
+                       getDouble(Ljava/lang/String;)D
+                       getInt(Ljava/lang/String;)I
+                       getMap(Ljava/lang/String;)Lcom/facebook/react/bridge/ReadableNativeMap;
+                       getString(Ljava/lang/String;)Ljava/lang/String;
+                       getType(Ljava/lang/String;)Lcom/facebook/react/bridge/ReadableType;
+                       hasKey(Ljava/lang/String;)Z
+                       isNull(Ljava/lang/String;)Z
+               Class: Lcom/facebook/react/bridge/WritableNativeArray;
+                  ->Methods:
+                       initHybrid()Lcom/facebook/jni/HybridData;
+                       pushNativeArray(Lcom/facebook/react/bridge/WritableNativeArray;)V
+                       pushNativeMap(Lcom/facebook/react/bridge/WritableNativeMap;)V
+                       pushBoolean(Z)V
+                       pushDouble(D)V
+                       pushInt(I)V
+                       pushNull()V
+                       pushString(Ljava/lang/String;)V
+               Class: Lcom/facebook/react/bridge/WritableNativeMap;
+                  ->Methods:
+                       initHybrid()Lcom/facebook/jni/HybridData;
+                       mergeNativeMap(Lcom/facebook/react/bridge/ReadableNativeMap;)V
+                       putNativeArray(Ljava/lang/String; Lcom/facebook/react/bridge/WritableNativeArray;)V
+                       putNativeMap(Ljava/lang/String; Lcom/facebook/react/bridge/WritableNativeMap;)V
+                       putBoolean(Ljava/lang/String; Z)V
+                       putDouble(Ljava/lang/String; D)V
+                       putInt(Ljava/lang/String; I)V
+                       putNull(Ljava/lang/String;)V
+                       putString(Ljava/lang/String; Ljava/lang/String;)V
+               Class: Lcom/facebook/react/bridge/queue/NativeRunnable;
+                  ->Methods:
+                       run()V
+               Class: Lcom/facebook/react/bridge/queue/NativeRunnableDeprecated;
+                  ->Methods:
+                       run()V
+               Class: Lcom/facebook/react/packagerconnection/SamplingProfilerPackagerMethod$SamplingProfilerJniMethod;
+                  ->Methods:
+                       initHybrid(J)Lcom/facebook/jni/HybridData;
+                       poke(Lcom/facebook/react/packagerconnection/Responder;)V
+               Class: Lcom/facebook/yoga/YogaConfig;
+                  ->Methods:
+                       jni_YGConfigFree(J)V
+                       jni_YGConfigNew()J
+                       jni_YGConfigSetExperimentalFeatureEnabled(J I Z)V
+                       jni_YGConfigSetLogger(J Ljava/lang/Object;)V
+                       jni_YGConfigSetPointScaleFactor(J F)V
+                       jni_YGConfigSetUseLegacyStretchBehaviour(J Z)V
+                       jni_YGConfigSetUseWebDefaults(J Z)V
+               Class: Lcom/facebook/yoga/YogaNode;
+                  ->Methods:
+                       jni_YGNodeCalculateLayout(J F F)V
+                       jni_YGNodeCopyStyle(J J)V
+                       jni_YGNodeFree(J)V
+                       jni_YGNodeGetInstanceCount()I
+                       jni_YGNodeInsertChild(J J I)V
+                       jni_YGNodeIsDirty(J)Z
+                       jni_YGNodeMarkDirty(J)V
+                       jni_YGNodeNew()J
+                       jni_YGNodeNewWithConfig(J)J
+                       jni_YGNodePrint(J)V
+                       jni_YGNodeRemoveChild(J J)V
+                       jni_YGNodeReset(J)V
+                       jni_YGNodeSetHasBaselineFunc(J Z)V
+                       jni_YGNodeSetHasMeasureFunc(J Z)V
+                       jni_YGNodeStyleGetAlignContent(J)I
+                       jni_YGNodeStyleGetAlignItems(J)I
+                       jni_YGNodeStyleGetAlignSelf(J)I
+                       jni_YGNodeStyleGetAspectRatio(J)F
+                       jni_YGNodeStyleGetBorder(J I)F
+                       jni_YGNodeStyleGetDirection(J)I
+                       jni_YGNodeStyleGetDisplay(J)I
+                       jni_YGNodeStyleGetFlexBasis(J)Ljava/lang/Object;
+                       jni_YGNodeStyleGetFlexDirection(J)I
+                       jni_YGNodeStyleGetFlexGrow(J)F
+                       jni_YGNodeStyleGetFlexShrink(J)F
+                       jni_YGNodeStyleGetHeight(J)Ljava/lang/Object;
+                       jni_YGNodeStyleGetJustifyContent(J)I
+                       jni_YGNodeStyleGetMargin(J I)Ljava/lang/Object;
+                       jni_YGNodeStyleGetMaxHeight(J)Ljava/lang/Object;
+                       jni_YGNodeStyleGetMaxWidth(J)Ljava/lang/Object;
+                       jni_YGNodeStyleGetMinHeight(J)Ljava/lang/Object;
+                       jni_YGNodeStyleGetMinWidth(J)Ljava/lang/Object;
+                       jni_YGNodeStyleGetOverflow(J)I
+                       jni_YGNodeStyleGetPadding(J I)Ljava/lang/Object;
+                       jni_YGNodeStyleGetPosition(J I)Ljava/lang/Object;
+                       jni_YGNodeStyleGetPositionType(J)I
+                       jni_YGNodeStyleGetWidth(J)Ljava/lang/Object;
+                       jni_YGNodeStyleSetAlignContent(J I)V
+                       jni_YGNodeStyleSetAlignItems(J I)V
+                       jni_YGNodeStyleSetAlignSelf(J I)V
+                       jni_YGNodeStyleSetAspectRatio(J F)V
+                       jni_YGNodeStyleSetBorder(J I F)V
+                       jni_YGNodeStyleSetDirection(J I)V
+                       jni_YGNodeStyleSetDisplay(J I)V
+                       jni_YGNodeStyleSetFlex(J F)V
+                       jni_YGNodeStyleSetFlexBasis(J F)V
+                       jni_YGNodeStyleSetFlexBasisAuto(J)V
+                       jni_YGNodeStyleSetFlexBasisPercent(J F)V
+                       jni_YGNodeStyleSetFlexDirection(J I)V
+                       jni_YGNodeStyleSetFlexGrow(J F)V
+                       jni_YGNodeStyleSetFlexShrink(J F)V
+                       jni_YGNodeStyleSetFlexWrap(J I)V
+                       jni_YGNodeStyleSetHeight(J F)V
+                       jni_YGNodeStyleSetHeightAuto(J)V
+                       jni_YGNodeStyleSetHeightPercent(J F)V
+                       jni_YGNodeStyleSetJustifyContent(J I)V
+                       jni_YGNodeStyleSetMargin(J I F)V
+                       jni_YGNodeStyleSetMarginAuto(J I)V
+                       jni_YGNodeStyleSetMarginPercent(J I F)V
+                       jni_YGNodeStyleSetMaxHeight(J F)V
+                       jni_YGNodeStyleSetMaxHeightPercent(J F)V
+                       jni_YGNodeStyleSetMaxWidth(J F)V
+                       jni_YGNodeStyleSetMaxWidthPercent(J F)V
+                       jni_YGNodeStyleSetMinHeight(J F)V
+                       jni_YGNodeStyleSetMinHeightPercent(J F)V
+                       jni_YGNodeStyleSetMinWidth(J F)V
+                       jni_YGNodeStyleSetMinWidthPercent(J F)V
+                       jni_YGNodeStyleSetOverflow(J I)V
+                       jni_YGNodeStyleSetPadding(J I F)V
+                       jni_YGNodeStyleSetPaddingPercent(J I F)V
+                       jni_YGNodeStyleSetPosition(J I F)V
+                       jni_YGNodeStyleSetPositionPercent(J I F)V
+                       jni_YGNodeStyleSetPositionType(J I)V
+                       jni_YGNodeStyleSetWidth(J F)V
+                       jni_YGNodeStyleSetWidthAuto(J)V
+                       jni_YGNodeStyleSetWidthPercent(J F)V
+               Class: Lcom/microsoft/ai/OfficeLensProductivity; (Loaded NDK files: ['libpixsdk.OfficeLensProductivity.so'])
+                  ->Methods:
+                       CleanupImage(I Landroid/graphics/Bitmap; I)I
+                       CropImage(I [Landroid/graphics/Bitmap; F F F F F F F F)I
+                       GetCroppingQuad(I Landroid/graphics/Bitmap; [F [F [F [F [F [F [F [F F F F F F F F F I D [I)I
+                       GetFrameRadiusLimit(I [D)I
+                       GetInterpolationType(I [I)I
+                       InstanceDelete(I)I
+                       InstanceNewJava()I
+                       Reset(I)I
+                       ResetCenter(I)I
+                       SetCenter(I F F F F)I
+                       SetFrameRadiusLimit(I D)I
+                       SetInterpolationType(I I)I
+                       SetNumberOfEdgePixels(I I)I
+                       getLiveEdgeQuad(I [B I I [F [F [F [F [F [F [F [F [Z)I
+               Class: Lcom/microsoft/office/BackgroundTaskHost/LibletManager;
+                  ->Methods:
+                       forceUploadNative()Z
+                       initLibletsNative(Ljava/lang/String;)Z
+                       resumeLibletsNative()Z
+                       suspendLibletsNative()Z
+                       uninitLibletsNative()Z
+               Class: Lcom/microsoft/office/BackgroundTaskHost/WhatsNewContentDownloader;
+                  ->Methods:
+                       loadWhatsNewContent()Z
+               Class: Lcom/microsoft/office/BackgroundTasks/FileSuggestionNotifierBackgroundTask;
+                  ->Methods:
+                       GetOfficeStringNative(Ljava/lang/String;)Ljava/lang/String;
+                       GetOutlookAttachment(Ljava/lang/String;)[B
+                       GetUserMruJsonData()[B
+                       NativeSuggestedReadingNotificationEnabled()Z
+                       RetrieveOutlookCalendarData()[B
+                       RetrieveResumeReadRoamingSettings(Ljava/lang/String;)Ljava/lang/String;
+               Class: Lcom/microsoft/office/BackgroundTasks/FontServiceBackgroundTask;
+                  ->Methods:
+                       triggerFontDownloadService()Z
+               Class: Lcom/microsoft/office/ConfigServiceInfoProvider/ConfigService;
+                  ->Methods:
+                       getConfigTokenNative(I)Lcom/microsoft/office/ConfigServiceInfoProvider/TokenResponse;
+                       getServiceUrlForFederationProviderNative(I
+                    Ljava/lang/String;)Lcom/microsoft/office/ConfigServiceInfoProvider/ServerURLResponse;
+                       getServiceUrlNative(I)Lcom/microsoft/office/ConfigServiceInfoProvider/ServerURLResponse;
+                       getTargetPolicyPairNative(I I Ljava/lang/String;)Lcom/microsoft/office/ConfigServiceInfoProvider/TargetPolicyPair;
+                       getUpdateNotifierDataNative(Ljava/lang/String;)Ljava/lang/String;
+               Class: Lcom/microsoft/office/acceleratorkey/AcceleratorKeyDispatcher;
+                  ->Methods:
+                       handleAcceleratorKeyEventNative(J Z Z Z Z Z Z I I I I I Landroid/view/KeyEvent;)Z
+               Class: Lcom/microsoft/office/activityscopeapi/ActivityHolderProxy;
+                  ->Methods:
+                       createActivityHolderNative(J Ljava/lang/String; Z)J
+                       getCurrentUserActionIdNative()I
+                       setActivityCompletionNative(J)V
+                       setFailedNative(J)V
+                       setFailedWithErrorCodeNative(J I)V
+                       setSuccessfulNative(J)V
+               Class: Lcom/microsoft/office/airspace/AirspaceInkLayer;
+                  ->Methods:
+                       nativeAttachWindow(J Landroid/view/Surface; I I F F)V
+                       nativeDetachWindow(J)V
+                       nativeGetMaxTextureSize()I
+                       nativeTextureViewPropertiesChanged(J F F I I)V
+               Class: Lcom/microsoft/office/airspace/AirspaceScrollLayer;
+                  ->Methods:
+                       nativeGetViewIds(J Ljava/lang/Object;)[I
+                       nativeOnAccessibilityStateChanged(J Z)V
+                       scrollDirectionChange(J F F)V
+                       updatePointNative(J I I)V
+                       updateZoomAnimationStatus(J Z)V
+                       viewLoadEvent(J)Z
+                       viewportChangedEvent(J F Z)Z
+               Class: Lcom/microsoft/office/airspace/AirspaceVirtualTextureLayerAdapter;
+                  ->Methods:
+                       clearInvalidBitmapContentNative(Landroid/graphics/Bitmap; I I)Z
+               Class: Lcom/microsoft/office/airspace/MemoryHelper;
+                  ->Methods:
+                       resetBitmapCache()Z
+                       resetLowResourceModeStatus()Z
+                       setMemoryLimits(I I I I)Z
+               Class: Lcom/microsoft/office/androidtelemetrymanager/TelemetryManager;
+                  ->Methods:
+                       disableOfficeTelemetry()V
+                       enableOfficeTelemetry()V
+                       isAllTelemetryDisabledThroughConfig()Z
+                       isOnlyAriaTelemetryAllowedThroughConfig()Z
+               Class: Lcom/microsoft/office/animations/AnimationManager;
+                  ->Methods:
+                       completeAllAnimationsForLayerNative(J J)V
+                       endBatchNative(J)V
+                       getAnimationManagerNative()J
+                       getPropertyValueNative(J J I)D
+                       handleEventNative(J J I)V
+                       handlePropertyChangeNative(J J I D)V
+                       lookupAnimationClassNative(J Ljava/lang/String;)J
+                       lookupContextVariableNative(J Ljava/lang/String;)J
+                       lookupGlobalVariableNative(J Ljava/lang/String;)J
+                       removeLayerStateNative(J J)V
+                       startBatchNative(J Lcom/microsoft/office/animations/IBatch;)V
+               Class: Lcom/microsoft/office/animations/proxies/AnimationBatchProxy;
+                  ->Methods:
+                       addAssociatedInstanceNative(J J)V
+                       onCompleteNative(J)V
+                       onScheduleNative(J)V
+               Class: Lcom/microsoft/office/animations/proxies/AnimationInstanceProxy;
+                  ->Methods:
+                       clearAssociatedBatchesNative(J)V
+                       getAnimationInstanceHandleNative(J)J
+                       getAssociatedBatchesNative(J)[J
+                       getDelayNative(J)D
+                       getDurationNative(J)D
+                       getKeyframesNative(J)[J
+                       getLayerNative(J)J
+                       getTimescaleNative(J)D
+                       getTriggeringEventNative(J)I
+               Class: Lcom/microsoft/office/animations/proxies/AnimationLayerProxy;
+                  ->Methods:
+                       getLayerStateNative(J)Ljava/lang/Object;
+                       onAnimationCompleteNative(J J)V
+               Class: Lcom/microsoft/office/animations/proxies/CubicBezierLinearInterpolatorProxy;
+                  ->Methods:
+                       getCubicBezierCache(D D D D)[D
+               Class: Lcom/microsoft/office/animations/proxies/KeyFrameInstanceProxy;
+                  ->Methods:
+                       getAnimationPropertyNative(J)I
+                       getRelativityNative(J)I
+                       getSecondsNative(J)D
+                       getTimingCurveTypeNative(J)I
+                       getValueNative(J)D
+                       hasAnimationNative(J)Z
+               Class: Lcom/microsoft/office/animations/proxies/NativeProxyFactory;
+                  ->Methods:
+                       createNativeProxyForAndroidAnimationLayer(Lcom/microsoft/office/animations/IAndroidLayerStateAnimated;)J
+               Class: Lcom/microsoft/office/apphost/AppFrameProxy;
+                  ->Methods:
+                       getNativeAppFrameHandle()J
+               Class: Lcom/microsoft/office/apphost/BackgroundHelper;
+                  ->Methods:
+                       onGoingToBackground()V
+                       onGoingToForeground()V
+               Class: Lcom/microsoft/office/apphost/DispatchQueueProxy;
+                  ->Methods:
+                       submitJobToUIQueue(Ljava/lang/Runnable; Z)V
+               Class: Lcom/microsoft/office/apphost/OfficeApplication;
+                  ->Methods:
+                       nativeBootApplication()V
+                       nativeSetAppStartTime(J)V
+                       nativeSetNativeLibrariesLoadTime(J)V
+                       nativeSetPreAppInitializationTime(J)V
+                       nativeSetReferenceToOfficeApplication()V
+                       nativeFileLoadActivation(Ljava/lang/String; [Ljava/lang/String;)I
+                       nativeLaunchActivation(Ljava/lang/String; Ljava/lang/String;)V
+                       nativeNotificationActivation(Ljava/lang/String;)V
+                       nativeShareTargetActivation(Ljava/lang/String; [Ljava/lang/String;)V
+               Class: Lcom/microsoft/office/apphost/PerfMarker;
+                  ->Methods:
+                       CodeMarker(I)V
+                       CodeMarkerPreMsoLoad(I)V
+               Class: Lcom/microsoft/office/apphost/ViewChangeManagerProxy;
+                  ->Methods:
+                       NativeWaitViewUnlocked(Lcom/microsoft/office/apphost/ViewChangeManagerProxy; J)V
+               Class: Lcom/microsoft/office/appidentifier/APKIdentifier;
+                  ->Methods:
+                       isBetaApp()Z
+                       isDevApp()Z
+                       isDogfoodApp()Z
+                       isInsiderApp()Z
+                       isInsiderFastApp()Z
+                       isInsiderSlowApp()Z
+                       isProductionApp()Z
+               Class: Lcom/microsoft/office/art/fm/FMFormatBackgroundPaneUI;
+                  ->Methods:
+                       nativeCreateGate(Ljava/lang/Object; J Z)V
+                       nativeOpenImagePickerAsync(J Ljava/lang/Object;)V
+                       nativePaneClosingOnUI(J)V
+               Class: Lcom/microsoft/office/clipboard/ClipboardImpl;
+                  ->Methods:
+                       nativeCreateClipDataFile(Ljava/lang/String; Ljava/lang/String; J)V
+               Class: Lcom/microsoft/office/comments/nativemodules/CommentsNativeModule;
+                  ->Methods:
+                       createCommentProxy(Ljava/lang/String;)V
+                       deleteCommentProxy(Ljava/lang/String;)V
+                       enableEventsProxy(Ljava/lang/String;)V
+                       endCommentSessionProxy(Ljava/lang/String;)V
+                       highlightCommentProxy(Ljava/lang/String;)V
+                       initCommentSessionAsyncProxy(Ljava/lang/String; Lcom/microsoft/office/comments/nativemodules/CommentsPromise;)V
+                       initNativeProxy()V
+                       isAtMentionsEnabledAsyncProxy(Ljava/lang/String; Lcom/microsoft/office/comments/nativemodules/CommentsPromise;)V
+                       isResolveEnabled()Z
+                       loadThreadsProxy(Ljava/lang/String;)V
+                       selectCommentProxy(Ljava/lang/String;)V
+                       selectFirstThreadInNextCommentContextProxy(Ljava/lang/String;)V
+                       selectLastThreadInPreviousCommentContextProxy(Ljava/lang/String;)V
+                       setThreadResolvedStateProxy(Ljava/lang/String;)V
+                       updateCommentDataProxy(Ljava/lang/String;)V
+               Class: Lcom/microsoft/office/comments/nativemodules/LocalizedStringLoader;
+                  ->Methods:
+                       loadAllStrings()Ljava/lang/String;
+               Class: Lcom/microsoft/office/comments/sharedui/CommentPaneNativeProxy;
+                  ->Methods:
+                       fireHalfPaneDisplayModeChanged()V
+                       firePaneClosedEvent()V
+                       firePaneDisplayModeChanged(I)V
+                       firePaneOpenedEvent(I)V
+                       firePaneRendered(I)V
+                       handleBackKeyPressed()Z
+               Class: Lcom/microsoft/office/configserviceinfo/GPConfigServiceInfoProvider;
+                  ->Methods:
+                       getConfigTokensValueForOfficeAndAppNative(Ljava/lang/String;)Ljava/lang/String;
+               Class: Lcom/microsoft/office/coreui/tml/TelemetryNamespaces$Office$CoreUI$Android;
+                  ->Methods:
+                       getNamespaceHandleNative()J
+               Class: Lcom/microsoft/office/coreui/tml/TelemetryNamespaces$Office$CoreUI;
+                  ->Methods:
+                       getNamespaceHandleNative()J
+               Class: Lcom/microsoft/office/csi/wopi/WopiAncestryInfo;
+                  ->Methods:
+                       getAncestorContainersNative(J)[J
+                       isEnumerationIncompleteNative(J)Z
+               Class: Lcom/microsoft/office/csi/wopi/WopiBrowse;
+                  ->Methods:
+                       browseToContainerAsyncNative(J Ljava/lang/String; Ljava/lang/Object;)V
+                       browseToParentOfContainerAsyncNative(J Ljava/lang/String; Ljava/lang/Object;)V
+                       checkFileInfoAsyncNative(J Ljava/lang/String; Ljava/lang/Object;)V
+                       createChildContainerAsyncNative(J Ljava/lang/String; Ljava/lang/String; Z Ljava/lang/Object;)V
+                       deleteFileAsyncNative(J Ljava/lang/String; Ljava/lang/Object;)V
+                       getAncestorsOfFileAsyncNative(J Ljava/lang/String; Ljava/lang/Object;)V
+                       getMetadataForFolderAsyncNative(J Ljava/lang/String; Ljava/lang/Object;)V
+                       getShareUrlForContainerAsyncNative(J Ljava/lang/String; I Ljava/lang/Object;)V
+                       getShareUrlForFileAsyncNative(J Ljava/lang/String; I Ljava/lang/Object;)V
+                       getWopiUrlFromFileIdentifierAsyncNative(J Ljava/lang/String; Ljava/lang/Object;)V
+               Class: Lcom/microsoft/office/csi/wopi/WopiBrowseHelper;
+                  ->Methods:
+                       GetIWopiBrowseNative(Ljava/lang/String; Ljava/lang/String; [Ljava/lang/String;)J
+               Class: Lcom/microsoft/office/csi/wopi/WopiContainerExtendedPointer;
+                  ->Methods:
+                       getWopiContainerMetadataNative(J)J
+                       getWopiContainerPointerNative(J)J
+               Class: Lcom/microsoft/office/csi/wopi/WopiContainerMetadata;
+                  ->Methods:
+                       canUserCreateChildContainerNative(J)Z
+                       canUserCreateChildFileNative(J)Z
+                       canUserDeleteNative(J)Z
+                       canUserRenameNative(J)Z
+                       getHostUrlNative(J)Ljava/lang/String;
+                       getNameNative(J)Ljava/lang/String;
+                       getSharingUrlNative(J)Ljava/lang/String;
+                       getSupportedShareUrlTypesNative(J)[I
+                       isEduUserNative(J)Z
+                       isLicenseCheckForEditEnabledNative(J)Z
+                       isReadOnlyNative(J)Z
+               Class: Lcom/microsoft/office/csi/wopi/WopiContainerPointer;
+                  ->Methods:
+                       getNameNative(J)Ljava/lang/String;
+                       getWopiUrlNative(J)Ljava/lang/String;
+               Class: Lcom/microsoft/office/csi/wopi/WopiContainerSnapshot;
+                  ->Methods:
+                       getChildContainerPointersNative(J)[J
+                       getChildFilesNative(J)[J
+                       getContainerMetadataNative(J)J
+                       getNameNative(J)Ljava/lang/String;
+                       getWopiUrlNative(J)Ljava/lang/String;
+               Class: Lcom/microsoft/office/csi/wopi/WopiFileInfo;
+                  ->Methods:
+                       canSupportDeleteFileNative(J)Z
+                       canSupportExtendedLockLengthNative(J)Z
+                       canSupportGetLockNative(J)Z
+                       canSupportLocksNative(J)Z
+                       canSupportRenameNative(J)Z
+                       canSupportUpdateNative(J)Z
+                       canUserNotWriteRelativeNative(J)Z
+                       canUserRenameNative(J)Z
+                       canUserWriteNative(J)Z
+                       getBaseFileNameNative(J)Ljava/lang/String;
+                       getFileSharingUrlNative(J)Ljava/lang/String;
+                       getFileUrlNative(J)Ljava/lang/String;
+                       getLastModifiedTimeNative(J)J
+                       getLastModifiedTimeRawNative(J)Ljava/lang/String;
+                       getSizeNative(J)J
+                       getSupportedShareUrlTypesNative(J)[I
+                       getVersionNative(J)Ljava/lang/String;
+                       isEduUserNative(J)Z
+                       isLicenseCheckForEditEnabledNative(J)Z
+                       isReadOnlyNative(J)Z
+               Class: Lcom/microsoft/office/csi/wopi/WopiFileSnapshot;
+                  ->Methods:
+                       getLastModifiedTimeNative(J)J
+                       getLastModifiedTimeRawNative(J)Ljava/lang/String;
+                       getNameNative(J)Ljava/lang/String;
+                       getSizeInBytesNative(J)J
+                       getVersionNative(J)Ljava/lang/String;
+                       getWopiUrlNative(J)Ljava/lang/String;
+               Class: Lcom/microsoft/office/csi/wopi/WopiHelper;
+                  ->Methods:
+                       GetWopiSrcFromWopiUrlNative(Ljava/lang/String;)Ljava/lang/String;
+               Class: Lcom/microsoft/office/dataop/ModernRecentDataManager;
+                  ->Methods:
+                       RemoveDropboxEntriesFromMru(Ljava/lang/String;)V
+               Class: Lcom/microsoft/office/displayclass/DisplayClassInformation;
+                  ->Methods:
+                       getCurrentDisplayClassNative()I
+               Class: Lcom/microsoft/office/docsui/commands/DeleteActionCommand;
+                  ->Methods:
+                       deleteItemNative(Ljava/lang/String; Ljava/lang/String; Ljava/lang/String;)Z
+               Class: Lcom/microsoft/office/docsui/commands/PinToHomeActionCommand;
+                  ->Methods:
+                       pinToHomeNative(Ljava/lang/String; Ljava/lang/String; Ljava/lang/String; Ljava/lang/String;)V
+               Class: Lcom/microsoft/office/docsui/common/AppDocsProxy;
+                  ->Methods:
+                       FinishRefreshDBToken(J I)V
+                       GetCopyDocumentFileType()Ljava/lang/String;
+                       GetCurrentDescriptor()[Ljava/lang/String;
+                       GetNewDocumentFileType()Ljava/lang/String;
+                       GetNewDocumentTitle()Ljava/lang/String;
+                       MakeCopyOfLocalFile(Ljava/lang/String; Ljava/lang/String;)Z
+                       SetLoggingSeverity(I)V
+               Class: Lcom/microsoft/office/docsui/common/DocsUINativeProxy;
+                  ->Methods:
+                       getTokenForIdentityNative(I Ljava/lang/String;)Ljava/lang/String;
+                       GetFriendlyPath(Ljava/lang/String;)Ljava/lang/String;
+                       InitializeLoggingConfiguration(I)V
+                       IsFtuxShownInCurrentSession()Z
+                       SetSharingServiceTargetToSSL()V
+                       getAppId()I
+                       getAuthTokenForDocument(Ljava/lang/String;)Ljava/lang/String;
+                       getWebAbsoluteUrl(Ljava/lang/String;)Ljava/lang/String;
+                       getWopiServiceIdFromWopiUrl(Ljava/lang/String;)Ljava/lang/String;
+                       getWopiUserIdFromWopiUrl(Ljava/lang/String;)Ljava/lang/String;
+                       initFRETelemetry()V
+                       isWopiUrl(Ljava/lang/String;)Z
+               Class: Lcom/microsoft/office/docsui/common/DropboxHelper;
+                  ->Methods:
+                       OnDropboxPlaceMigrationFlowComplete(J I)V
+               Class: Lcom/microsoft/office/docsui/common/LandingPageProxy;
+                  ->Methods:
+                       CreateStringWrapper(Ljava/lang/String;)Lcom/microsoft/office/mso/docs/model/landingpage/StringWrapperUI;
+                       GetFriendlyUrl(Ljava/lang/String;)Ljava/lang/String;
+                       GetIconTcidFromFileName(Ljava/lang/String;)I
+                       OnPickFileLocationComplete(J Ljava/lang/String; Ljava/lang/String; I I)V
+                       RefreshCommanding()V
+                       RefreshMru()V
+                       UpdateErrorUILabel()V
+                       UpdateFileLocations()V
+               Class: Lcom/microsoft/office/docsui/common/OfficeFeedbackFloodgateManager;
+                  ->Methods:
+                       nativeReleaseSurvey(J)V
+               Class: Lcom/microsoft/office/docsui/common/ProgressUIProxy;
+                  ->Methods:
+                       ContinueProgressUIHide(J)V
+               Class: Lcom/microsoft/office/docsui/common/Utils;
+                  ->Methods:
+                       nativeCreateCopyofLocalFile(Ljava/lang/String; Ljava/lang/String;)Z
+               Class: Lcom/microsoft/office/docsui/controls/OfficeFeedbackView;
+                  ->Methods:
+                       IsDiagnosticsLogsEnabled()Z
+                       SubmitFeedback(I Ljava/lang/String; Ljava/lang/String; Z Z Ljava/lang/String; Ljava/lang/String; Ljava/lang/String;
+                    Ljava/lang/String; Ljava/lang/String; Ljava/lang/String; Ljava/lang/String;)V
+               Class: Lcom/microsoft/office/docsui/history/HistoryModelProxy;
+                  ->Methods:
+                       nativeOnPickCopyVersionTargetLocationComplete(J Ljava/lang/String;)V
+               Class: Lcom/microsoft/office/docsui/notificationpreferences/NotificationPreferencesController;
+                  ->Methods:
+                       IsShowNotificationSettingsEnabled()Z
+                       getFlightedAndNotOptedOutScenariosForAccounts()I
+                       getFlightedNotificationScenariosForAccounts()I
+                       registerNotificationScenarioSelectionsAsync(I)V
+               Class: Lcom/microsoft/office/docsui/pickers/FilePicker;
+                  ->Methods:
+                       sendPickerResult(Z Ljava/lang/String; Ljava/lang/String; I J)V
+               Class: Lcom/microsoft/office/dragdrop/DragDropJniProxy;
+                  ->Methods:
+                       nativeDrop(Ljava/lang/String; Ljava/lang/String; F F)V
+                       nativeDropEnded()V
+                       nativeDropEnter(Ljava/lang/String; Ljava/lang/String; F F)V
+                       nativeDropExit(Ljava/lang/String; Ljava/lang/String;)V
+                       nativeDropStarted(Ljava/lang/String; Ljava/lang/String; F F)V
+               Class: Lcom/microsoft/office/dragdrop/DropActivity;
+                  ->Methods:
+                       nativeDropEnded()V
+               Class: Lcom/microsoft/office/experiment/AB/ABTest;
+                  ->Methods:
+                       ResetOverride(Ljava/lang/String;)V
+                       SetOverride(Ljava/lang/String; Ljava/lang/Object;)V
+               Class: Lcom/microsoft/office/experiment/AB/AB_t;
+                  ->Methods:
+                       getValue(Ljava/lang/String; Ljava/lang/Object; Ljava/util/ArrayList; Ljava/util/ArrayList;)Ljava/lang/Object;
+               Class: Lcom/microsoft/office/experiment/AB/FeatureGate;
+                  ->Methods:
+                       getValue(Ljava/lang/String; Ljava/lang/String;)Z
+               Class: Lcom/microsoft/office/experiment/ExperimentSettings;
+                  ->Methods:
+                       NativeReadSettings(Lcom/microsoft/office/experiment/SettingsModel;)V
+                       NativeSaveFeatureOverrides(Lcom/microsoft/office/experiment/FeatureFlightValue;)V
+                       NativeShowExperimentSettings()Z
+                       NativeWriteSettings(Lcom/microsoft/office/experiment/SettingsModel;)V
+               Class: Lcom/microsoft/office/experiment/FeatureGate;
+                  ->Methods:
+                       isFeatureEnabled(Ljava/lang/String; Ljava/lang/String;)Z
+               Class: Lcom/microsoft/office/fastaccandroid/AccessibilityNodeInfoElement;
+                  ->Methods:
+                       nativeGetFastAccStringByKeyName(Ljava/lang/String;)Ljava/lang/String;
+                       nativeExtendCurrentSelectionText(J)V
+                       nativeGetAndroidAnnouncementText(J J)Ljava/lang/String;
+                       nativeGetBoundingRect(J)[F
+                       nativeGetCellInfo(J Ljava/lang/Integer; Ljava/lang/Integer; Ljava/lang/Integer; Ljava/lang/Integer;
+                    Ljava/lang/Boolean;)Z
+                       nativeGetControlType(J)I
+                       nativeGetItemStatus(J)Ljava/lang/String;
+                       nativeGetLocalizedControlType(J)Ljava/lang/String;
+                       nativeGetNodeIdFromPoint(F F J)I
+                       nativeGetRowsAndColumnCount(J Ljava/lang/Integer; Ljava/lang/Integer;)Z
+                       nativeGetSubNodeAtHoverPosition(J F F I Z)Ljava/lang/Object;
+                       nativeGetText(J)Ljava/lang/String;
+                       nativeGetValue(J)Ljava/lang/String;
+                       nativeInvalidateParent(J)V
+                       nativeInvoke(J)Z
+                       nativeIsContextMenuSupported(J)Z
+                       nativeIsCursorAdjusted(J)Z
+                       nativeIsCursorWithInCurrentNode(J)Z
+                       nativeIsInAccessibilityViewport(J)Z
+                       nativeIsInvokeSupported(J)Z
+                       nativeIsItemSelected(J)Z
+                       nativeIsMoveByGranularitySupported(J)Z
+                       nativeIsReadonlyText(J)Z
+                       nativeIsScrollingSupported(J)Z
+                       nativeIsSelectionItemSupported(J)Z
+                       nativeIsTextNavigatableOnHovering(J)Z
+                       nativeIsTextSelectable(J)Z
+                       nativeIsVisible(J)Z
+                       nativePlaceCursorAtCurrentPosition(J)Z
+                       nativeRemoveItemFromSelection(J)Z
+                       nativeRetrieveChildren(J)V
+                       nativeScroll(J Z)Z
+                       nativeScrollIntoView(J Z)Z
+                       nativeSelectAllText(J)V
+                       nativeSelectItem(J)Z
+                       nativeSelectText(J I I)V
+                       nativeShouldPopulateAccessibilityNodeInfoCompat(J I)Z
+                       nativeShowContextMenu(J)V
+                       nativeTraverseTextWithGranularity(J I I)Ljava/lang/String;
+                       nativeUpdateCurrentCursorWithHoveredLinePosition(J)Z
+                       nativeUpdateSelectionStartCursorPosition(J)Z
+               Class: Lcom/microsoft/office/fastaccandroid/AccessibilitySettings;
+                  ->Methods:
+                       nativeOverrideDefaultTemplate([I)V
+                       nativeOverrideTemplate(I [I)V
+               Class: Lcom/microsoft/office/fastmodel/FastVector_String$ChangedEventArgs;
+                  ->Methods:
+                       nativeGetItem(J I)Ljava/lang/String;
+               Class: Lcom/microsoft/office/fastmodel/FastVector_String;
+                  ->Methods:
+                       nativeAdd(J Ljava/lang/String;)V
+                       nativeAddAt(J I Ljava/lang/String;)V
+                       nativeClear(J)V
+                       nativeCreateGate(Ljava/lang/Object; J)V
+                       nativeGet(J I)Ljava/lang/String;
+                       nativeGetCount(J)I
+                       nativeGetPeer(J)Lcom/microsoft/office/fastmodel/FastVector_String;
+                       nativeRemove(J I)Ljava/lang/String;
+                       nativeSet(J I Ljava/lang/String;)V
+               Class: Lcom/microsoft/office/fastmodel/core/FastCollection;
+                  ->Methods:
+                       nativeGetStore(J)Ljava/lang/Object;
+                       nativeSetStore(J Ljava/lang/Object;)V
+               Class: Lcom/microsoft/office/fastmodel/core/FastObject;
+                  ->Methods:
+                       nativeGetBool(J J)Z
+                       nativeGetDouble(J J)D
+                       nativeGetFloat(J J)F
+                       nativeGetInt32(J J)I
+                       nativeGetInt64(J J)J
+                       nativeGetPeer(J)Lcom/microsoft/office/fastmodel/core/FastObject;
+                       nativeGetRefCounted(J J)J
+                       nativeGetStore(J)Ljava/util/List;
+                       nativeGetString(J J)Ljava/lang/String;
+                       nativeGetStruct(J J)[B
+                       nativeSetBool(J J Z)V
+                       nativeSetDouble(J J D)V
+                       nativeSetFloat(J J F)V
+                       nativeSetInt32(J J I)V
+                       nativeSetInt64(J J J)V
+                       nativeSetRefCounted(J J J)V
+                       nativeSetStore(J Ljava/util/List;)V
+                       nativeSetString(J J Ljava/lang/String;)V
+                       nativeSetStruct(J J [B)V
+               Class: Lcom/microsoft/office/fastmodel/core/NativeRefCounted;
+                  ->Methods:
+                       nativeAddRef(J)V
+                       nativeRelease(J)V
+               Class: Lcom/microsoft/office/fastmodel/proxies/PtrIUnknownRefCountedNativePeer;
+                  ->Methods:
+                       nativeAddRef(J)J
+                       nativeRelease(J)J
+               Class: Lcom/microsoft/office/fastmodel/proxies/PtrSimpleRefCountedNativePeer;
+                  ->Methods:
+                       nativeAddRef(J)J
+                       nativeRelease(J)J
+               Class: Lcom/microsoft/office/fastui/FrameworkElementUI;
+                  ->Methods:
+                       nativeCreateGate(Ljava/lang/Object; J Z)V
+                       nativeRaiseLoaded(J)Z
+                       nativeRaiseSizeChanged(J [B)Z
+                       nativeRaiseUnloaded(J)Z
+                       nativeRegisterLoaded(J Lcom/microsoft/office/fastmodel/core/EventHandlers$IEventHandler0;)J
+                       nativeRegisterSizeChanged(J Lcom/microsoft/office/fastmodel/core/EventHandlers$IEventHandler1;)J
+                       nativeRegisterUnloaded(J Lcom/microsoft/office/fastmodel/core/EventHandlers$IEventHandler0;)J
+                       nativeUnregisterLoaded(J J)V
+                       nativeUnregisterSizeChanged(J J)V
+                       nativeUnregisterUnloaded(J J)V
+               Class: Lcom/microsoft/office/fastui/KeyboardForwarderUI;
+                  ->Methods:
+                       nativeCreateGate(Ljava/lang/Object; J Z)V
+                       nativeRaiseKeyDown(J [B)Z
+                       nativeRaiseKeyUp(J [B)Z
+                       nativeRegisterKeyDown(J Lcom/microsoft/office/fastmodel/core/EventHandlers$IEventHandler1;)J
+                       nativeRegisterKeyUp(J Lcom/microsoft/office/fastmodel/core/EventHandlers$IEventHandler1;)J
+                       nativeUnregisterKeyDown(J J)V
+                       nativeUnregisterKeyUp(J J)V
+               Class: Lcom/microsoft/office/fastui/UIElementUI;
+                  ->Methods:
+                       nativeCreateGate(Ljava/lang/Object; J Z)V
+                       nativeRaiseDoubleTapped(J [B)Z
+                       nativeRaiseGotFocus(J)Z
+                       nativeRaiseKeyDown(J [B)Z
+                       nativeRaiseKeyUp(J [B)Z
+                       nativeRaiseLostFocus(J)Z
+                       nativeRaisePointerCaptureLost(J [B)Z
+                       nativeRaisePointerEntered(J [B)Z
+                       nativeRaisePointerExited(J [B)Z
+                       nativeRaisePointerMoved(J [B)Z
+                       nativeRaisePointerPressed(J [B)Z
+                       nativeRaisePointerReleased(J [B)Z
+                       nativeRaisePointerWheel(J [B)Z
+                       nativeRegisterDoubleTapped(J Lcom/microsoft/office/fastmodel/core/EventHandlers$IEventHandler1;)J
+                       nativeRegisterGotFocus(J Lcom/microsoft/office/fastmodel/core/EventHandlers$IEventHandler0;)J
+                       nativeRegisterKeyDown(J Lcom/microsoft/office/fastmodel/core/EventHandlers$IEventHandler1;)J
+                       nativeRegisterKeyUp(J Lcom/microsoft/office/fastmodel/core/EventHandlers$IEventHandler1;)J
+                       nativeRegisterLostFocus(J Lcom/microsoft/office/fastmodel/core/EventHandlers$IEventHandler0;)J
+                       nativeRegisterPointerCaptureLost(J Lcom/microsoft/office/fastmodel/core/EventHandlers$IEventHandler1;)J
+                       nativeRegisterPointerEntered(J Lcom/microsoft/office/fastmodel/core/EventHandlers$IEventHandler1;)J
+                       nativeRegisterPointerExited(J Lcom/microsoft/office/fastmodel/core/EventHandlers$IEventHandler1;)J
+                       nativeRegisterPointerMoved(J Lcom/microsoft/office/fastmodel/core/EventHandlers$IEventHandler1;)J
+                       nativeRegisterPointerPressed(J Lcom/microsoft/office/fastmodel/core/EventHandlers$IEventHandler1;)J
+                       nativeRegisterPointerReleased(J Lcom/microsoft/office/fastmodel/core/EventHandlers$IEventHandler1;)J
+                       nativeRegisterPointerWheel(J Lcom/microsoft/office/fastmodel/core/EventHandlers$IEventHandler1;)J
+                       nativeUnregisterDoubleTapped(J J)V
+                       nativeUnregisterGotFocus(J J)V
+                       nativeUnregisterKeyDown(J J)V
+                       nativeUnregisterKeyUp(J J)V
+                       nativeUnregisterLostFocus(J J)V
+                       nativeUnregisterPointerCaptureLost(J J)V
+                       nativeUnregisterPointerEntered(J J)V
+                       nativeUnregisterPointerExited(J J)V
+                       nativeUnregisterPointerMoved(J J)V
+                       nativeUnregisterPointerPressed(J J)V
+                       nativeUnregisterPointerReleased(J J)V
+                       nativeUnregisterPointerWheel(J J)V
+               Class: Lcom/microsoft/office/fastui/WindowUI;
+                  ->Methods:
+                       nativeCreateGate(Ljava/lang/Object; J Z)V
+                       nativeRaiseCharacterReceived(J [B)Z
+                       nativeRegisterCharacterReceived(J Lcom/microsoft/office/fastmodel/core/EventHandlers$IEventHandler1;)J
+                       nativeUnregisterCharacterReceived(J J)V
+               Class: Lcom/microsoft/office/firstrun/FirstRunProxy;
+                  ->Methods:
+                       ContinueActivationAfterFTUXCheck(J)V
+               Class: Lcom/microsoft/office/floodgate/launcher/FloodgateEngine;
+                  ->Methods:
+                       NativeInitializeFloodgateEngine(Ljava/lang/String;)J
+                       nativeMergeAndSave(J)V
+                       nativeSetPrecedenceBetweenThisAndRateAndReview(J Z)Z
+                       nativeStartFloodgateEngine(J)V
+               Class: Lcom/microsoft/office/floodgate/launcher/SurveyActivityListener;
+                  ->Methods:
+                       nativeLogActivity(J Ljava/lang/String;)V
+                       nativeLogActivityStartTime(J Ljava/lang/String;)V
+                       nativeLogActivityStopTime(J Ljava/lang/String;)V
+               Class: Lcom/microsoft/office/floodgate/launcher/model/Survey;
+                  ->Methods:
+                       nativeSubmitSurvey(J I Ljava/lang/String; Ljava/lang/String; Ljava/lang/String; Ljava/lang/String; Ljava/lang/String;
+                    Ljava/lang/String; Ljava/lang/String; Ljava/lang/String;)I
+               Class: Lcom/microsoft/office/identity/IdentityLiblet;
+                  ->Methods:
+                       finishUserInformationCollection(J I Ljava/lang/String; Ljava/lang/String; Ljava/lang/String; Z)V
+                       setupAccountManagersNative(Lcom/microsoft/office/identity/adal/ADALAccountManager;)V
+               Class: Lcom/microsoft/office/identity/IdentityLibletJniProxy;
+                  ->Methods:
+                       detectAuthSchemeNative(Ljava/lang/String;)I
+                       getAccountTypeProviderForEmailAddressNative(Ljava/lang/String;)I
+                       getAuthSchemeNative(Ljava/lang/String;)I
+                       getFederationProviderForEmailAddressNative(Ljava/lang/String;)Ljava/lang/String;
+                       getIdentityFederationProviderNative(Ljava/lang/String;)Ljava/lang/String;
+                       getLiveIdDefaultServiceParamsNative()Lcom/microsoft/office/identity/IdentityLiblet$LiveIdServiceParams;
+                       getPhotoFromIdentity(Ljava/lang/String;)[B
+               getStandardCredentialsForUrlNative(Ljava/lang/String;)Lcom/microsoft/office/identity/IdentityLiblet$StandardCredentials;
+                       getTenantIdForEmailAddressNative(Ljava/lang/String;)Ljava/lang/String;
+                       getUserMetaDataNative(Ljava/lang/String;)Lcom/microsoft/office/identity/IdentityMetaData;
+                       isFPErrorNative(Ljava/lang/String;)Z
+                       isFPGlobalNative(Ljava/lang/String;)Z
+                       isGlobalUserNative(Ljava/lang/String;)Z
+                       isLiveIntEnvironmentNative()Z
+                       isPhoneOnlyAuthenticationEnabledNative()Z
+                       nativeCreateThirdPartyProviderId(Ljava/lang/String; Ljava/lang/String;)Ljava/lang/String;
+               nativeGetADALServiceParamsForSignInName(Ljava/lang/String;)Lcom/microsoft/office/identity/IdentityLiblet$ADALServiceParams;
+                       nativeGetIDsFromThirdPartyProviderId(Ljava/lang/String;)[Ljava/lang/String;
+                       nativeGetIdentities(Z Z Z)[Lcom/microsoft/office/identity/Identity;
+                       nativeGetIdentitiesMetaData()[Lcom/microsoft/office/identity/IdentityMetaData;
+                       nativeGetIdentityMetaDataForSignInName(Ljava/lang/String; Z Z)Lcom/microsoft/office/identity/IdentityMetaData;
+                       nativeGetProviderIdForSignInName(Ljava/lang/String;)Ljava/lang/String;
+                       nativeGetRefreshTokenForSignInName(Ljava/lang/String;)Ljava/lang/String;
+                       setIdentityForUrlNative(Ljava/lang/String; Ljava/lang/String;)Z
+                       signInADALUserNative(Ljava/lang/String; Z Z
+                    Lcom/microsoft/office/identity/IdentityLiblet$IOnSignInCompleteListener;)V
+                       signInADALUserNativeForSPO(Ljava/lang/String; Ljava/lang/String; Z Z Z
+                    Lcom/microsoft/office/identity/IdentityLiblet$IOnSignInCompleteListener;)V
+                       signInMSAUserNative(Ljava/lang/String; Ljava/lang/String; Ljava/lang/String; Ljava/lang/String; Z Z Z
+                    Lcom/microsoft/office/identity/IdentityLiblet$IOnSignInCompleteListener;)V
+                       signInOAuth2UserNative(Ljava/lang/String; Ljava/lang/String; Z Z
+                    Lcom/microsoft/office/identity/IdentityLiblet$IOnSignInCompleteListener;)V
+                       signInSPOnPremNative(Ljava/lang/String; Ljava/lang/String; Ljava/lang/String;
+                    Lcom/microsoft/office/identity/IdentityLiblet$IOnSignInCompleteListener;)V
+                       signOutNative(Ljava/lang/String;)V
+               Class: Lcom/microsoft/office/identity/adal/ADALAccountManager;
+                  ->Methods:
+                       finishEmailCollection(J I Ljava/lang/String;)V
+                       sendContextToNativeCode(Ljava/lang/String; I J)V
+                       sendTokenInfoToNativeCode(Ljava/lang/String; Ljava/lang/String; J I J Ljava/lang/String; J)V
+               Class: Lcom/microsoft/office/identity/idcrl/IDCRLAccountManager;
+                  ->Methods:
+                       sendFragmentToNativeCode(Ljava/lang/String; Ljava/lang/String; I J)V
+               Class: Lcom/microsoft/office/identity/msa/MSAAccountManager;
+                  ->Methods:
+                       sendDataToNativeCode(Ljava/lang/String; I J)V
+               Class: Lcom/microsoft/office/identity/ntlm/NTLMAccountManager;
+                  ->Methods:
+                       finishCredCollection(J I Ljava/lang/String; Ljava/lang/String;)V
+               Class: Lcom/microsoft/office/identity/oauth2/OAuth2AccountManager;
+                  ->Methods:
+                       sendAuthCodeInfoToNative(Ljava/lang/String; I J)V
+               Class: Lcom/microsoft/office/igx/fm/FMAirspaceEditableUI;
+                  ->Methods:
+                       nativeBindToSurfaceAsync(J J Ljava/lang/Object;)V
+                       nativeCreateGate(Ljava/lang/Object; J Z)V
+                       nativeHideFloatie(J)V
+                       nativeInitFastAccElementAsync(J Ljava/lang/Object;)V
+                       nativeOnPointerEnteredAsync(J [B Ljava/lang/Object;)V
+                       nativeOnPointerExitedAsync(J [B Ljava/lang/Object;)V
+                       nativeOnPointerMovedAsync(J [B Ljava/lang/Object;)V
+                       nativeOnSetFocusAsync(J Z Ljava/lang/Object;)V
+                       nativeRegisterFastUIEventsAsync(J J Ljava/lang/Object;)V
+                       nativeSetFocus(J)V
+                       nativeSetViewportBoundsAsync(J [B Ljava/lang/Object;)V
+                       nativeSetVisibleViewportAsync(J [B Ljava/lang/Object;)V
+                       nativeSetWindowOffsetAsync(J I I Ljava/lang/Object;)V
+                       nativeSetWindowScreenCoordinatesAsync(J I I Ljava/lang/Object;)V
+                       nativeShowFloatie(J [B I I I)V
+                       nativeUpdateSelectionViewBounds(J [B)V
+               Class: Lcom/microsoft/office/igx/fm/FMSilhouetteContentPaneUI;
+                  ->Methods:
+                       nativeCreateGate(Ljava/lang/Object; J Z)V
+                       nativePaneClosedAsync(J Z Ljava/lang/Object;)V
+                       nativePaneClosingOnUI(J Z)V
+                       nativePaneOpenedAsync(J Ljava/lang/Object;)V
+                       nativeShowSmartArtHelpInfoAsync(J Ljava/lang/Object;)V
+               Class: Lcom/microsoft/office/inapppurchase/SubscriptionPurchaseController;
+                  ->Methods:
+                       OnSubscriptionPurchaseFlowComplete(J I)V
+               Class: Lcom/microsoft/office/inkinput/InkInputAdapter;
+                  ->Methods:
+                       nativeForwardEvent(J I I I I [D [D [F [I I)V
+               Class: Lcom/microsoft/office/insertpictureui/InsertPictureUI;
+                  ->Methods:
+                       cancelProgressUI()V
+                       cleanUp(J)V
+                       getProgressUIInfo()Z
+                       insertInputMedia(Ljava/lang/String; Ljava/lang/String;)V
+                       insertInputPicture(Ljava/lang/String; Ljava/lang/String; Ljava/lang/String; J Z)V
+                       showErrorDialogOnMediaDownloadFailed(Ljava/lang/String;)V
+                       showErrorDialogOnMediaFormatNotSupported(Ljava/lang/String;)V
+                       startProgressUI(Ljava/lang/String;)V
+               Class: Lcom/microsoft/office/interaction/InteractionFrameworkEventListener;
+                  ->Methods:
+                       CreateEventSinkArgsNative(I F F J Z Z)J
+                       InteractionFrameworkForwardEventCancelNative()V
+                       InteractionFrameworkForwardEventNative(J)V
+               Class: Lcom/microsoft/office/interfaces/silhouette/SilhouetteProxy;
+                  ->Methods:
+                       createSilhouetteProxy(Lcom/microsoft/office/interfaces/silhouette/ISilhouette;)J
+                       detachManagedSilhouetteFromSilhouetteProxy(J)V
+               Class: Lcom/microsoft/office/intune/OfficeIntuneManager;
+                  ->Methods:
+                       sendIdentitySwitchResultNative(I J)V
+               Class: Lcom/microsoft/office/jni/NativeProxy;
+                  ->Methods:
+                       Casl(Ljava/lang/String; Ljava/lang/String; I Lcom/microsoft/office/licensing/ILicensingManagerCallback;)J
+                       Cppe()Z
+                       Del(Lcom/microsoft/office/licensing/ILicensingManagerCallback;)I
+                       Dlo(J)V
+                       Gal(I)J
+                       GetAppID(J)I
+                       GetLiveIdServiceUrl()Ljava/lang/String;
+                       GetMessageNotifyUserStatus(J)Z
+                       GetOlsServerUrl(Ljava/lang/String;)Ljava/lang/String;
+                       GetOrgIdServiceUrl(Ljava/lang/String;)Ljava/lang/String;
+                       GetUserAccountType(J)I
+                       GetUserId(J)Ljava/lang/String;
+                       Gled(J)Ljava/util/Calendar;
+                       Glm(J)I
+                       Glmc(J)I
+                       Glmsg(I)Ljava/lang/String;
+                       Gls(J)I
+                       Gs(J)I
+                       SetOLSServerUrl(Ljava/lang/String;)I
+                       Uvl(Ljava/lang/String; Lcom/microsoft/office/licensing/IUpgradeCallback;)J
+[Notice]  AndroidManifest Exported Components Checking 2:
+           Found "exported" components(except for Launcher) for receiving Google's "Android" actions (AndroidManifest.xml):
+                 activity => com.dropbox.client2.android.AuthActivity
+                  service => com.microsoft.intune.mam.client.notification.MAMNotificationReceiverService
+                 receiver => com.microsoft.office.officehub.util.OHubBroadcastReceiver
+                 receiver => com.microsoft.office.asyncdatapointreporting.InstallBroadcastReceiver
+                 receiver => com.microsoft.android.crosssell.PackageStateReceiver
+                 receiver => com.microsoft.android.crosssell.SelfReplacementReceiver
+                 receiver => com.microsoft.intune.mam.client.service.MAMBackgroundReceiver
+[Notice]  Security Classes Checking:
+           Find some security-related class names:
+               Lcom/adjust/sdk/AdjustConfig;
+               Lcom/adjust/sdk/Constants;
+               Lcom/facebook/imagepipeline/decoder/c;
+               Lcom/facebook/imagepipeline/decoder/a;
+               Lcom/facebook/imagepipeline/decoder/b;
+               Lcom/facebook/imagepipeline/decoder/d;
+               Lcom/facebook/imagepipeline/decoder/e;
+               Lcom/facebook/imagepipeline/decoder/f;
+               Lcom/facebook/imagepipeline/decoder/g;
+               Lcom/facebook/imagepipeline/decoder/h;
+               Lcom/facebook/imagepipeline/decoder/j;
+               Lcom/facebook/imagepipeline/decoder/i;
+               Lcom/facebook/react/devsupport/DevInternalSettings$Listener;
+               Lcom/facebook/react/devsupport/DevInternalSettings;
+               Lcom/facebook/react/devsupport/DevSettingsActivity;
+               Lcom/facebook/yoga/YogaConfig;
+               Lcom/microsoft/aad/adal/AuthenticationConstants$AAD;
+               Lcom/microsoft/aad/adal/AuthenticationConstants$Broker$CliTelemInfo;
+               Lcom/microsoft/aad/adal/AuthenticationConstants$Broker;
+               Lcom/microsoft/aad/adal/AuthenticationConstants$Browser;
+               Lcom/microsoft/aad/adal/AuthenticationConstants$HeaderField;
+               Lcom/microsoft/aad/adal/AuthenticationConstants$MediaType;
+               Lcom/microsoft/aad/adal/AuthenticationConstants$OAuth2;
+               Lcom/microsoft/aad/adal/AuthenticationConstants$OAuth2ErrorCode;
+               Lcom/microsoft/aad/adal/AuthenticationConstants$UIRequest;
+               Lcom/microsoft/aad/adal/AuthenticationConstants$UIResponse;
+               Lcom/microsoft/aad/adal/AuthenticationConstants;
+               Lcom/microsoft/aad/adal/AuthenticationSettings;
+               Lcom/microsoft/aad/adal/BuildConfig;
+               Lcom/microsoft/applications/telemetry/BuildConfig;
+               Lcom/microsoft/applications/telemetry/ILogConfiguration;
+               Lcom/microsoft/applications/telemetry/LogConfiguration;
+               Lcom/microsoft/intune/mam/BuildConfig;
+               Lcom/microsoft/intune/mam/client/app/LocalSettingsBase;
+               Lcom/microsoft/intune/mam/client/app/OfflineLocalSettings;
+               Lcom/microsoft/intune/mam/policy/appconfig/MAMAppConfigManager;
+               Lcom/microsoft/intune/mam/client/app/offline/OfflineMAMAppConfigManager;
+               Lcom/microsoft/intune/mam/client/app/startup/ADALSettings;
+               Lcom/microsoft/intune/mam/policy/appconfig/MAMAppConfig$BooleanQueryType;
+               Lcom/microsoft/intune/mam/policy/appconfig/MAMAppConfig$NumberQueryType;
+               Lcom/microsoft/intune/mam/policy/appconfig/MAMAppConfig$StringQueryType;
+               Lcom/microsoft/intune/mam/policy/appconfig/MAMAppConfig;
+               Lcom/microsoft/office/ConfigServiceInfoProvider/ConfigService;
+               Lcom/microsoft/office/ConfigServiceInfoProvider/ConfigURL;
+               Lcom/microsoft/office/ConfigServiceInfoProvider/ServerURLResponse;
+               Lcom/microsoft/office/ConfigServiceInfoProvider/Status;
+               Lcom/microsoft/office/ConfigServiceInfoProvider/TargetPolicyPair;
+               Lcom/microsoft/office/ConfigServiceInfoProvider/TokenResponse;
+               Lcom/microsoft/office/ConfigServiceInfoProvider/a;
+               Lcom/microsoft/office/cloudConnector/CloudConnectorConfig;
+               Lcom/microsoft/office/cloudConnector/Constants;
+               Lcom/microsoft/office/comments/sharedui/interfaces/ICommentPaneDisplayConfiguration;
+               Lcom/microsoft/office/comments/sharedui/CommentPaneDisplayConfiguration;
+               Lcom/microsoft/office/config/DeviceInformation$MemoryParameters;
+               Lcom/microsoft/office/config/DeviceInformation;
+               Lcom/microsoft/office/config/DeviceParameters;
+               Lcom/microsoft/office/config/a;
+               Lcom/microsoft/office/configserviceinfo/GPConfigServiceInfoProvider;
+               Lcom/microsoft/office/docsui/BuildConfig;
+               Lcom/microsoft/office/docsui/common/AnchorConstants;
+               Lcom/microsoft/office/docsui/common/OfficeInsiderHelper$SettingsViewData;
+               Lcom/microsoft/office/docsui/common/TCIDConstants;
+               Lcom/microsoft/office/docsui/controls/ExperimentSettingsView$1;
+               Lcom/microsoft/office/docsui/controls/ExperimentSettingsView$2;
+               Lcom/microsoft/office/docsui/controls/ExperimentSettingsView$3;
+               Lcom/microsoft/office/docsui/controls/ExperimentSettingsView$4;
+               Lcom/microsoft/office/docsui/controls/ExperimentSettingsView$SingletonHolder;
+               Lcom/microsoft/office/docsui/controls/ExperimentSettingsView;
+               Lcom/microsoft/office/docsui/controls/SettingUpPlacesView$1;
+               Lcom/microsoft/office/docsui/controls/SettingUpPlacesView;
+               Lcom/microsoft/office/docsui/model/BuildConfig;
+               Lcom/microsoft/office/docsui/notificationpreferences/NotificationsSettingsView$1;
+               Lcom/microsoft/office/docsui/notificationpreferences/NotificationsSettingsView$2;
+               Lcom/microsoft/office/docsui/notificationpreferences/NotificationsSettingsView$3;
+               Lcom/microsoft/office/docsui/notificationpreferences/NotificationsSettingsView;
+               Lcom/microsoft/office/docsui/settingsview/CustomSetting;
+               Lcom/microsoft/office/docsui/settingsview/CustomSettingSpinner;
+               Lcom/microsoft/office/docsui/settingsview/CustomSettingSwitch;
+               Lcom/microsoft/office/docsui/settingsview/SettingsDialogHelper$1;
+               Lcom/microsoft/office/docsui/settingsview/SettingsDialogHelper$2;
+               Lcom/microsoft/office/docsui/settingsview/SettingsDialogHelper;
+               Lcom/microsoft/office/docsui/settingsview/SettingsPlacesListView$1;
+               Lcom/microsoft/office/docsui/settingsview/SettingsPlacesListView$2;
+               Lcom/microsoft/office/docsui/settingsview/SettingsPlacesListView$3;
+               Lcom/microsoft/office/docsui/settingsview/SettingsPlacesListView$4;
+               Lcom/microsoft/office/docsui/settingsview/SettingsPlacesListView;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$10;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$11;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$12;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$13;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$14;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$15;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$16;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$17;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$18;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$19;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$1;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$20;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$21;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$22;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$23;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$24;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$25;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$26;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$27;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$2;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$3;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$4;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$5;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$6$1;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$6;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$7$1;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$7$2;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$7;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$8$1$1;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$8$1;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$8;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView$9;
+               Lcom/microsoft/office/docsui/settingsview/SettingsView;
+               Lcom/microsoft/office/docsui/settingsview/SettingsWebView;
+               Lcom/microsoft/office/experiment/AB/Setting;
+               Lcom/microsoft/office/experiment/ExperimentSettings;
+               Lcom/microsoft/office/experiment/SettingsModel;
+               Lcom/microsoft/office/fastaccandroid/AccessibilitySettings;
+               Lcom/microsoft/office/lensactivitycore/ColorPalette$ColorPaletteConfigListener;
+[Notice]  Security Methods Checking:
+           Find some security-related method names:
+               Lcom/adjust/sdk/DeviceInfo;->getMacSha1(Ljava/lang/String;)Ljava/lang/String;
+               Lcom/adjust/sdk/DeviceInfo;->getMacShortMd5(Ljava/lang/String;)Ljava/lang/String;
+               Lcom/adjust/sdk/PackageBuilder;->injectConfig(Ljava/util/Map;)V
+               Lcom/adjust/sdk/Util;->md5(Ljava/lang/String;)Ljava/lang/String;
+               Lcom/adjust/sdk/Util;->sha1(Ljava/lang/String;)Ljava/lang/String;
+               Lcom/facebook/drawee/drawable/h;->getConstantState()Landroid/graphics/drawable/Drawable$ConstantState;
+               Lcom/facebook/react/bridge/BaseJavaModule;->getConstants()Ljava/util/Map;
+               Lcom/facebook/react/bridge/BaseJavaModule;->hasConstants()Z
+               Lcom/facebook/react/bridge/CatalystInstance;->getReactQueueConfiguration()Lcom/facebook/react/bridge/queue/i;
+               Lcom/facebook/react/bridge/CatalystInstance;->setReactConfigurationData(Lcom/facebook/react/bridge/WritableNativeMap;)V
+               Lcom/facebook/react/bridge/CatalystInstanceImpl;->jniReactConfigurationData(Lcom/facebook/react/bridge/WritableNativeMap;)V
+               Lcom/facebook/react/bridge/CatalystInstanceImpl;->getReactQueueConfiguration()Lcom/facebook/react/bridge/queue/i;
+               Lcom/facebook/react/bridge/CatalystInstanceImpl;->setReactConfigurationData(Lcom/facebook/react/bridge/WritableNativeMap;)V
+               Lcom/facebook/react/bridge/JavaModuleWrapper;->getConstants()Lcom/facebook/react/bridge/NativeMap;
+               Lcom/facebook/react/devsupport/DevInternalSettings$Listener;->onInternalSettingsChanged()V
+               Lcom/facebook/react/devsupport/DevInternalSettings;->getPackagerConnectionSettings()Lcom/facebook/react/packagerconnection/i;
+               Lcom/facebook/react/devsupport/interfaces/DevSupportManager;->getDevSettings()Lcom/facebook/react/modules/debug/interfaces/a;
+               Lcom/facebook/react/devsupport/interfaces/DevSupportManager;->reloadSettings()V
+               Lcom/facebook/react/devsupport/DevSupportManagerImpl;->getDevSettings()Lcom/facebook/react/modules/debug/interfaces/a;
+               Lcom/facebook/react/devsupport/DevSupportManagerImpl;->onInternalSettingsChanged()V
+               Lcom/facebook/react/devsupport/DevSupportManagerImpl;->reloadSettings()V
+               Lcom/facebook/react/devsupport/DisabledDevSupportManager;->getDevSettings()Lcom/facebook/react/modules/debug/interfaces/a;
+               Lcom/facebook/react/devsupport/DisabledDevSupportManager;->reloadSettings()V
+               Lcom/facebook/react/uimanager/ViewManager;->getExportedCustomBubblingEventTypeConstants()Ljava/util/Map;
+               Lcom/facebook/react/uimanager/ViewManager;->getExportedCustomDirectEventTypeConstants()Ljava/util/Map;
+               Lcom/facebook/react/uimanager/ViewManager;->getExportedViewConstants()Ljava/util/Map;
+               Lcom/facebook/react/views/modal/ReactModalHostManager;->getExportedCustomDirectEventTypeConstants()Ljava/util/Map;
+               Lcom/facebook/react/views/textinput/ReactTextInputManager;->getExportedCustomBubblingEventTypeConstants()Ljava/util/Map;
+               Lcom/facebook/react/views/textinput/ReactTextInputManager;->getExportedCustomDirectEventTypeConstants()Ljava/util/Map;
+               Lcom/facebook/react/views/textinput/ReactTextInputManager;->getExportedViewConstants()Ljava/util/Map;
+               Lcom/facebook/react/views/viewpager/ReactViewPagerManager;->getExportedCustomDirectEventTypeConstants()Ljava/util/Map;
+               Lcom/facebook/react/modules/blob/BlobModule;->getConstants()Ljava/util/Map;
+               Lcom/facebook/react/modules/camera/ImageEditingManager;->getDecodeSampleSize(I I I I)I
+               Lcom/facebook/react/modules/camera/ImageEditingManager;->getConstants()Ljava/util/Map;
+               Lcom/facebook/react/modules/debug/SourceCodeModule;->getConstants()Ljava/util/Map;
+               Lcom/facebook/react/modules/deviceinfo/DeviceInfoModule;->getDimensionsConstants()Lcom/facebook/react/bridge/cc;
+               Lcom/facebook/react/modules/deviceinfo/DeviceInfoModule;->getConstants()Ljava/util/Map;
+               Lcom/facebook/react/modules/dialog/DialogModule;->getConstants()Ljava/util/Map;
+               Lcom/facebook/react/modules/fresco/FrescoModule;->getDefaultConfig(Lcom/facebook/react/bridge/bp;)Lcom/facebook/imagepipeline
+                    /core/k;
+               Lcom/facebook/react/modules/fresco/FrescoModule;->getDefaultConfigBuilder(Lcom/facebook/react/bridge/bp;)Lcom/facebook/imagep
+                    ipeline/core/m;
+               Lcom/facebook/react/modules/i18nmanager/I18nManagerModule;->getConstants()Ljava/util/Map;
+               Lcom/facebook/react/modules/statusbar/StatusBarModule;->getConstants()Ljava/util/Map;
+               Lcom/facebook/react/modules/systeminfo/AndroidInfoModule;->getConstants()Ljava/util/Map;
+               Lcom/facebook/react/modules/toast/ToastModule;->getConstants()Ljava/util/Map;
+               Lcom/facebook/react/uimanager/UIManagerModule;->createConstants(Lcom/facebook/react/uimanager/bd;)Ljava/util/Map;
+               Lcom/facebook/react/uimanager/UIManagerModule;->createConstants(Ljava/util/List; Ljava/util/Map;
+                    Ljava/util/Map;)Ljava/util/Map;
+               Lcom/facebook/react/uimanager/UIManagerModule;->configureNextLayoutAnimation(Lcom/facebook/react/bridge/bw;
+                    Lcom/facebook/react/bridge/e; Lcom/facebook/react/bridge/e;)V
+               Lcom/facebook/react/uimanager/UIManagerModule;->getConstants()Ljava/util/Map;
+               Lcom/facebook/react/uimanager/UIManagerModule;->getConstantsForViewManager(Ljava/lang/String;)Lcom/facebook/react/bridge/cc;
+               Lcom/facebook/react/views/drawer/ReactDrawerLayoutManager;->getExportedCustomDirectEventTypeConstants()Ljava/util/Map;
+               Lcom/facebook/react/views/drawer/ReactDrawerLayoutManager;->getExportedViewConstants()Ljava/util/Map;
+               Lcom/facebook/react/views/image/ReactImageManager;->getExportedCustomDirectEventTypeConstants()Ljava/util/Map;
+               Lcom/facebook/react/views/scroll/ReactScrollViewManager;->createExportedCustomDirectEventTypeConstants()Ljava/util/Map;
+               Lcom/facebook/react/views/scroll/ReactScrollViewManager;->getExportedCustomDirectEventTypeConstants()Ljava/util/Map;
+               Lcom/facebook/react/views/slider/ReactSliderManager;->getExportedCustomDirectEventTypeConstants()Ljava/util/Map;
+               Lcom/facebook/react/views/swiperefresh/SwipeRefreshLayoutManager;->getExportedCustomDirectEventTypeConstants()Ljava/util/Map;
+               Lcom/facebook/react/views/swiperefresh/SwipeRefreshLayoutManager;->getExportedViewConstants()Ljava/util/Map;
+               Lcom/facebook/react/views/toolbar/ReactToolbarManager;->getExportedViewConstants()Ljava/util/Map;
+               Lcom/facebook/react/views/view/ReactViewManager;->getExportedCustomBubblingEventTypeConstants()Ljava/util/Map;
+               Lcom/facebook/yoga/YogaConfig;->jni_YGConfigFree(J)V
+               Lcom/facebook/yoga/YogaConfig;->jni_YGConfigNew()J
+               Lcom/facebook/yoga/YogaConfig;->jni_YGConfigSetExperimentalFeatureEnabled(J I Z)V
+               Lcom/facebook/yoga/YogaConfig;->jni_YGConfigSetLogger(J Ljava/lang/Object;)V
+               Lcom/facebook/yoga/YogaConfig;->jni_YGConfigSetPointScaleFactor(J F)V
+               Lcom/facebook/yoga/YogaConfig;->jni_YGConfigSetUseLegacyStretchBehaviour(J Z)V
+               Lcom/facebook/yoga/YogaConfig;->jni_YGConfigSetUseWebDefaults(J Z)V
+               Lcom/facebook/yoga/YogaNode;->jni_YGNodeNewWithConfig(J)J
+               Lcom/google/android/gms/internal/f;->getChangingConfigurations()I
+               Lcom/google/android/gms/internal/f;->getConstantState()Landroid/graphics/drawable/Drawable$ConstantState;
+               Lcom/google/android/gms/internal/h;->getConstantState()Landroid/graphics/drawable/Drawable$ConstantState;
+               Lcom/google/android/gms/internal/i;->getChangingConfigurations()I
+               Lcom/google/android/gms/internal/j;->getChangingConfigurations()I
+               Lcom/microsoft/aad/adal/APIEvent;->setExtendedExpiresOnSetting(Z)V
+               Lcom/microsoft/aad/adal/DefaultTokenCacheStore;->decrypt(Ljava/lang/String; Ljava/lang/String;)Ljava/lang/String;
+               Lcom/microsoft/aad/adal/DefaultTokenCacheStore;->encrypt(Ljava/lang/String;)Ljava/lang/String;
+               Lcom/microsoft/aad/adal/DefaultTokenCacheStore;->validateSecretKeySetting()V
+               Lcom/microsoft/aad/adal/HashMapExtensions;->urlFormDecode(Ljava/lang/String;)Ljava/util/HashMap;
+               Lcom/microsoft/aad/adal/HashMapExtensions;->urlFormDecodeData(Ljava/lang/String; Ljava/lang/String;)Ljava/util/HashMap;
+               Lcom/microsoft/aad/adal/Oauth2;->decodeProtocolState(Ljava/lang/String;)Ljava/lang/String;
+               Lcom/microsoft/aad/adal/Oauth2;->encodeProtocolState()Ljava/lang/String;
+               Lcom/microsoft/aad/adal/StorageHelper;->getEncodeVersionLengthPrefix()C
+               Lcom/microsoft/aad/adal/StorageHelper;->decrypt(Ljava/lang/String;)Ljava/lang/String;
+               Lcom/microsoft/aad/adal/StorageHelper;->encrypt(Ljava/lang/String;)Ljava/lang/String;
+               Lcom/microsoft/aad/adal/StorageHelper;->loadSecretKeyForEncryption()Ljavax/crypto/SecretKey;
+               Lcom/microsoft/aad/adal/StorageHelper;->loadSecretKeyForEncryption(Ljava/lang/String;)Ljavax/crypto/SecretKey;
+               Lcom/microsoft/aad/adal/StringExtensions;->encodeBase64URLSafeString([B)Ljava/lang/String;
+               Lcom/microsoft/aad/adal/StringExtensions;->urlFormDecode(Ljava/lang/String;)Ljava/lang/String;
+               Lcom/microsoft/aad/adal/StringExtensions;->urlFormEncode(Ljava/lang/String;)Ljava/lang/String;
+               Lcom/microsoft/applications/telemetry/LogConfiguration;->setConfigSettingsFromContext(Landroid/content/Context;)V
+               Lcom/microsoft/applications/telemetry/core/InternalMgrImpl;->getConfig()Lcom/microsoft/applications/telemetry/LogConfiguratio
+                    n;
+               Lcom/microsoft/intune/mam/client/app/LocalSettingsBase;->clearLocalSettings()V
+               Lcom/microsoft/intune/mam/policy/AppPolicy;->diagnosticIsFileEncryptionInUse()Z
+               Lcom/microsoft/intune/mam/client/app/offline/OfflineAppPolicy;->diagnosticIsFileEncryptionInUse()Z
+               Lcom/microsoft/intune/mam/client/app/offline/OfflineComponents;->getLocalSettings()Lcom/microsoft/intune/mam/client/app/Offli
+                    neLocalSettings;
+               Lcom/microsoft/intune/mam/policy/appconfig/MAMAppConfigManager;->getAppConfig(Ljava/lang/String;)Lcom/microsoft/intune/mam/po
+                    licy/appconfig/MAMAppConfig;
+               Lcom/microsoft/intune/mam/client/app/offline/OfflineMAMAppConfigManager;->getAppConfig(Ljava/lang/String;)Lcom/microsoft/intu
+                    ne/mam/policy/appconfig/MAMAppConfig;
+               Lcom/microsoft/intune/mam/client/app/startup/ADALSettings;->getADALSettingsForLog()Ljava/lang/String;
+               Lcom/microsoft/intune/mam/client/app/startup/ADALSettings;->getAdalSettingsInstance(Ljava/lang/Class;)Ljava/lang/Object;
+               Lcom/microsoft/intune/mam/client/app/startup/ADALSettings;->synchronizeAdalSettings(Landroid/content/Context;)V
+               Lcom/microsoft/intune/mam/client/content/pm/MAMPackageManagement;->getApplicationEnabledSetting(Landroid/content/pm/PackageMa
+                    nager; Ljava/lang/String;)I
+               Lcom/microsoft/intune/mam/client/content/pm/MAMPackageManagement;->getComponentEnabledSetting(Landroid/content/pm/PackageMana
+                    ger; Landroid/content/ComponentName;)I
+               Lcom/microsoft/intune/mam/client/content/pm/MAMPackageManagement;->setApplicationEnabledSetting(Landroid/content/pm/PackageMa
+                    nager; Ljava/lang/String; I I)V
+               Lcom/microsoft/intune/mam/client/content/pm/MAMPackageManagement;->setComponentEnabledSetting(Landroid/content/pm/PackageMana
+                    ger; Landroid/content/ComponentName; I I)V
+               Lcom/microsoft/intune/mam/client/content/pm/PackageManagementBehavior;->getApplicationEnabledSetting(Landroid/content/pm/Pack
+                    ageManager; Ljava/lang/String;)I
+               Lcom/microsoft/intune/mam/client/content/pm/PackageManagementBehavior;->getComponentEnabledSetting(Landroid/content/pm/Packag
+                    eManager; Landroid/content/ComponentName;)I
+               Lcom/microsoft/intune/mam/client/content/pm/PackageManagementBehavior;->setApplicationEnabledSetting(Landroid/content/pm/Pack
+                    ageManager; Ljava/lang/String; I I)V
+               Lcom/microsoft/intune/mam/client/content/pm/PackageManagementBehavior;->setComponentEnabledSetting(Landroid/content/pm/Packag
+                    eManager; Landroid/content/ComponentName; I I)V
+               Lcom/microsoft/intune/mam/client/content/pm/OfflinePackageManagementBehavior;->getApplicationEnabledSetting(Landroid/content/
+                    pm/PackageManager; Ljava/lang/String;)I
+               Lcom/microsoft/intune/mam/client/content/pm/OfflinePackageManagementBehavior;->getComponentEnabledSetting(Landroid/content/pm
+                    /PackageManager; Landroid/content/ComponentName;)I
+               Lcom/microsoft/intune/mam/client/content/pm/OfflinePackageManagementBehavior;->setApplicationEnabledSetting(Landroid/content/
+                    pm/PackageManager; Ljava/lang/String; I I)V
+               Lcom/microsoft/intune/mam/client/content/pm/OfflinePackageManagementBehavior;->setComponentEnabledSetting(Landroid/content/pm
+                    /PackageManager; Landroid/content/ComponentName; I I)V
+               Lcom/microsoft/office/BackgroundTasks/FileSuggestionNotifierBackgroundTask;->ParseResumeReadRoamingSetting(Ljava/lang/String;
+                    )V
+               Lcom/microsoft/office/BackgroundTasks/FileSuggestionNotifierBackgroundTask;->RetrieveResumeReadRoamingSettings(Ljava/lang/Str
+                    ing;)Ljava/lang/String;
+               Lcom/microsoft/office/ConfigServiceInfoProvider/ConfigService;->getConfigTokenNative(I)Lcom/microsoft/office/ConfigServiceInf
+                    oProvider/TokenResponse;
+               Lcom/microsoft/office/androidtelemetrymanager/TelemetryManager;->isAllTelemetryDisabledThroughConfig()Z
+               Lcom/microsoft/office/androidtelemetrymanager/TelemetryManager;->isOnlyAriaTelemetryAllowedThroughConfig()Z
+               Lcom/microsoft/office/cloudConnector/CloudConnectManager$Params;->getConfig(Lcom/microsoft/office/lenssdk/config/ConfigType;)
+                    Lcom/microsoft/office/lenssdk/config/ILensConfig;
+               Lcom/microsoft/office/cloudConnector/CloudConnectManager$Params;->setConfig(Lcom/microsoft/office/lenssdk/config/ILensConfig;
+                    )Lcom/microsoft/office/lenssdk/LensError;
+               Lcom/microsoft/office/cloudConnector/CloudConnectorConfig;->getChildConfig(Lcom/microsoft/office/lenssdk/config/ConfigType;)L
+                    com/microsoft/office/lenssdk/config/ILensConfigPrivate;
+               Lcom/microsoft/office/cloudConnector/CloudConnectorConfig;->getDefaultConfig()Lcom/microsoft/office/cloudConnector/CloudConne
+                    ctorConfig;
+               Lcom/microsoft/office/cloudConnector/CloudConnectorConfig;->getDefaultConfig()Lcom/microsoft/office/lenssdk/config/ILensConfi
+                    gPrivate;
+               Lcom/microsoft/office/cloudConnector/CloudConnectorConfig;->getNetworkConfig()Lcom/microsoft/office/lenssdk/network/NetworkCo
+                    nfig;
+               Lcom/microsoft/office/cloudConnector/CloudConnectorConfig;->setChildConfig(Lcom/microsoft/office/lenssdk/config/ILensConfigPr
+                    ivate;)V
+               Lcom/microsoft/office/cloudConnector/CloudConnectorConfig;->setNetworkConfig(Lcom/microsoft/office/lenssdk/network/NetworkCon
+                    fig;)V
+               Lcom/microsoft/office/comments/nativemodules/CommentsNativeModule;->getConstants()Ljava/util/Map;
+               Lcom/microsoft/office/comments/nativemodules/LocalizationNativeModule;->getConstants()Ljava/util/Map;
+               Lcom/microsoft/office/comments/nativemodules/LocalizationNativeModule;->hasConstants()Z
+               Lcom/microsoft/office/comments/sharedui/interfaces/ICommentPaneReactController;->getConfiguration()Lcom/microsoft/office/comm
+                    ents/sharedui/interfaces/ICommentPaneDisplayConfiguration;
+               Lcom/microsoft/office/comments/sharedui/interfaces/ICommentPaneReactController;->updateForConfigurationChange(Z)V
+               Lcom/microsoft/office/comments/sharedui/CommentPaneReactController;->getConfiguration()Lcom/microsoft/office/comments/sharedu
+                    i/interfaces/ICommentPaneDisplayConfiguration;
+               Lcom/microsoft/office/comments/sharedui/CommentPaneReactController;->updateForConfigurationChange(Z)V
+               Lcom/microsoft/office/comments/sharedui/CommentPaneState;->configurationChanged()Lcom/microsoft/office/comments/sharedui/Comm
+                    entPaneStateTransitionResult;
+               Lcom/microsoft/office/comments/sharedui/CommentPaneState;->getConfiguration()Lcom/microsoft/office/comments/sharedui/interfac
+                    es/ICommentPaneDisplayConfiguration;
+               Lcom/microsoft/office/config/DeviceInformation;->GetDeviceEncryptionStatus(Landroid/app/admin/DevicePolicyManager;)I
+               Lcom/microsoft/office/config/DeviceParameters;->getDeviceEncryptionStatus()I
+               Lcom/microsoft/office/config/DeviceParameters;->setDeviceEncryptionStatus(I)V
+               Lcom/microsoft/office/configserviceinfo/GPConfigServiceInfoProvider;->getConfigTokensValueForOfficeAndAppNative(Ljava/lang/St
+                    ring;)Ljava/lang/String;
+               Lcom/microsoft/office/configserviceinfo/GPConfigServiceInfoProvider;->getTokenValueFromConfig(Ljava/lang/String;)Ljava/lang/S
+                    tring;
+               Lcom/microsoft/office/docsui/common/AddAPlaceController;->showSettingUpView()V
+               Lcom/microsoft/office/docsui/common/BackstageMenuAdapter;->getSettingsActionProxy()Lcom/microsoft/office/officespace/autogen/
+                    FSExecuteActionSPProxy;
+               Lcom/microsoft/office/docsui/common/DocsUIManager;->addCustomSetting(Lcom/microsoft/office/docsui/settingsview/CustomSetting;
+                    )V
+               Lcom/microsoft/office/docsui/common/DocsUIManager;->getCustomSettings()Ljava/util/List;
+               Lcom/microsoft/office/docsui/common/DocsUIManager;->removeCustomSetting(Lcom/microsoft/office/docsui/settingsview/CustomSetti
+                    ng;)V
+               Lcom/microsoft/office/docsui/common/DocsUINativeProxy;->InitializeLoggingConfiguration(I)V
+               Lcom/microsoft/office/docsui/common/DrillInDialog$View;->configureFocus()V
+               Lcom/microsoft/office/docsui/common/FastBootManager;->configureFastBootView(Landroid/app/Activity; I)V
+               Lcom/microsoft/office/docsui/common/LicensingController;->CacheOLSUrlAndFpDomainFromConfigService(Lcom/microsoft/office/licen
+                    sing/UserAccountType; Ljava/lang/String;)Z
+               Lcom/microsoft/office/docsui/common/LicensingController;->GetOlsUrlFromConfigService(I Ljava/lang/String;)Ljava/lang/String;
+               Lcom/microsoft/office/docsui/common/OfficeInsiderHelper;->GetSettingsViewData()Lcom/microsoft/office/docsui/common/OfficeInsi
+                    derHelper$SettingsViewData;
+               Lcom/microsoft/office/docsui/common/SyncPlacesController;->showSettingUpView()V
+               Lcom/microsoft/office/docsui/controls/AccountsInfoDialog;->setupSettingsButton(Lcom/microsoft/office/ui/controls/datasourcewi
+                    dgets/ExecuteActionButton; Lcom/microsoft/office/docsui/common/DrillInDialog; I)V
+               Lcom/microsoft/office/docsui/controls/BackstageContentView;->configureFocus()V
+               Lcom/microsoft/office/docsui/controls/BackstageMenuPanel;->configureFocus()V
+               Lcom/microsoft/office/docsui/controls/BackstageSaveView;->configureAutoSaveSwitch(Z)V
+               Lcom/microsoft/office/docsui/controls/BackstageSaveView;->configureButtonsBasedOnDocumentSaveDisabledReason(Z)V
+               Lcom/microsoft/office/docsui/controls/BackstageSaveView;->configureCopyLinkButton(Z)V
+               Lcom/microsoft/office/docsui/controls/BackstageSaveView;->configureRenameButton(Z)V
+               Lcom/microsoft/office/docsui/controls/DocsUIViewFlipper;->configureAnimations(Landroid/view/animation/Animation;
+                    Landroid/view/animation/Animation;)V
+               Lcom/microsoft/office/docsui/controls/DocsUIViewFlipper;->configureView()V
+               Lcom/microsoft/office/docsui/controls/MeControlCallout;->getDrawableForSettingsButton()Landroid/graphics/drawable/StateListDr
+                    awable;
+               Lcom/microsoft/office/docsui/controls/MeControlCallout;->setupSettingsButton(Lcom/microsoft/office/ui/controls/widgets/Callou
+                    t;)V
+               Lcom/microsoft/office/docsui/controls/SignInOrRecentViewControl;->configureFocus()V
+               Lcom/microsoft/office/docsui/controls/SigninAdvertViewFactory;->CreateAndConfigure(Landroid/content/Context;
+                    Lcom/microsoft/office/docsui/common/SignInTask$Params;)Lcom/microsoft/office/docsui/controls/ISigninAdvertView;
+               Lcom/microsoft/office/docsui/controls/navigationbar/BaseNavigationBar;->configureFocus()V
+               Lcom/microsoft/office/docsui/filepickerview/AddAPlaceDialog;->configureOneDriveBusiness()V
+               Lcom/microsoft/office/docsui/filepickerview/AddAPlaceDialog;->configureOneDrivePersonal()V
+               Lcom/microsoft/office/docsui/filepickerview/AddAPlaceDialog;->configureSharePointURL()V
+               Lcom/microsoft/office/docsui/filepickerview/AddAPlaceDialog;->configureWOPIServiceButton(Lcom/microsoft/office/ui/controls/wi
+                    dgets/OfficeButton; Lcom/microsoft/office/docsui/wopi/IWOPIService;)V
+               Lcom/microsoft/office/docsui/filepickerview/AddAPlaceDialog;->configureWOPIServices(Ljava/util/List;)V
+               Lcom/microsoft/office/docsui/filepickerview/FilePickerViewPhone$FilePickerViewPager;->configureFocusForViewPagerItems(Lcom/mi
+                    crosoft/office/docsui/common/IFilePickerLocationPanel;)V
+               Lcom/microsoft/office/docsui/filepickerview/FilePickerViewPhone;->configureFocus()V
+               Lcom/microsoft/office/docsui/fixithub/DocumentErrorEntryView;->configureItemView(I)V
+               Lcom/microsoft/office/docsui/focusmanagement/FocusManagementUtils;->ResetNavigationConfigForView(Landroid/view/View;)V
+               Lcom/microsoft/office/docsui/focusmanagement/FocusManagementUtils;->ResetNavigationConfigForViewList(Ljava/util/List;)V
+               Lcom/microsoft/office/docsui/focusmanagement/FocusManagementUtils;->ResetNavigationConfigForWeakRefViewList(Ljava/util/List;)
+                    V
+               Lcom/microsoft/office/docsui/landingpage/modern/phone/LandingPagePhoneBottomNavigationBar;->configureFocus()V
+               Lcom/microsoft/office/docsui/landingpage/modern/phone/ModernLandingViewPanePhone;->configureFocus()V
+               Lcom/microsoft/office/docsui/notificationpreferences/NotificationPreferencesController;->IsShowNotificationSettingsEnabled()Z
+               Lcom/microsoft/office/docsui/notificationpreferences/NotificationPreferencesController;->initializeNotificationPreferencesSet
+                    ting()V
+               Lcom/microsoft/office/docsui/notificationpreferences/NotificationsSettingsView;->setSwitchAndAddToNotificationSettings(Lcom/m
+                    icrosoft/office/docsui/notificationpreferences/NotificationSwitch;
+                    Lcom/microsoft/office/ui/controls/widgets/OfficeLinearLayout;)V
+               Lcom/microsoft/office/docsui/panes/ActivityPane;->configureFocus()V
+               Lcom/microsoft/office/docsui/panes/IBackstageViewPane;->updateOnSettings()V
+               Lcom/microsoft/office/docsui/panes/BackstageViewPane;->configureFocus()V
+               Lcom/microsoft/office/docsui/panes/BackstageViewPane;->updateOnSettings()V
+               Lcom/microsoft/office/docsui/panes/BackstageViewPanePhone;->configureFocus()V
+               Lcom/microsoft/office/docsui/panes/BackstageViewPanePhone;->updateOnSettings()V
+               Lcom/microsoft/office/docsui/panes/ExportFilePicker;->configureFocus()V
+               Lcom/microsoft/office/docsui/panes/HistoryPane;->configureFocus()V
+               Lcom/microsoft/office/docsui/panes/LandingViewPane;->configureFocus()V
+               Lcom/microsoft/office/docsui/panes/LandingViewPanePhone;->configureFocus()V
+               Lcom/microsoft/office/docsui/panes/LandingViewPanePhone;->configureToolBar(Lcom/microsoft/office/ui/controls/widgets/OfficeBu
+                    tton; Lcom/microsoft/office/ui/controls/widgets/OfficeButton;)V
+               Lcom/microsoft/office/docsui/panes/SelectLocationPicker;->configureFocus()V
+               Lcom/microsoft/office/docsui/panes/SelectSaveCopyPicker;->configureFocus()V
+               Lcom/microsoft/office/docsui/panes/SyncStatusPane;->configureFocus()V
+               Lcom/microsoft/office/docsui/panes/SyncStatusPanePhone;->configureFocus()V
+               Lcom/microsoft/office/docsui/pickers/BackstageOpenView;->configureFocus()V
+               Lcom/microsoft/office/docsui/settingsview/CustomSetting;->getSettingDescription()Ljava/lang/String;
+               Lcom/microsoft/office/docsui/settingsview/CustomSetting;->getSettingName()Ljava/lang/String;
+               Lcom/microsoft/office/docsui/settingsview/CustomSetting;->onSettingChanged(Ljava/lang/Object;)V
+               Lcom/microsoft/office/docsui/settingsview/CustomSetting;->setSettingDescription(Ljava/lang/String;)V
+               Lcom/microsoft/office/docsui/settingsview/CustomSetting;->setSettingName(Ljava/lang/String;)V
+               Lcom/microsoft/office/docsui/settingsview/SettingsView;->initializeCustomSettings()V
+               Lcom/microsoft/office/docsui/settingsview/SettingsView;->initializeExperimentSettings()V
+               Lcom/microsoft/office/docsui/settingsview/SettingsView;->initializeLoggingConfiguration()V
+               Lcom/microsoft/office/docsui/settingsview/SettingsView;->initializeNotificationPreferencesSettings()V
+               Lcom/microsoft/office/docsui/settingsview/SettingsView;->initializeOnlineContentSettings()V
+               Lcom/microsoft/office/docsui/share/ShareContentView;->configureFocus()V
+               Lcom/microsoft/office/docsui/signin/controls/SignInSignUpOptionsViewFactory;->CreateAndConfigure(Landroid/content/Context;
+                    Lcom/microsoft/office/docsui/signin/controls/SignInSignUpOptionsViewFactory$Params; Lcom/microsoft/office/docsui/control
+                    s/UnifiedSignInView$IOnProceedFromUnifiedSignInView;)Lcom/microsoft/office/docsui/signin/controls/ISignInSignUpOptionsVi
+                    ew;
+               Lcom/microsoft/office/experiment/ExperimentSettings;->NativeReadSettings(Lcom/microsoft/office/experiment/SettingsModel;)V
+               Lcom/microsoft/office/experiment/ExperimentSettings;->NativeShowExperimentSettings()Z
+               Lcom/microsoft/office/experiment/ExperimentSettings;->NativeWriteSettings(Lcom/microsoft/office/experiment/SettingsModel;)V
+               Lcom/microsoft/office/experiment/ExperimentSettings;->readSettings(Lcom/microsoft/office/experiment/SettingsModel;)V
+               Lcom/microsoft/office/experiment/ExperimentSettings;->showExperimentSettings()Z
+               Lcom/microsoft/office/experiment/ExperimentSettings;->writeSettings(Lcom/microsoft/office/experiment/SettingsModel;)V
+               Lcom/microsoft/office/lensactivitycore/ColorPalette;->setColorPaletteConfigListener(Lcom/microsoft/office/lensactivitycore/Co
+                    lorPalette$ColorPaletteConfigListener;)V
+[Info]  AndroidManifest Adb Backup Checking:
+           This app has disabled Adb Backup.
+[Info] <Command> Runtime Command Checking:
+           This app is not using critical function 'Runtime.getRuntime().exec("...")'.
+[Info] <Database> SQLiteDatabase Transaction Deprecated Checking:
+           Ignore checking "SQLiteDatabase:beginTransactionNonExclusive" because your set minSdk >= 11.
+[Info] <Database> Android SQLite Databases Encryption (SQLite Encryption Extension (SEE)):
+           This app is "NOT" using SQLite Encryption Extension (SEE) on Android (http://www.sqlite.org/android) to encrypt or decrpyt
+           databases.
+[Info] <Database> Android SQLite Databases Encryption (SQLCipher):
+           This app is "NOT" using SQLCipher(http://sqlcipher.net/) to encrypt or decrpyt databases.
+[Info] <Debug> Android Debug Mode Checking:
+           DEBUG mode is OFF(android:debuggable="false") in AndroidManifest.xml.
+[Info]  Dynamic Code Loading:
+           No dynamic code loading(DexClassLoader) found.
+[Info] <Framework> Framework - MonoDroid:
+           This app is NOT using MonoDroid Framework (http://xamarin.com/android).
+[Info] <Database><Hacker> Key for Android SQLite Databases Encryption:
+           Did not find using the symmetric key(PRAGMA key) to encrypt the SQLite databases (It's still possible that it might use but we
+           did not find out).
+[Info] <KeyStore><Hacker> KeyStore File Location:
+           Did not find any possible BKS keystores or certificate keystore file (Notice: It does not mean this app does not use keysotre):
+[Info] <KeyStore><Hacker> KeyStore Protection Checking:
+           Ignore checking KeyStore protected by password or not because you're not using KeyStore.
+[Info]  HttpURLConnection Android Bug Checking:
+           Ignore checking "http.keepAlive" because you're not using "HttpURLConnection" and min_Sdk > 8.
+[Info] <KeyStore> KeyStore Type Checking:
+           KeyStore 'BKS' type check OK
+[Info]  Google Cloud Messaging Suggestion:
+           Nothing to suggest.
+[Info] <#CVE-2013-4787#> Master Key Type I Vulnerability:
+           No Master Key Type I Vulnerability in this APK.
+[Info]  App Sandbox Permission Checking:
+           No security issues "MODE_WORLD_READABLE" or "MODE_WORLD_WRITEABLE" found on 'openOrCreateDatabase' or 'openOrCreateDatabase2' or
+           'getDir' or 'getSharedPreferences' or 'openFileOutput'
+[Info]  AndroidManifest Dangerous ProtectionLevel of Permission Checking:
+           No "dangerous" protection level customized permission found (AndroidManifest.xml).
+[Info]  AndroidManifest PermissionGroup Checking:
+           PermissionGroup in permission tag of AndroidManifest sets correctly.
+[Info]  AndroidManifest "intent-filter" Settings Checking:
+           "intent-filter" of AndroidManifest.xml check OK.
+[Info]  AndroidManifest Normal ProtectionLevel of Permission Checking:
+           No default or "normal" protection level customized permission found (AndroidManifest.xml).
+[Info] <#CVE-2013-6272#> AndroidManifest Exported Lost Prefix Checking:
+           No exported components that forgot to add "android:" prefix.
+[Info]  AndroidManifest ContentProvider Exported Checking:
+           No exported "ContentProvider" found (AndroidManifest.xml).
+[Info] <Sensitive_Information> Getting IMEI and Device ID:
+           Did not detect this app is getting the "device id(IMEI)" by "TelephonyManager.getDeviceId()" approach.
+[Info]  Codes for Sending SMS:
+           Did not detect this app has code for sending SMS messages (sendDataMessage, sendMultipartTextMessage or sendTextMessage).
+[Info] <System> AndroidManifest sharedUserId Checking:
+           This app does not use "android.uid.system" sharedUserId.
+[Info] <SSL_Security> SSL Implementation Checking (Verifying Host Name in Custom Classes):
+           Self-defined HOSTNAME VERIFIER checking OK.
+[Info] <SSL_Security> SSL Implementation Checking (Verifying Host Name in Fields):
+           Critical vulnerability "ALLOW_ALL_HOSTNAME_VERIFIER" field setting or "AllowAllHostnameVerifier" class instance not found.
+[Info] <SSL_Security> SSL Implementation Checking (Insecure component):
+           Did not detect SSLSocketFactory by insecure method "getInsecure".
+[Info] <SSL_Security> SSL Implementation Checking (HttpHost):
+           DEFAULT_SCHEME_NAME for HttpHost check: OK
+[Info] <SSL_Security> SSL Implementation Checking (WebViewClient for WebView):
+           Did not detect critical usage of "WebViewClient"(MITM Vulnerability).
+[Info]  Unnecessary Permission Checking:
+           Permission 'android.permission.ACCESS_MOCK_LOCATION' sets correctly.
+[Info]  Accessing the Internet Checking:
+           This app is using the Internet via HTTP protocol.
+[Info]  AndroidManifest System Use Permission Checking:
+           No system-level critical use-permission found.
+------------------------------------------------------------
+AndroBugs analyzing time: 26.15019 secs
+Total elapsed time: 113.603451 secs

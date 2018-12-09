@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest android:installLocation="0" android:versionCode="2" android:versionName="1.1" package="com.tinker.jumperchess" platformBuildVersionCode="17" platformBuildVersionName="4.2.2-1425461" xmlns:android="http://schemas.android.com/apk/res/android">
+	
+
+	<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="17">
+</uses-sdk>
+	
+
+	<application android:icon="@7F020018" android:label="Jump Chess" android:name="mono.android.app.Application">
+		
+
+		<activity android:icon="@7F020018" android:label="CheckersGame" android:name="checkersgameandroid.MainActivity" android:screenOrientation="1">
+</activity>
+		
+
+		<activity android:icon="@7F020018" android:label="CheckersGame" android:name="checkersgameandroid.OptionsActivity" android:screenOrientation="1">
+</activity>
+		
+
+		<activity android:icon="@7F020018" android:name="checkersgameandroid.Activity1" android:theme="@android:01030006">
+</activity>
+		
+
+		<activity android:icon="@7F020018" android:label="Jump Chesess" android:name="checkersgameandroid.SingleActivity" android:screenOrientation="1">
+</activity>
+		
+
+		<activity android:icon="@7F020018" android:label="CheckersGame" android:name="checkersgameandroid.InfoActivity" android:screenOrientation="1">
+</activity>
+		
+
+		<activity android:configChanges="0x000000A0" android:label="@7F05000A" android:name="checkers.multipeer.connection.DeviceListActivity" android:theme="@android:0103000B">
+</activity>
+		
+
+		<activity android:icon="@7F020018" android:name="checkersgameandroid.SplashActivity" android:noHistory="true" android:screenOrientation="1" android:theme="@7F060000">
+			
+
+			<intent-filter>
+				
+
+				<action android:name="android.intent.action.MAIN">
+</action>
+				
+
+				<category android:name="android.intent.category.LAUNCHER">
+</category>
+				
+
+			</intent-filter>
+			
+
+		</activity>
+		
+
+		<activity android:icon="@7F020018" android:label="CheckersGame" android:name="checkersgameandroid.MultiActivity" android:screenOrientation="1">
+</activity>
+		
+
+		<provider android:authorities="com.tinker.jumperchess.mono.MonoRuntimeProvider.__mono_init__" android:exported="false" android:initOrder="2147483647" android:name="mono.MonoRuntimeProvider">
+</provider>
+		
+
+	</application>
+	
+
+	<uses-permission android:name="android.permission.BLUETOOTH">
+</uses-permission>
+	
+
+	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN">
+</uses-permission>
+	
+
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE">
+</uses-permission>
+	
+
+	<uses-permission android:name="android.permission.INTERNET">
+</uses-permission>
+	
+
+</manifest>

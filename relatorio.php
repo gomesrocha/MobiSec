@@ -25,6 +25,9 @@ if(!logged_in()) {
 										<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>										
 									</div>
 								</div>
+								<?php
+									$unplanned = $_POST["unplanned"];
+								?>
 								<div class="panel-body no-padding">
 									<div class="row">
 										<div class="col-xs-12 col-sm-12 col-md-10 col-sm-offset-1 col-md-offset-1">
@@ -33,26 +36,47 @@ if(!logged_in()) {
 												<div class="form-group">
 													<label for="projeto" class="col-lg-2 control-label"><?php echo $lang['REPORT_TEXT1']?></label>
 													<div class="col-lg-7">
+													<?php    
+														if ($unplanned == 1){
+														?>
+														<select id="projeto" name="projeto" class="selectpicker show-tick form-control" data-live-search="true">
+															<option><?php echo $lang['TEST_TEXT5']; ?></option>
+														</select>
+													<?php    
+														}else{
+														?>
 														<select id="projeto" name="projeto" class="selectpicker show-tick form-control" data-live-search="true">
 															<?php $result = ListProjeto($_SESSION['email']); ?>
 															<?php if ($result != null){ ?>
-															<?php while($aux_query = $result->fetch_assoc()) { ?>							
-															<?php if (isset($_POST['submit']) || isset($_POST['Imprimir'])) {
-																	$projeto =  $_POST['projeto'];
-																	if ($projeto > 0 && $projeto == $aux_query["id"]){
-																		?>
-																		<option value="<?php echo $aux_query["id"] ?>" selected ><?php echo $aux_query["titulo"] ?></option>
-																	<?php 	
-																	}else{
-																	?>	<option value="<?php echo $aux_query["id"] ?>"><?php echo $aux_query["titulo"] ?></option>
-																	<?php }							  
-																  }else{
-																?>	  
-															<option value="<?php echo $aux_query["id"] ?>"><?php echo $aux_query["titulo"] ?></option>
-															<?php } 
-																} 
-															} ?>
+																	<?php while($aux_query = $result->fetch_assoc()) { ?>							
+																		<?php if (isset($_POST['submit']) || isset($_POST['Imprimir'])) {
+																			$projeto =  $_POST['projeto'];
+																				if ($projeto > 0 && $projeto == $aux_query["id"]){
+																					if ($aux_query["titulo"] != "unplanned" ){
+																					?>																		
+																						<option value="<?php echo $aux_query["id"] ?>" selected ><?php echo $aux_query["titulo"] ?></option>
+																					<?php 	
+																					}
+																				}else{
+																					if ($aux_query["titulo"] != "unplanned" ){
+																					?>	<option value="<?php echo $aux_query["id"] ?>"><?php echo $aux_query["titulo"] ?></option>
+																					<?php 
+																					}
+																				}							  
+																			}else{
+																				if ($aux_query["titulo"] != "unplanned" ){
+																				?>	  
+																					<option value="<?php echo $aux_query["id"] ?>"><?php echo $aux_query["titulo"] ?></option>
+																				
+																		<?php 
+																				}
+																			} 
+																		} 
+																	} ?>
 														</select>
+													<?php    
+														}														
+													?> 
 													</div>	
 													<div class="col-lg-3">
 														<div><input type="submit" name="submit" value="<?php echo $lang['REPORT_BTN_CARREGAR']?>" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
@@ -66,6 +90,17 @@ if(!logged_in()) {
 														<select id="projeto_rel" name="projeto_rel" class="selectpicker show-tick form-control" data-live-search="true">
 															<?php 
 																$proj =  $_POST['projeto'];
+																if ($unplanned == 1){
+																	$sqlUmplanned = "SELECT id FROM projeto WHERE titulo '= unplanned' ";
+																	$result = $conn->query($sql);
+																	if ($result->num_rows > 0) {
+																		while($row = $result->fetch_assoc()) {
+																		    $proj = $row["id"];
+																		}
+																	} else {
+																		$proj = 0;
+																	}
+																}
 																if ($proj > 0 ){
 																	$projeto_rel =  $_POST['projeto_rel'];
 																	$resultrel = ListProjetoRel($_SESSION['email'], $proj); ?>
@@ -91,10 +126,44 @@ if(!logged_in()) {
 														<div><input type="submit" name="Imprimir" value="<?php echo $lang['REPORT_BTN_IMPRIMIR']?>" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
 													</div>				
 												</div>
+												<div class="form-group">
+													<div class="col-md-2"></div>
+													<?php    
+														if ($unplanned == 1){
+														?>
+															<label class="fancy-checkbox element-left">
+																<input id="unplanned" type="checkbox" name="unplanned" value="1" checked>
+																<span><?php echo $lang['TEST_TEXT5']; ?></span>
+															</label>
+													<?php    
+														}else{
+														?>
+															<label class="fancy-checkbox element-left">
+																<input id="unplanned" type="checkbox" name="unplanned" value="1">
+																<span><?php echo $lang['TEST_TEXT5']; ?></span>
+															</label>
+													<?php    
+														}														
+													?> 
+												</div>
 												<?php $campo = $lang['REPORT_BTN_IMPRIMIR'];							
 													if (isset($_POST['Imprimir']) or ($_POST['Print']) or ($_POST['Impresión'])) {?>
 													<?php 
+														
 														$project =  $_POST['projeto'];
+														
+														if ($unplanned == 1){
+															$sqlUmplanned = "SELECT id FROM projeto WHERE titulo '= unplanned' ";
+															$result = $conn->query($sql);
+															if ($result->num_rows > 0) {
+																while($row = $result->fetch_assoc()) {
+																    $project = $row["id"];
+																}
+															} else {
+																$project = 0;
+															}
+														}
+														
 														$project_rel =  $_POST['projeto_rel'];
 														if ($project > 0 && $project_rel > 0){?>
 													<hr class="colorgraph">			

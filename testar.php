@@ -27,7 +27,8 @@ if(!logged_in()) {
 									<div class="row">
 										<div class="col-xs-12 col-sm-12 col-md-10 col-sm-offset-1 col-md-offset-1">
 											<?php 
-											if (isset($_POST['submit'])) {											
+											if (isset($_POST['submit'])) {	
+ 
 												include 'includes/envia.php';											
 											} 
 											?>
@@ -39,9 +40,15 @@ if(!logged_in()) {
 														<select id="projeto" name="projeto" class="selectpicker show-tick form-control" data-live-search="true">
 															<?php $result = ListProjeto($_SESSION['email']); ?>
 															<?php if ($result != null){ ?>
-															<?php while($aux_query = $result->fetch_assoc()) { ?>
-															<option value="<?php echo $aux_query["id"] ?>"><?php echo $aux_query["titulo"] ?></option>
-															<?php } } ?>
+																<?php while($aux_query = $result->fetch_assoc()) { 
+																		if ($aux_query["titulo"] != "unplanned" ){
+																		?>
+																			<option value="<?php echo $aux_query["id"] ?>"><?php echo $aux_query["titulo"] ?></option>
+																		<?php 
+																		} 
+																	  }  
+																} 
+															?>
 														</select>
 													</div>
 												</div>
@@ -52,11 +59,18 @@ if(!logged_in()) {
 														<span class="help-block"><?php echo $lang['TEST_TEXT3']; ?></span>  
 													</div>
 												</div>
-												<div class="form-group clearfix">
+												<!--<div class="form-group clearfix">
 													<div class="col-md-4"></div>
 													<label class="fancy-checkbox element-left">
 														<input id="malware" type="checkbox" name="malware" value="1">
-														<span>Malware Test</span>
+														<span><?php //echo $lang['TEST_TEXT4']; ?></span>
+													</label>
+												</div>-->
+												<div class="form-group clearfix">
+													<div class="col-md-4"></div>
+													<label class="fancy-checkbox element-left">
+														<input id="unplanned" type="checkbox" name="unplanned" value="1">
+														<span><?php echo $lang['TEST_TEXT5']; ?></span>
 													</label>
 												</div>
 												<div class="row">

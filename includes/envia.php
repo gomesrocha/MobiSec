@@ -6,19 +6,39 @@ if (!file_exists($diretorio)) {
    chmod($diretorio, 0777);
 } 
 
-$diretorio = 'uploads/' . $_POST["projeto"] ;
+$unplanned1 = $_POST["unplanned"];
+
+$project = $_POST["projeto"];
+if ($unplanned1 == 1){
+	$sqlUmplanned1 = "SELECT id FROM projeto WHERE titulo = 'unplanned' ";
+	$result = $conn->query($sqlUmplanned1);
+	if ($result->num_rows > 0) {
+		while($row = $result->fetch_assoc()) {
+		    $project = $row["id"];
+		}
+	} else {
+	    $sqlproj1 = "INSERT INTO projeto (titulo, qtdactiv, email,date_added)
+		VALUES ('unplanned' , '0', '$Email', now())";
+		if ($conn->query($sqlproj1) === TRUE) {
+		    $project = $conn->insert_id;
+		}
+	}
+}
+
+$diretorio = 'uploads/' . $project ;
 if (!file_exists($diretorio)) {
    mkdir($diretorio, 0777, true);
    chmod($diretorio, 0777);
 } 
 
-$target_dir = "uploads/" . $_POST["projeto"] ."/";
+$target_dir = "uploads/" . $project ."/";
 $target_file = $target_dir .  basename($_FILES["fileToUpload"]["name"]); //$_POST["CPF"]; 
 $uploadOk = 1;
 
 $FileType = pathinfo(basename($_FILES["fileToUpload"]["name"]),PATHINFO_EXTENSION); 
 $FileType = strtolower($FileType);
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]); //$_POST["CPF"].".".$FileType;   //;
+
 $mensagem = "";
 // Verifica se o apk já existe
 if (file_exists($target_file)) {
@@ -43,7 +63,7 @@ if ($uploadOk == 0) {
 // se tudo esta ok, deixa fazer o upload
 } else {
 	
-	if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+	if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {	
         ?> 
     <div class="alert alert-success alert-dismissable fade in">
         <a href="/" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -52,6 +72,7 @@ if ($uploadOk == 0) {
         echo $lang['TEST_SUCESS1'] .' '. basename( $_FILES["fileToUpload"]["name"]) .' '. $lang['TEST_SUCESS2'];
 		$nome = substr($target_file,0,strrpos($target_file,"."));
 		$comando = " ./androguard/androaxml.py -i " . " ./" .$target_file. " -o " . " ./".$nome. ".xml";
+		echo 'androguard';
 		shell_exec($comando);
 		$arquivo = "http://$_SERVER[HTTP_HOST]/" . $nome . ".xml";
 		if (file_exists($nome . ".xml")) {
@@ -63,18 +84,41 @@ if ($uploadOk == 0) {
 			$activity = $xml->xpath('/manifest/application/activity/@android:name');
 			$Email    = $_SESSION['email'];
 			$projeto  =  $_POST['projeto'];
-			$malware = $_POST["malware"];
-			
+			//$malware = $_POST["malware"];
+			$unplanned = $_POST["unplanned"];
+
+			if ($unplanned == 1){
+				$sqlUmplanned = "SELECT id FROM projeto WHERE titulo = 'unplanned' ";
+				$result = $conn->query($sqlUmplanned);
+				if ($result->num_rows > 0) {
+					while($row = $result->fetch_assoc()) {
+					    $projeto = $row["id"];
+					}
+				} else {
+				    $sqlproj = "INSERT INTO projeto (titulo, qtdactiv, email,date_added)
+					VALUES ('unplanned' , '0', '$Email', now())";
+					if ($conn->query($sqlproj) === TRUE) {
+					    $projeto = $conn->insert_id;
+					}
+				}
+			}
+
 			$count    = 0;
 			$nomearq  = explode("/", $nome); 
 			foreach($activity as $activitys){
 				$count = $count + 1;
 			}
-			$sql = "INSERT INTO projeto_rel (titulo, qtdactiv, email,date_added, id_fk_projeto)
-			VALUES ('$nomearq[2]', '$count', '$Email', now(), '$projeto' )";
+
+			$filesize = filesize($target_file); // bytes
+			$size = round($filesize / 1024 / 1024, 4); // megabytes with 1 digit
+
+			//echo ' Tamanho ';
+			//echo $size;
+			$sql = "INSERT INTO projeto_rel (titulo, qtdactiv, email,date_added, id_fk_projeto, date_fim, size)
+			VALUES ('$nomearq[2]', '$count', '$Email', now(), '$projeto', null, '$size' )";
 			if ($conn->query($sql) === TRUE) {
 				$last_id = $conn->insert_id;
-				if ($malware = 1) {					 				
+				//if ($malware == 1) {					 				
 					$dir = 'uploads/' .$projeto. "/" .$last_id ;
 					if (!file_exists($dir)) {
 					   mkdir($dir, 0777, true);
@@ -82,7 +126,7 @@ if ($uploadOk == 0) {
 					} 
 					$cmdmalware = "python " . " ./androbugs/androbugs.py -f " . " ./" .$target_file. " -e 2 " . " -o  " . " ./uploads/" .$projeto. "/" .$last_id. "/";
 					shell_exec($cmdmalware);
-				}
+				//}
 				$permission = $xml->xpath('/manifest/uses-permission/@android:name');
 				foreach($permission as $permissions){
 					$permi = explode(".",$permissions->name);
@@ -94,6 +138,10 @@ if ($uploadOk == 0) {
 					}				
 					//echo  "Android Permission: ". $permi[$pos] ."<br/>";		
 				}
+				$sqlUp = "UPDATE projeto_rel SET date_fim = now() WHERE id =  $last_id ";
+				if ($conn->query($sqlUp) === FALSE) {
+					set_message("<p>Error: " . $sqlUp . "<br>" . $conn->error . "</p>");
+				}			
 				echo '<br>';
 				echo  $lang['TEST_SUCESS3'];
 			//Fim de Cadastro do Resultado

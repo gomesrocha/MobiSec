@@ -1,0 +1,922 @@
+*************************************************************************
+**   AndroBugs Framework - Android App Security Vulnerability Scanner  **
+**                            version: 1.0.0                           **
+**     author: Yu-Cheng Lin (@AndroBugs, http://www.AndroBugs.com)     **
+**               contact: androbugs.framework@gmail.com                **
+*************************************************************************
+Platform: Android
+Package Name: com.tinker.gameone
+Package Version Name: 1.3
+Package Version Code: 4
+Min Sdk: 7
+Target Sdk: 19
+MD5   : 3ae3cb09c8f54210cb4faf7aa76741ee
+SHA1  : 9647bd059e7009b4b02da9e55e9b4599ed2f7fae
+SHA256: f89a3b2c0dd0287a9c0a9d5befbc731da2c2c23befd6c18b72438cff5b153433
+SHA512: 355d4cb68af41596aeee0e48bb46afb8c201ba113ce99dd32fff92b52c6fe75fa4adf38ef7d5aaf375ce228f74072b8a66241a85baa64ac95ea0859daaf1f8be
+Analyze Signature: 64278cb0f81fce152f2993a3705bd5a4e862da93da8c7c57fd292416bcf9a78874a6cca93025cb3245ad21f86b91605f2bf202b4e37aa5b07ca5fae501e24622
+------------------------------------------------------------------------------------------------
+[Warning]  External Storage Accessing:
+           External storage access found (Remember DO NOT write important files to external storages):
+               => Lmono/MonoPackageManager;->LoadApplication(Landroid/content/Context; Ljava/lang/String; [Ljava/lang/String;)V (0xd4) --->
+                    Landroid/os/Environment;->getExternalStorageDirectory()Ljava/io/File;
+[Notice]  AndroidManifest Adb Backup Checking:
+           ADB Backup is ENABLED for this app (default: ENABLED). ADB Backup is a good tool for backing up all of your files. If it's open
+           for this app, people who have your phone can copy all of the sensitive data for this app in your phone (Prerequisite: 1.Unlock
+           phone's screen 2.Open the developer mode). The sensitive data may include lifetime access token, username or password, etc.
+           Security case related to ADB Backup:
+           1.http://www.securityfocus.com/archive/1/530288/30/0/threaded
+           2.http://blog.c22.cc/advisories/cve-2013-5112-evernote-android-insecure-storage-of-pin-data-bypass-of-pin-protection/
+           3.http://nelenkov.blogspot.co.uk/2012/06/unpacking-android-backups.html
+           Reference: http://developer.android.com/guide/topics/manifest/application-element.html#allowbackup
+[Notice] <Framework> Framework - MonoDroid:
+           This app is using MonoDroid Framework (http://xamarin.com/android).
+[Notice]  Google Cloud Messaging Suggestion:
+           Your supporting minSdk is 7
+           You are now allowing minSdk to less than 8. Please check: http://developer.android.com/about/dashboards/index.html
+           Google Cloud Messaging (Push Message) service only allows Android SDK >= 8 (Android 2.2). Pleae check:
+           http://developer.android.com/google/gcm/gcm.html
+           You may have the change to use GCM in the future, so please set minSdk to at least 9.
+[Notice]  Native Library Loading Checking:
+           Native library loading codes(System.loadLibrary(...)) found:
+               [libmonodroid.so]
+               => Lmono/MonoPackageManager;->LoadApplication(Landroid/content/Context; Ljava/lang/String; [Ljava/lang/String;)V (0x12) --->
+                    Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
+[Notice]  Native Methods Checking:
+           Native methods found:
+               Class: Landroid/runtime/UncaughtExceptionHandler;
+                  ->Methods:
+                       n_uncaughtException(Ljava/lang/Thread; Ljava/lang/Throwable;)V
+               Class: Landroid/runtime/XmlReaderPullParser;
+                  ->Methods:
+                       n_defineEntityReplacementText(Ljava/lang/String; Ljava/lang/String;)V
+                       n_getAttributeCount()I
+                       n_getAttributeName(I)Ljava/lang/String;
+                       n_getAttributeNamespace(I)Ljava/lang/String;
+                       n_getAttributePrefix(I)Ljava/lang/String;
+                       n_getAttributeType(I)Ljava/lang/String;
+                       n_getAttributeValue(I)Ljava/lang/String;
+                       n_getAttributeValue(Ljava/lang/String; Ljava/lang/String;)Ljava/lang/String;
+                       n_getColumnNumber()I
+                       n_getDepth()I
+                       n_getEventType()I
+                       n_getFeature(Ljava/lang/String;)Z
+                       n_getInputEncoding()Ljava/lang/String;
+                       n_getLineNumber()I
+                       n_getName()Ljava/lang/String;
+                       n_getNamespace()Ljava/lang/String;
+                       n_getNamespace(Ljava/lang/String;)Ljava/lang/String;
+                       n_getNamespaceCount(I)I
+                       n_getNamespacePrefix(I)Ljava/lang/String;
+                       n_getNamespaceUri(I)Ljava/lang/String;
+                       n_getPositionDescription()Ljava/lang/String;
+                       n_getPrefix()Ljava/lang/String;
+                       n_getProperty(Ljava/lang/String;)Ljava/lang/Object;
+                       n_getText()Ljava/lang/String;
+                       n_getTextCharacters([I)[C
+                       n_isAttributeDefault(I)Z
+                       n_isEmptyElementTag()Z
+                       n_isWhitespace()Z
+                       n_next()I
+                       n_nextTag()I
+                       n_nextText()Ljava/lang/String;
+                       n_nextToken()I
+                       n_require(I Ljava/lang/String; Ljava/lang/String;)V
+                       n_setFeature(Ljava/lang/String; Z)V
+                       n_setInput(Ljava/io/InputStream; Ljava/lang/String;)V
+                       n_setInput(Ljava/io/Reader;)V
+                       n_setProperty(Ljava/lang/String; Ljava/lang/Object;)V
+               Class: Landroid/runtime/XmlReaderResourceParser;
+                  ->Methods:
+                       n_close()V
+                       n_defineEntityReplacementText(Ljava/lang/String; Ljava/lang/String;)V
+                       n_getAttributeBooleanValue(I Z)Z
+                       n_getAttributeBooleanValue(Ljava/lang/String; Ljava/lang/String; Z)Z
+                       n_getAttributeCount()I
+                       n_getAttributeFloatValue(I F)F
+                       n_getAttributeFloatValue(Ljava/lang/String; Ljava/lang/String; F)F
+                       n_getAttributeIntValue(I I)I
+                       n_getAttributeIntValue(Ljava/lang/String; Ljava/lang/String; I)I
+                       n_getAttributeListValue(I [Ljava/lang/String; I)I
+                       n_getAttributeListValue(Ljava/lang/String; Ljava/lang/String; [Ljava/lang/String; I)I
+                       n_getAttributeName(I)Ljava/lang/String;
+                       n_getAttributeNameResource(I)I
+                       n_getAttributeNamespace(I)Ljava/lang/String;
+                       n_getAttributePrefix(I)Ljava/lang/String;
+                       n_getAttributeResourceValue(I I)I
+                       n_getAttributeResourceValue(Ljava/lang/String; Ljava/lang/String; I)I
+                       n_getAttributeType(I)Ljava/lang/String;
+                       n_getAttributeUnsignedIntValue(I I)I
+                       n_getAttributeUnsignedIntValue(Ljava/lang/String; Ljava/lang/String; I)I
+                       n_getAttributeValue(I)Ljava/lang/String;
+                       n_getAttributeValue(Ljava/lang/String; Ljava/lang/String;)Ljava/lang/String;
+                       n_getClassAttribute()Ljava/lang/String;
+                       n_getColumnNumber()I
+                       n_getDepth()I
+                       n_getEventType()I
+                       n_getFeature(Ljava/lang/String;)Z
+                       n_getIdAttribute()Ljava/lang/String;
+                       n_getIdAttributeResourceValue(I)I
+                       n_getInputEncoding()Ljava/lang/String;
+                       n_getLineNumber()I
+                       n_getName()Ljava/lang/String;
+                       n_getNamespace()Ljava/lang/String;
+                       n_getNamespace(Ljava/lang/String;)Ljava/lang/String;
+                       n_getNamespaceCount(I)I
+                       n_getNamespacePrefix(I)Ljava/lang/String;
+                       n_getNamespaceUri(I)Ljava/lang/String;
+                       n_getPositionDescription()Ljava/lang/String;
+                       n_getPrefix()Ljava/lang/String;
+                       n_getProperty(Ljava/lang/String;)Ljava/lang/Object;
+                       n_getStyleAttribute()I
+                       n_getText()Ljava/lang/String;
+                       n_getTextCharacters([I)[C
+                       n_isAttributeDefault(I)Z
+                       n_isEmptyElementTag()Z
+                       n_isWhitespace()Z
+                       n_next()I
+                       n_nextTag()I
+                       n_nextText()Ljava/lang/String;
+                       n_nextToken()I
+                       n_require(I Ljava/lang/String; Ljava/lang/String;)V
+                       n_setFeature(Ljava/lang/String; Z)V
+                       n_setInput(Ljava/io/InputStream; Ljava/lang/String;)V
+                       n_setInput(Ljava/io/Reader;)V
+                       n_setProperty(Ljava/lang/String; Ljava/lang/Object;)V
+               Class: Lcowboyadventure/Activity1;
+                  ->Methods:
+                       n_onCreate(Landroid/os/Bundle;)V
+               Class: Lcowboyadventure/GameActivity;
+                  ->Methods:
+                       n_onCreate(Landroid/os/Bundle;)V
+               Class: Lcowboyadventure/HomeActivity;
+                  ->Methods:
+                       n_onCreate(Landroid/os/Bundle;)V
+               Class: Lmicrosoft/devices/sensors/Accelerometer_SensorListener;
+                  ->Methods:
+                       n_onAccuracyChanged(Landroid/hardware/Sensor; I)V
+                       n_onSensorChanged(Landroid/hardware/SensorEvent;)V
+               Class: Lmicrosoft/devices/sensors/Compass_SensorListener;
+                  ->Methods:
+                       n_onAccuracyChanged(Landroid/hardware/Sensor; I)V
+                       n_onSensorChanged(Landroid/hardware/SensorEvent;)V
+               Class: Lmicrosoft/xna/framework/AndroidGameActivity;
+                  ->Methods:
+                       n_onConfigurationChanged(Landroid/content/res/Configuration;)V
+                       n_onCreate(Landroid/os/Bundle;)V
+                       n_onDestroy()V
+                       n_onPause()V
+                       n_onResume()V
+               Class: Lmicrosoft/xna/framework/MonoGameAndroidGameView;
+                  ->Methods:
+                       n_onKeyDown(I Landroid/view/KeyEvent;)Z
+                       n_onKeyUp(I Landroid/view/KeyEvent;)Z
+                       n_onTouch(Landroid/view/View; Landroid/view/MotionEvent;)Z
+                       n_surfaceChanged(Landroid/view/SurfaceHolder; I I I)V
+                       n_surfaceCreated(Landroid/view/SurfaceHolder;)V
+                       n_surfaceDestroyed(Landroid/view/SurfaceHolder;)V
+               Class: Lmicrosoft/xna/framework/OrientationListener;
+                  ->Methods:
+                       n_onOrientationChanged(I)V
+               Class: Lmicrosoft/xna/framework/ScreenReceiver;
+                  ->Methods:
+                       n_onReceive(Landroid/content/Context; Landroid/content/Intent;)V
+               Class: Lmono/android/Runtime;
+                  ->Methods:
+                       init(Ljava/lang/String; [Ljava/lang/String; Ljava/lang/String; [Ljava/lang/String; Ljava/lang/ClassLoader;
+                    Ljava/lang/String; [Ljava/lang/String; Ljava/lang/String;)V
+                       register(Ljava/lang/String; Ljava/lang/Class; Ljava/lang/String;)V
+               Class: Lmono/android/TypeManager;
+                  ->Methods:
+                       n_activate(Ljava/lang/String; Ljava/lang/String; Ljava/lang/Object; [Ljava/lang/Object;)V
+               Class: Lmono/android/accounts/OnAccountsUpdateListenerImplementor;
+                  ->Methods:
+                       n_onAccountsUpdated([Landroid/accounts/Account;)V
+               Class: Lmono/android/animation/AnimatorEventDispatcher;
+                  ->Methods:
+                       n_onAnimationCancel(Landroid/animation/Animator;)V
+                       n_onAnimationEnd(Landroid/animation/Animator;)V
+                       n_onAnimationRepeat(Landroid/animation/Animator;)V
+                       n_onAnimationStart(Landroid/animation/Animator;)V
+               Class: Lmono/android/animation/Animator_AnimatorListenerImplementor;
+                  ->Methods:
+                       n_onAnimationCancel(Landroid/animation/Animator;)V
+                       n_onAnimationEnd(Landroid/animation/Animator;)V
+                       n_onAnimationRepeat(Landroid/animation/Animator;)V
+                       n_onAnimationStart(Landroid/animation/Animator;)V
+               Class: Lmono/android/animation/LayoutTransition_TransitionListenerImplementor;
+                  ->Methods:
+                       n_endTransition(Landroid/animation/LayoutTransition; Landroid/view/ViewGroup; Landroid/view/View; I)V
+                       n_startTransition(Landroid/animation/LayoutTransition; Landroid/view/ViewGroup; Landroid/view/View; I)V
+               Class: Lmono/android/animation/TimeAnimator_TimeListenerImplementor;
+                  ->Methods:
+                       n_onTimeUpdate(Landroid/animation/TimeAnimator; J J)V
+               Class: Lmono/android/animation/ValueAnimator_AnimatorUpdateListenerImplementor;
+                  ->Methods:
+                       n_onAnimationUpdate(Landroid/animation/ValueAnimator;)V
+               Class: Lmono/android/app/ActionBar_OnMenuVisibilityListenerImplementor;
+                  ->Methods:
+                       n_onMenuVisibilityChanged(Z)V
+               Class: Lmono/android/app/ActionBar_OnNavigationListenerImplementor;
+                  ->Methods:
+                       n_onNavigationItemSelected(I J)Z
+               Class: Lmono/android/app/ActionBar_TabListenerImplementor;
+                  ->Methods:
+                       n_onTabReselected(Landroid/app/ActionBar$Tab; Landroid/app/FragmentTransaction;)V
+                       n_onTabSelected(Landroid/app/ActionBar$Tab; Landroid/app/FragmentTransaction;)V
+                       n_onTabUnselected(Landroid/app/ActionBar$Tab; Landroid/app/FragmentTransaction;)V
+               Class: Lmono/android/app/DatePickerDialog_OnDateSetListenerImplementor;
+                  ->Methods:
+                       n_onDateSet(Landroid/widget/DatePicker; I I I)V
+               Class: Lmono/android/app/FragmentBreadCrumbs_OnBreadCrumbClickListenerImplementor;
+                  ->Methods:
+                       n_onBreadCrumbClick(Landroid/app/FragmentManager$BackStackEntry; I)Z
+               Class: Lmono/android/app/FragmentManager_OnBackStackChangedListenerImplementor;
+                  ->Methods:
+                       n_onBackStackChanged()V
+               Class: Lmono/android/app/SearchManager_OnCancelListenerImplementor;
+                  ->Methods:
+                       n_onCancel()V
+               Class: Lmono/android/app/SearchManager_OnDismissListenerImplementor;
+                  ->Methods:
+                       n_onDismiss()V
+               Class: Lmono/android/app/TabEventDispatcher;
+                  ->Methods:
+                       n_onTabReselected(Landroid/app/ActionBar$Tab; Landroid/app/FragmentTransaction;)V
+                       n_onTabSelected(Landroid/app/ActionBar$Tab; Landroid/app/FragmentTransaction;)V
+                       n_onTabUnselected(Landroid/app/ActionBar$Tab; Landroid/app/FragmentTransaction;)V
+               Class: Lmono/android/app/TimePickerDialog_OnTimeSetListenerImplementor;
+                  ->Methods:
+                       n_onTimeSet(Landroid/widget/TimePicker; I I)V
+               Class: Lmono/android/bluetooth/BluetoothProfile_ServiceListenerImplementor;
+                  ->Methods:
+                       n_onServiceConnected(I Landroid/bluetooth/BluetoothProfile;)V
+                       n_onServiceDisconnected(I)V
+               Class: Lmono/android/content/ClipboardManager_OnPrimaryClipChangedListenerImplementor;
+                  ->Methods:
+                       n_onPrimaryClipChanged()V
+               Class: Lmono/android/content/DialogInterface_OnCancelListenerImplementor;
+                  ->Methods:
+                       n_onCancel(Landroid/content/DialogInterface;)V
+               Class: Lmono/android/content/DialogInterface_OnClickListenerImplementor;
+                  ->Methods:
+                       n_onClick(Landroid/content/DialogInterface; I)V
+               Class: Lmono/android/content/DialogInterface_OnDismissListenerImplementor;
+                  ->Methods:
+                       n_onDismiss(Landroid/content/DialogInterface;)V
+               Class: Lmono/android/content/DialogInterface_OnKeyListenerImplementor;
+                  ->Methods:
+                       n_onKey(Landroid/content/DialogInterface; I Landroid/view/KeyEvent;)Z
+               Class: Lmono/android/content/DialogInterface_OnMultiChoiceClickListenerImplementor;
+                  ->Methods:
+                       n_onClick(Landroid/content/DialogInterface; I Z)V
+               Class: Lmono/android/content/DialogInterface_OnShowListenerImplementor;
+                  ->Methods:
+                       n_onShow(Landroid/content/DialogInterface;)V
+               Class: Lmono/android/content/Loader_OnLoadCanceledListenerImplementor;
+                  ->Methods:
+                       n_onLoadCanceled(Landroid/content/Loader;)V
+               Class: Lmono/android/content/Loader_OnLoadCompleteListenerImplementor;
+                  ->Methods:
+                       n_onLoadComplete(Landroid/content/Loader; Ljava/lang/Object;)V
+               Class: Lmono/android/content/SharedPreferences_OnSharedPreferenceChangeListenerImplementor;
+                  ->Methods:
+                       n_onSharedPreferenceChanged(Landroid/content/SharedPreferences; Ljava/lang/String;)V
+               Class: Lmono/android/database/sqlite/SQLiteTransactionListenerImplementor;
+                  ->Methods:
+                       n_onBegin()V
+                       n_onCommit()V
+                       n_onRollback()V
+               Class: Lmono/android/drm/DrmManagerClient_OnErrorListenerImplementor;
+                  ->Methods:
+                       n_onError(Landroid/drm/DrmManagerClient; Landroid/drm/DrmErrorEvent;)V
+               Class: Lmono/android/drm/DrmManagerClient_OnEventListenerImplementor;
+                  ->Methods:
+                       n_onEvent(Landroid/drm/DrmManagerClient; Landroid/drm/DrmEvent;)V
+               Class: Lmono/android/drm/DrmManagerClient_OnInfoListenerImplementor;
+                  ->Methods:
+                       n_onInfo(Landroid/drm/DrmManagerClient; Landroid/drm/DrmInfoEvent;)V
+               Class: Lmono/android/gesture/GestureOverlayView_OnGestureListenerImplementor;
+                  ->Methods:
+                       n_onGesture(Landroid/gesture/GestureOverlayView; Landroid/view/MotionEvent;)V
+                       n_onGestureCancelled(Landroid/gesture/GestureOverlayView; Landroid/view/MotionEvent;)V
+                       n_onGestureEnded(Landroid/gesture/GestureOverlayView; Landroid/view/MotionEvent;)V
+                       n_onGestureStarted(Landroid/gesture/GestureOverlayView; Landroid/view/MotionEvent;)V
+               Class: Lmono/android/gesture/GestureOverlayView_OnGesturePerformedListenerImplementor;
+                  ->Methods:
+                       n_onGesturePerformed(Landroid/gesture/GestureOverlayView; Landroid/gesture/Gesture;)V
+               Class: Lmono/android/gesture/GestureOverlayView_OnGesturingListenerImplementor;
+                  ->Methods:
+                       n_onGesturingEnded(Landroid/gesture/GestureOverlayView;)V
+                       n_onGesturingStarted(Landroid/gesture/GestureOverlayView;)V
+               Class: Lmono/android/graphics/SurfaceTexture_OnFrameAvailableListenerImplementor;
+                  ->Methods:
+                       n_onFrameAvailable(Landroid/graphics/SurfaceTexture;)V
+               Class: Lmono/android/hardware/Camera_FaceDetectionListenerImplementor;
+                  ->Methods:
+                       n_onFaceDetection([Landroid/hardware/Camera$Face; Landroid/hardware/Camera;)V
+               Class: Lmono/android/hardware/Camera_OnZoomChangeListenerImplementor;
+                  ->Methods:
+                       n_onZoomChange(I Z Landroid/hardware/Camera;)V
+               Class: Lmono/android/hardware/SensorEventListenerImplementor;
+                  ->Methods:
+                       n_onAccuracyChanged(Landroid/hardware/Sensor; I)V
+                       n_onSensorChanged(Landroid/hardware/SensorEvent;)V
+               Class: Lmono/android/hardware/SensorListenerImplementor;
+                  ->Methods:
+                       n_onAccuracyChanged(I I)V
+                       n_onSensorChanged(I [F)V
+               Class: Lmono/android/hardware/display/DisplayManager_DisplayListenerImplementor;
+                  ->Methods:
+                       n_onDisplayAdded(I)V
+                       n_onDisplayChanged(I)V
+                       n_onDisplayRemoved(I)V
+               Class: Lmono/android/hardware/input/InputManager_InputDeviceListenerImplementor;
+                  ->Methods:
+                       n_onInputDeviceAdded(I)V
+                       n_onInputDeviceChanged(I)V
+                       n_onInputDeviceRemoved(I)V
+               Class: Lmono/android/inputmethodservice/KeyboardView_OnKeyboardActionListenerImplementor;
+                  ->Methods:
+                       n_onKey(I [I)V
+                       n_onPress(I)V
+                       n_onRelease(I)V
+                       n_onText(Ljava/lang/CharSequence;)V
+                       n_swipeDown()V
+                       n_swipeLeft()V
+                       n_swipeRight()V
+                       n_swipeUp()V
+               Class: Lmono/android/location/GpsStatus_ListenerImplementor;
+                  ->Methods:
+                       n_onGpsStatusChanged(I)V
+               Class: Lmono/android/location/GpsStatus_NmeaListenerImplementor;
+                  ->Methods:
+                       n_onNmeaReceived(J Ljava/lang/String;)V
+               Class: Lmono/android/location/LocationListenerImplementor;
+                  ->Methods:
+                       n_onLocationChanged(Landroid/location/Location;)V
+                       n_onProviderDisabled(Ljava/lang/String;)V
+                       n_onProviderEnabled(Ljava/lang/String;)V
+                       n_onStatusChanged(Ljava/lang/String; I Landroid/os/Bundle;)V
+               Class: Lmono/android/media/AudioManager_OnAudioFocusChangeListenerImplementor;
+                  ->Methods:
+                       n_onAudioFocusChange(I)V
+               Class: Lmono/android/media/AudioRecord_OnRecordPositionUpdateListenerImplementor;
+                  ->Methods:
+                       n_onMarkerReached(Landroid/media/AudioRecord;)V
+                       n_onPeriodicNotification(Landroid/media/AudioRecord;)V
+               Class: Lmono/android/media/AudioTrack_OnPlaybackPositionUpdateListenerImplementor;
+                  ->Methods:
+                       n_onMarkerReached(Landroid/media/AudioTrack;)V
+                       n_onPeriodicNotification(Landroid/media/AudioTrack;)V
+               Class: Lmono/android/media/JetPlayer_OnJetEventListenerImplementor;
+                  ->Methods:
+                       n_onJetEvent(Landroid/media/JetPlayer; S B B B B)V
+                       n_onJetNumQueuedSegmentUpdate(Landroid/media/JetPlayer; I)V
+                       n_onJetPauseUpdate(Landroid/media/JetPlayer; I)V
+                       n_onJetUserIdUpdate(Landroid/media/JetPlayer; I I)V
+               Class: Lmono/android/media/MediaPlayer_OnBufferingUpdateListenerImplementor;
+                  ->Methods:
+                       n_onBufferingUpdate(Landroid/media/MediaPlayer; I)V
+               Class: Lmono/android/media/MediaPlayer_OnCompletionListenerImplementor;
+                  ->Methods:
+                       n_onCompletion(Landroid/media/MediaPlayer;)V
+               Class: Lmono/android/media/MediaPlayer_OnErrorListenerImplementor;
+                  ->Methods:
+                       n_onError(Landroid/media/MediaPlayer; I I)Z
+               Class: Lmono/android/media/MediaPlayer_OnInfoListenerImplementor;
+                  ->Methods:
+                       n_onInfo(Landroid/media/MediaPlayer; I I)Z
+               Class: Lmono/android/media/MediaPlayer_OnPreparedListenerImplementor;
+                  ->Methods:
+                       n_onPrepared(Landroid/media/MediaPlayer;)V
+               Class: Lmono/android/media/MediaPlayer_OnSeekCompleteListenerImplementor;
+                  ->Methods:
+                       n_onSeekComplete(Landroid/media/MediaPlayer;)V
+               Class: Lmono/android/media/MediaPlayer_OnTimedTextListenerImplementor;
+                  ->Methods:
+                       n_onTimedText(Landroid/media/MediaPlayer; Landroid/media/TimedText;)V
+               Class: Lmono/android/media/MediaPlayer_OnVideoSizeChangedListenerImplementor;
+                  ->Methods:
+                       n_onVideoSizeChanged(Landroid/media/MediaPlayer; I I)V
+               Class: Lmono/android/media/MediaRecorder_OnErrorListenerImplementor;
+                  ->Methods:
+                       n_onError(Landroid/media/MediaRecorder; I I)V
+               Class: Lmono/android/media/MediaRecorder_OnInfoListenerImplementor;
+                  ->Methods:
+                       n_onInfo(Landroid/media/MediaRecorder; I I)V
+               Class: Lmono/android/media/MediaScannerConnection_OnScanCompletedListenerImplementor;
+                  ->Methods:
+                       n_onScanCompleted(Ljava/lang/String; Landroid/net/Uri;)V
+               Class: Lmono/android/media/SoundPool_OnLoadCompleteListenerImplementor;
+                  ->Methods:
+                       n_onLoadComplete(Landroid/media/SoundPool; I I)V
+               Class: Lmono/android/media/audiofx/AudioEffect_OnControlStatusChangeListenerImplementor;
+                  ->Methods:
+                       n_onControlStatusChange(Landroid/media/audiofx/AudioEffect; Z)V
+               Class: Lmono/android/media/audiofx/AudioEffect_OnEnableStatusChangeListenerImplementor;
+                  ->Methods:
+                       n_onEnableStatusChange(Landroid/media/audiofx/AudioEffect; Z)V
+               Class: Lmono/android/media/audiofx/BassBoost_OnParameterChangeListenerImplementor;
+                  ->Methods:
+                       n_onParameterChange(Landroid/media/audiofx/BassBoost; I I S)V
+               Class: Lmono/android/media/audiofx/EnvironmentalReverb_OnParameterChangeListenerImplementor;
+                  ->Methods:
+                       n_onParameterChange(Landroid/media/audiofx/EnvironmentalReverb; I I I)V
+               Class: Lmono/android/media/audiofx/Equalizer_OnParameterChangeListenerImplementor;
+                  ->Methods:
+                       n_onParameterChange(Landroid/media/audiofx/Equalizer; I I I I)V
+               Class: Lmono/android/media/audiofx/PresetReverb_OnParameterChangeListenerImplementor;
+                  ->Methods:
+                       n_onParameterChange(Landroid/media/audiofx/PresetReverb; I I S)V
+               Class: Lmono/android/media/audiofx/Virtualizer_OnParameterChangeListenerImplementor;
+                  ->Methods:
+                       n_onParameterChange(Landroid/media/audiofx/Virtualizer; I I S)V
+               Class: Lmono/android/media/audiofx/Visualizer_OnDataCaptureListenerImplementor;
+                  ->Methods:
+                       n_onFftDataCapture(Landroid/media/audiofx/Visualizer; [B I)V
+                       n_onWaveFormDataCapture(Landroid/media/audiofx/Visualizer; [B I)V
+               Class: Lmono/android/media/effect/EffectUpdateListenerImplementor;
+                  ->Methods:
+                       n_onEffectUpdated(Landroid/media/effect/Effect; Ljava/lang/Object;)V
+               Class: Lmono/android/net/nsd/NsdManager_DiscoveryListenerImplementor;
+                  ->Methods:
+                       n_onDiscoveryStarted(Ljava/lang/String;)V
+                       n_onDiscoveryStopped(Ljava/lang/String;)V
+                       n_onServiceFound(Landroid/net/nsd/NsdServiceInfo;)V
+                       n_onServiceLost(Landroid/net/nsd/NsdServiceInfo;)V
+                       n_onStartDiscoveryFailed(Ljava/lang/String; I)V
+                       n_onStopDiscoveryFailed(Ljava/lang/String; I)V
+               Class: Lmono/android/net/nsd/NsdManager_RegistrationListenerImplementor;
+                  ->Methods:
+                       n_onRegistrationFailed(Landroid/net/nsd/NsdServiceInfo; I)V
+                       n_onServiceRegistered(Landroid/net/nsd/NsdServiceInfo;)V
+                       n_onServiceUnregistered(Landroid/net/nsd/NsdServiceInfo;)V
+                       n_onUnregistrationFailed(Landroid/net/nsd/NsdServiceInfo; I)V
+               Class: Lmono/android/net/nsd/NsdManager_ResolveListenerImplementor;
+                  ->Methods:
+                       n_onResolveFailed(Landroid/net/nsd/NsdServiceInfo; I)V
+                       n_onServiceResolved(Landroid/net/nsd/NsdServiceInfo;)V
+               Class: Lmono/android/net/sip/SipRegistrationListenerImplementor;
+                  ->Methods:
+                       n_onRegistering(Ljava/lang/String;)V
+                       n_onRegistrationDone(Ljava/lang/String; J)V
+                       n_onRegistrationFailed(Ljava/lang/String; I Ljava/lang/String;)V
+               Class: Lmono/android/net/wifi/p2p/WifiP2pManager_ActionListenerImplementor;
+                  ->Methods:
+                       n_onFailure(I)V
+                       n_onSuccess()V
+               Class: Lmono/android/net/wifi/p2p/WifiP2pManager_ChannelListenerImplementor;
+                  ->Methods:
+                       n_onChannelDisconnected()V
+               Class: Lmono/android/net/wifi/p2p/WifiP2pManager_ConnectionInfoListenerImplementor;
+                  ->Methods:
+                       n_onConnectionInfoAvailable(Landroid/net/wifi/p2p/WifiP2pInfo;)V
+               Class: Lmono/android/net/wifi/p2p/WifiP2pManager_DnsSdServiceResponseListenerImplementor;
+                  ->Methods:
+                       n_onDnsSdServiceAvailable(Ljava/lang/String; Ljava/lang/String; Landroid/net/wifi/p2p/WifiP2pDevice;)V
+               Class: Lmono/android/net/wifi/p2p/WifiP2pManager_DnsSdTxtRecordListenerImplementor;
+                  ->Methods:
+                       n_onDnsSdTxtRecordAvailable(Ljava/lang/String; Ljava/util/Map; Landroid/net/wifi/p2p/WifiP2pDevice;)V
+               Class: Lmono/android/net/wifi/p2p/WifiP2pManager_GroupInfoListenerImplementor;
+                  ->Methods:
+                       n_onGroupInfoAvailable(Landroid/net/wifi/p2p/WifiP2pGroup;)V
+               Class: Lmono/android/net/wifi/p2p/WifiP2pManager_PeerListListenerImplementor;
+                  ->Methods:
+                       n_onPeersAvailable(Landroid/net/wifi/p2p/WifiP2pDeviceList;)V
+               Class: Lmono/android/net/wifi/p2p/WifiP2pManager_UpnpServiceResponseListenerImplementor;
+                  ->Methods:
+                       n_onUpnpServiceAvailable(Ljava/util/List; Landroid/net/wifi/p2p/WifiP2pDevice;)V
+               Class: Lmono/android/os/ActionHandlerCallback;
+                  ->Methods:
+                       n_handleMessage(Landroid/os/Message;)Z
+               Class: Lmono/android/os/CancellationSignal_OnCancelListenerImplementor;
+                  ->Methods:
+                       n_onCancel()V
+               Class: Lmono/android/os/RecoverySystem_ProgressListenerImplementor;
+                  ->Methods:
+                       n_onProgress(I)V
+               Class: Lmono/android/preference/PreferenceManager_OnActivityDestroyListenerImplementor;
+                  ->Methods:
+                       n_onActivityDestroy()V
+               Class: Lmono/android/preference/PreferenceManager_OnActivityResultListenerImplementor;
+                  ->Methods:
+                       n_onActivityResult(I I Landroid/content/Intent;)Z
+               Class: Lmono/android/preference/PreferenceManager_OnActivityStopListenerImplementor;
+                  ->Methods:
+                       n_onActivityStop()V
+               Class: Lmono/android/preference/Preference_OnPreferenceChangeListenerImplementor;
+                  ->Methods:
+                       n_onPreferenceChange(Landroid/preference/Preference; Ljava/lang/Object;)Z
+               Class: Lmono/android/preference/Preference_OnPreferenceClickListenerImplementor;
+                  ->Methods:
+                       n_onPreferenceClick(Landroid/preference/Preference;)Z
+               Class: Lmono/android/runtime/InputStreamAdapter;
+                  ->Methods:
+                       n_close()V
+                       n_read()I
+                       n_read([B)I
+                       n_read([B I I)I
+               Class: Lmono/android/runtime/JavaObject;
+                  ->Methods:
+                       n_clone()Ljava/lang/Object;
+                       n_equals(Ljava/lang/Object;)Z
+                       n_hashCode()I
+                       n_toString()Ljava/lang/String;
+               Class: Lmono/android/runtime/OutputStreamAdapter;
+                  ->Methods:
+                       n_close()V
+                       n_flush()V
+                       n_write(I)V
+                       n_write([B)V
+                       n_write([B I I)V
+               Class: Lmono/android/sax/EndElementListenerImplementor;
+                  ->Methods:
+                       n_end()V
+               Class: Lmono/android/sax/EndTextElementListenerImplementor;
+                  ->Methods:
+                       n_end(Ljava/lang/String;)V
+               Class: Lmono/android/sax/StartElementListenerImplementor;
+                  ->Methods:
+                       n_start(Lorg/xml/sax/Attributes;)V
+               Class: Lmono/android/speech/RecognitionListenerImplementor;
+                  ->Methods:
+                       n_onBeginningOfSpeech()V
+                       n_onBufferReceived([B)V
+                       n_onEndOfSpeech()V
+                       n_onError(I)V
+                       n_onEvent(I Landroid/os/Bundle;)V
+                       n_onPartialResults(Landroid/os/Bundle;)V
+                       n_onReadyForSpeech(Landroid/os/Bundle;)V
+                       n_onResults(Landroid/os/Bundle;)V
+                       n_onRmsChanged(F)V
+               Class: Lmono/android/speech/tts/TextToSpeech_OnInitListenerImplementor;
+                  ->Methods:
+                       n_onInit(I)V
+               Class: Lmono/android/speech/tts/TextToSpeech_OnUtteranceCompletedListenerImplementor;
+                  ->Methods:
+                       n_onUtteranceCompleted(Ljava/lang/String;)V
+               Class: Lmono/android/text/TextWatcherImplementor;
+                  ->Methods:
+                       n_afterTextChanged(Landroid/text/Editable;)V
+                       n_beforeTextChanged(Ljava/lang/CharSequence; I I I)V
+                       n_onTextChanged(Ljava/lang/CharSequence; I I I)V
+               Class: Lmono/android/view/ActionProvider_VisibilityListenerImplementor;
+                  ->Methods:
+                       n_onActionProviderVisibilityChanged(Z)V
+               Class: Lmono/android/view/GestureDetector_OnDoubleTapListenerImplementor;
+                  ->Methods:
+                       n_onDoubleTap(Landroid/view/MotionEvent;)Z
+                       n_onDoubleTapEvent(Landroid/view/MotionEvent;)Z
+                       n_onSingleTapConfirmed(Landroid/view/MotionEvent;)Z
+               Class: Lmono/android/view/GestureDetector_OnGestureListenerImplementor;
+                  ->Methods:
+                       n_onDown(Landroid/view/MotionEvent;)Z
+                       n_onFling(Landroid/view/MotionEvent; Landroid/view/MotionEvent; F F)Z
+                       n_onLongPress(Landroid/view/MotionEvent;)V
+                       n_onScroll(Landroid/view/MotionEvent; Landroid/view/MotionEvent; F F)Z
+                       n_onShowPress(Landroid/view/MotionEvent;)V
+                       n_onSingleTapUp(Landroid/view/MotionEvent;)Z
+               Class: Lmono/android/view/MenuItem_OnActionExpandListenerImplementor;
+                  ->Methods:
+                       n_onMenuItemActionCollapse(Landroid/view/MenuItem;)Z
+                       n_onMenuItemActionExpand(Landroid/view/MenuItem;)Z
+               Class: Lmono/android/view/MenuItem_OnMenuItemClickListenerImplementor;
+                  ->Methods:
+                       n_onMenuItemClick(Landroid/view/MenuItem;)Z
+               Class: Lmono/android/view/ScaleGestureDetector_OnScaleGestureListenerImplementor;
+                  ->Methods:
+                       n_onScale(Landroid/view/ScaleGestureDetector;)Z
+                       n_onScaleBegin(Landroid/view/ScaleGestureDetector;)Z
+                       n_onScaleEnd(Landroid/view/ScaleGestureDetector;)V
+               Class: Lmono/android/view/TextureView_SurfaceTextureListenerImplementor;
+                  ->Methods:
+                       n_onSurfaceTextureAvailable(Landroid/graphics/SurfaceTexture; I I)V
+                       n_onSurfaceTextureDestroyed(Landroid/graphics/SurfaceTexture;)Z
+                       n_onSurfaceTextureSizeChanged(Landroid/graphics/SurfaceTexture; I I)V
+                       n_onSurfaceTextureUpdated(Landroid/graphics/SurfaceTexture;)V
+               Class: Lmono/android/view/ViewGroup_OnHierarchyChangeListenerImplementor;
+                  ->Methods:
+                       n_onChildViewAdded(Landroid/view/View; Landroid/view/View;)V
+                       n_onChildViewRemoved(Landroid/view/View; Landroid/view/View;)V
+               Class: Lmono/android/view/ViewStub_OnInflateListenerImplementor;
+                  ->Methods:
+                       n_onInflate(Landroid/view/ViewStub; Landroid/view/View;)V
+               Class: Lmono/android/view/ViewTreeObserver_OnDrawListenerImplementor;
+                  ->Methods:
+                       n_onDraw()V
+               Class: Lmono/android/view/ViewTreeObserver_OnGlobalFocusChangeListenerImplementor;
+                  ->Methods:
+                       n_onGlobalFocusChanged(Landroid/view/View; Landroid/view/View;)V
+               Class: Lmono/android/view/ViewTreeObserver_OnGlobalLayoutListenerImplementor;
+                  ->Methods:
+                       n_onGlobalLayout()V
+               Class: Lmono/android/view/ViewTreeObserver_OnPreDrawListenerImplementor;
+                  ->Methods:
+                       n_onPreDraw()Z
+               Class: Lmono/android/view/ViewTreeObserver_OnScrollChangedListenerImplementor;
+                  ->Methods:
+                       n_onScrollChanged()V
+               Class: Lmono/android/view/ViewTreeObserver_OnTouchModeChangeListenerImplementor;
+                  ->Methods:
+                       n_onTouchModeChanged(Z)V
+               Class: Lmono/android/view/View_OnAttachStateChangeListenerImplementor;
+                  ->Methods:
+                       n_onViewAttachedToWindow(Landroid/view/View;)V
+                       n_onViewDetachedFromWindow(Landroid/view/View;)V
+               Class: Lmono/android/view/View_OnClickListenerImplementor;
+                  ->Methods:
+                       n_onClick(Landroid/view/View;)V
+               Class: Lmono/android/view/View_OnCreateContextMenuListenerImplementor;
+                  ->Methods:
+                       n_onCreateContextMenu(Landroid/view/ContextMenu; Landroid/view/View; Landroid/view/ContextMenu$ContextMenuInfo;)V
+               Class: Lmono/android/view/View_OnDragListenerImplementor;
+                  ->Methods:
+                       n_onDrag(Landroid/view/View; Landroid/view/DragEvent;)Z
+               Class: Lmono/android/view/View_OnFocusChangeListenerImplementor;
+                  ->Methods:
+                       n_onFocusChange(Landroid/view/View; Z)V
+               Class: Lmono/android/view/View_OnGenericMotionListenerImplementor;
+                  ->Methods:
+                       n_onGenericMotion(Landroid/view/View; Landroid/view/MotionEvent;)Z
+               Class: Lmono/android/view/View_OnHoverListenerImplementor;
+                  ->Methods:
+                       n_onHover(Landroid/view/View; Landroid/view/MotionEvent;)Z
+               Class: Lmono/android/view/View_OnKeyListenerImplementor;
+                  ->Methods:
+                       n_onKey(Landroid/view/View; I Landroid/view/KeyEvent;)Z
+               Class: Lmono/android/view/View_OnLayoutChangeListenerImplementor;
+                  ->Methods:
+                       n_onLayoutChange(Landroid/view/View; I I I I I I I I)V
+               Class: Lmono/android/view/View_OnLongClickListenerImplementor;
+                  ->Methods:
+                       n_onLongClick(Landroid/view/View;)Z
+               Class: Lmono/android/view/View_OnSystemUiVisibilityChangeListenerImplementor;
+                  ->Methods:
+                       n_onSystemUiVisibilityChange(I)V
+               Class: Lmono/android/view/View_OnTouchListenerImplementor;
+                  ->Methods:
+                       n_onTouch(Landroid/view/View; Landroid/view/MotionEvent;)Z
+               Class: Lmono/android/view/accessibility/AccessibilityManager_AccessibilityStateChangeListenerImplementor;
+                  ->Methods:
+                       n_onAccessibilityStateChanged(Z)V
+               Class: Lmono/android/view/animation/Animation_AnimationListenerImplementor;
+                  ->Methods:
+                       n_onAnimationEnd(Landroid/view/animation/Animation;)V
+                       n_onAnimationRepeat(Landroid/view/animation/Animation;)V
+                       n_onAnimationStart(Landroid/view/animation/Animation;)V
+               Class: Lmono/android/view/textservice/SpellCheckerSession_SpellCheckerSessionListenerImplementor;
+                  ->Methods:
+                       n_onGetSentenceSuggestions([Landroid/view/textservice/SentenceSuggestionsInfo;)V
+                       n_onGetSuggestions([Landroid/view/textservice/SuggestionsInfo;)V
+               Class: Lmono/android/webkit/DownloadListenerImplementor;
+                  ->Methods:
+                       n_onDownloadStart(Ljava/lang/String; Ljava/lang/String; Ljava/lang/String; Ljava/lang/String; J)V
+               Class: Lmono/android/webkit/WebIconDatabase_IconListenerImplementor;
+                  ->Methods:
+                       n_onReceivedIcon(Ljava/lang/String; Landroid/graphics/Bitmap;)V
+               Class: Lmono/android/webkit/WebView_FindListenerImplementor;
+                  ->Methods:
+                       n_onFindResultReceived(I I Z)V
+               Class: Lmono/android/webkit/WebView_PictureListenerImplementor;
+                  ->Methods:
+                       n_onNewPicture(Landroid/webkit/WebView; Landroid/graphics/Picture;)V
+               Class: Lmono/android/widget/AbsListView_OnScrollListenerImplementor;
+                  ->Methods:
+                       n_onScroll(Landroid/widget/AbsListView; I I I)V
+                       n_onScrollStateChanged(Landroid/widget/AbsListView; I)V
+               Class: Lmono/android/widget/AbsListView_RecyclerListenerImplementor;
+                  ->Methods:
+                       n_onMovedToScrapHeap(Landroid/view/View;)V
+               Class: Lmono/android/widget/AdapterView_OnItemClickListenerImplementor;
+                  ->Methods:
+                       n_onItemClick(Landroid/widget/AdapterView; Landroid/view/View; I J)V
+               Class: Lmono/android/widget/AdapterView_OnItemLongClickListenerImplementor;
+                  ->Methods:
+                       n_onItemLongClick(Landroid/widget/AdapterView; Landroid/view/View; I J)Z
+               Class: Lmono/android/widget/AdapterView_OnItemSelectedListenerImplementor;
+                  ->Methods:
+                       n_onItemSelected(Landroid/widget/AdapterView; Landroid/view/View; I J)V
+                       n_onNothingSelected(Landroid/widget/AdapterView;)V
+               Class: Lmono/android/widget/AutoCompleteTextView_OnDismissListenerImplementor;
+                  ->Methods:
+                       n_onDismiss()V
+               Class: Lmono/android/widget/CalendarView_OnDateChangeListenerImplementor;
+                  ->Methods:
+                       n_onSelectedDayChange(Landroid/widget/CalendarView; I I I)V
+               Class: Lmono/android/widget/Chronometer_OnChronometerTickListenerImplementor;
+                  ->Methods:
+                       n_onChronometerTick(Landroid/widget/Chronometer;)V
+               Class: Lmono/android/widget/CompoundButton_OnCheckedChangeListenerImplementor;
+                  ->Methods:
+                       n_onCheckedChanged(Landroid/widget/CompoundButton; Z)V
+               Class: Lmono/android/widget/DatePicker_OnDateChangedListenerImplementor;
+                  ->Methods:
+                       n_onDateChanged(Landroid/widget/DatePicker; I I I)V
+               Class: Lmono/android/widget/ExpandableListView_OnChildClickListenerImplementor;
+                  ->Methods:
+                       n_onChildClick(Landroid/widget/ExpandableListView; Landroid/view/View; I I J)Z
+               Class: Lmono/android/widget/ExpandableListView_OnGroupClickListenerImplementor;
+                  ->Methods:
+                       n_onGroupClick(Landroid/widget/ExpandableListView; Landroid/view/View; I J)Z
+               Class: Lmono/android/widget/ExpandableListView_OnGroupCollapseListenerImplementor;
+                  ->Methods:
+                       n_onGroupCollapse(I)V
+               Class: Lmono/android/widget/ExpandableListView_OnGroupExpandListenerImplementor;
+                  ->Methods:
+                       n_onGroupExpand(I)V
+               Class: Lmono/android/widget/Filter_FilterListenerImplementor;
+                  ->Methods:
+                       n_onFilterComplete(I)V
+               Class: Lmono/android/widget/NumberPicker_OnScrollListenerImplementor;
+                  ->Methods:
+                       n_onScrollStateChange(Landroid/widget/NumberPicker; I)V
+               Class: Lmono/android/widget/NumberPicker_OnValueChangeListenerImplementor;
+                  ->Methods:
+                       n_onValueChange(Landroid/widget/NumberPicker; I I)V
+               Class: Lmono/android/widget/PopupMenu_OnDismissListenerImplementor;
+                  ->Methods:
+                       n_onDismiss(Landroid/widget/PopupMenu;)V
+               Class: Lmono/android/widget/PopupMenu_OnMenuItemClickListenerImplementor;
+                  ->Methods:
+                       n_onMenuItemClick(Landroid/view/MenuItem;)Z
+               Class: Lmono/android/widget/PopupWindow_OnDismissListenerImplementor;
+                  ->Methods:
+                       n_onDismiss()V
+               Class: Lmono/android/widget/RadioGroup_OnCheckedChangeListenerImplementor;
+                  ->Methods:
+                       n_onCheckedChanged(Landroid/widget/RadioGroup; I)V
+               Class: Lmono/android/widget/RatingBar_OnRatingBarChangeListenerImplementor;
+                  ->Methods:
+                       n_onRatingChanged(Landroid/widget/RatingBar; F Z)V
+               Class: Lmono/android/widget/SearchView_OnCloseListenerImplementor;
+                  ->Methods:
+                       n_onClose()Z
+               Class: Lmono/android/widget/SearchView_OnQueryTextListenerImplementor;
+                  ->Methods:
+                       n_onQueryTextChange(Ljava/lang/String;)Z
+                       n_onQueryTextSubmit(Ljava/lang/String;)Z
+               Class: Lmono/android/widget/SearchView_OnSuggestionListenerImplementor;
+                  ->Methods:
+                       n_onSuggestionClick(I)Z
+                       n_onSuggestionSelect(I)Z
+               Class: Lmono/android/widget/SeekBar_OnSeekBarChangeListenerImplementor;
+                  ->Methods:
+                       n_onProgressChanged(Landroid/widget/SeekBar; I Z)V
+                       n_onStartTrackingTouch(Landroid/widget/SeekBar;)V
+                       n_onStopTrackingTouch(Landroid/widget/SeekBar;)V
+               Class: Lmono/android/widget/ShareActionProvider_OnShareTargetSelectedListenerImplementor;
+                  ->Methods:
+                       n_onShareTargetSelected(Landroid/widget/ShareActionProvider; Landroid/content/Intent;)Z
+               Class: Lmono/android/widget/SlidingDrawer_OnDrawerCloseListenerImplementor;
+                  ->Methods:
+                       n_onDrawerClosed()V
+               Class: Lmono/android/widget/SlidingDrawer_OnDrawerOpenListenerImplementor;
+                  ->Methods:
+                       n_onDrawerOpened()V
+               Class: Lmono/android/widget/SlidingDrawer_OnDrawerScrollListenerImplementor;
+                  ->Methods:
+                       n_onScrollEnded()V
+                       n_onScrollStarted()V
+               Class: Lmono/android/widget/TabHost_OnTabChangeListenerImplementor;
+                  ->Methods:
+                       n_onTabChanged(Ljava/lang/String;)V
+               Class: Lmono/android/widget/TextView_OnEditorActionListenerImplementor;
+                  ->Methods:
+                       n_onEditorAction(Landroid/widget/TextView; I Landroid/view/KeyEvent;)Z
+               Class: Lmono/android/widget/TimePicker_OnTimeChangedListenerImplementor;
+                  ->Methods:
+                       n_onTimeChanged(Landroid/widget/TimePicker; I I)V
+               Class: Lmono/android/widget/ZoomButtonsController_OnZoomListenerImplementor;
+                  ->Methods:
+                       n_onVisibilityChanged(Z)V
+                       n_onZoom(Z)V
+               Class: Lmono/java/lang/Runnable;
+                  ->Methods:
+                       n_run()V
+               Class: Lmono/java/lang/RunnableImplementor;
+                  ->Methods:
+                       n_run()V
+               Class: Lmono/javax/xml/transform/ErrorListenerImplementor;
+                  ->Methods:
+                       n_error(Ljavax/xml/transform/TransformerException;)V
+                       n_fatalError(Ljavax/xml/transform/TransformerException;)V
+                       n_warning(Ljavax/xml/transform/TransformerException;)V
+               Class: Lopentk/platform/android/AndroidGameView;
+                  ->Methods:
+                       n_surfaceChanged(Landroid/view/SurfaceHolder; I I I)V
+                       n_surfaceCreated(Landroid/view/SurfaceHolder;)V
+                       n_surfaceDestroyed(Landroid/view/SurfaceHolder;)V
+               Class: Lopentk_1_0/platform/android/AndroidGameView;
+                  ->Methods:
+                       n_surfaceChanged(Landroid/view/SurfaceHolder; I I I)V
+                       n_surfaceCreated(Landroid/view/SurfaceHolder;)V
+                       n_surfaceDestroyed(Landroid/view/SurfaceHolder;)V
+[Notice]  Security Methods Checking:
+           Find some security-related method names:
+               Landroid/runtime/XmlReaderPullParser;->n_getInputEncoding()Ljava/lang/String;
+               Landroid/runtime/XmlReaderPullParser;->getInputEncoding()Ljava/lang/String;
+               Landroid/runtime/XmlReaderResourceParser;->n_getInputEncoding()Ljava/lang/String;
+               Landroid/runtime/XmlReaderResourceParser;->getInputEncoding()Ljava/lang/String;
+[Info] <Command> Runtime Command Checking:
+           This app is not using critical function 'Runtime.getRuntime().exec("...")'.
+[Info] <Command> Executing "root" or System Privilege Checking:
+           Did not find codes checking "root" permission(su) or getting system permission (It's still possible we did not find out).
+[Info] <Database> SQLiteDatabase Transaction Deprecated Checking:
+           Ignore checking "SQLiteDatabase:beginTransactionNonExclusive" you're not using it.
+[Info] <Database> Android SQLite Databases Encryption (SQLite Encryption Extension (SEE)):
+           This app is "NOT" using SQLite Encryption Extension (SEE) on Android (http://www.sqlite.org/android) to encrypt or decrpyt
+           databases.
+[Info] <Database> Android SQLite Databases Encryption (SQLCipher):
+           This app is "NOT" using SQLCipher(http://sqlcipher.net/) to encrypt or decrpyt databases.
+[Info] <Database><#CVE-2011-3901#> Android SQLite Databases Vulnerability Checking:
+           This app is "NOT" using Android SQLite databases.
+[Info] <Debug> Android Debug Mode Checking:
+           DEBUG mode is OFF(android:debuggable="false") in AndroidManifest.xml.
+[Info]  Dynamic Code Loading:
+           No dynamic code loading(DexClassLoader) found.
+[Info]  File Unsafe Delete Checking:
+           Did not detect that you are unsafely deleting files.
+[Info] <#BID 64208, CVE-2013-6271#> Fragment Vulnerability Checking:
+           Did not detect the vulnerability of "Fragment" dynamically loading into "PreferenceActivity" or "SherlockPreferenceActivity"
+[Info] <Hacker> Base64 String Encryption:
+           No encoded Base64 String or Urls found.
+[Info] <Database><Hacker> Key for Android SQLite Databases Encryption:
+           Did not find using the symmetric key(PRAGMA key) to encrypt the SQLite databases (It's still possible that it might use but we
+           did not find out).
+[Info] <Debug><Hacker> Codes for Checking Android Debug Mode:
+           Did not detect codes for checking "ApplicationInfo.FLAG_DEBUGGABLE" in AndroidManifest.xml.
+[Info] <Hacker> APK Installing Source Checking:
+           Did not detect this app checks for APK installer sources.
+[Info] <KeyStore><Hacker> KeyStore File Location:
+           Did not find any possible BKS keystores or certificate keystore file (Notice: It does not mean this app does not use keysotre):
+[Info] <KeyStore><Hacker> KeyStore Protection Checking:
+           Ignore checking KeyStore protected by password or not because you're not using KeyStore.
+[Info] <Hacker> Code Setting Preventing Screenshot Capturing:
+           Did not detect this app has code setting preventing screenshot capturing.
+[Info] <Signature><Hacker> Getting Signature Code Checking:
+           Did not detect this app is checking the signature in the code.
+[Info]  HttpURLConnection Android Bug Checking:
+           Ignore checking "http.keepAlive" because you're not using "HttpURLConnection".
+[Info] <KeyStore> KeyStore Type Checking:
+           KeyStore 'BKS' type check OK
+[Info] <#CVE-2013-4787#> Master Key Type I Vulnerability:
+           No Master Key Type I Vulnerability in this APK.
+[Info]  App Sandbox Permission Checking:
+           No security issues "MODE_WORLD_READABLE" or "MODE_WORLD_WRITEABLE" found on 'openOrCreateDatabase' or 'openOrCreateDatabase2' or
+           'getDir' or 'getSharedPreferences' or 'openFileOutput'
+[Info]  AndroidManifest Dangerous ProtectionLevel of Permission Checking:
+           No "dangerous" protection level customized permission found (AndroidManifest.xml).
+[Info]  AndroidManifest Exported Components Checking:
+           No exported components(except for Launcher) for receiving Android or outside applications' actions (AndroidManifest.xml).
+[Info]  AndroidManifest PermissionGroup Checking:
+           PermissionGroup in permission tag of AndroidManifest sets correctly.
+[Info] <Implicit_Intent> Implicit Service Checking:
+           No dangerous implicit service.
+[Info]  AndroidManifest "intent-filter" Settings Checking:
+           "intent-filter" of AndroidManifest.xml check OK.
+[Info]  AndroidManifest Normal ProtectionLevel of Permission Checking:
+           No default or "normal" protection level customized permission found (AndroidManifest.xml).
+[Info] <#CVE-2013-6272#> AndroidManifest Exported Lost Prefix Checking:
+           No exported components that forgot to add "android:" prefix.
+[Info]  AndroidManifest ContentProvider Exported Checking:
+           No exported "ContentProvider" found (AndroidManifest.xml).
+[Info] <Sensitive_Information> Getting IMEI and Device ID:
+           Did not detect this app is getting the "device id(IMEI)" by "TelephonyManager.getDeviceId()" approach.
+[Info] <Sensitive_Information> Getting ANDROID_ID:
+           Did not detect this app is getting the 64-bit number "Settings.Secure.ANDROID_ID".
+[Info]  Codes for Sending SMS:
+           Did not detect this app has code for sending SMS messages (sendDataMessage, sendMultipartTextMessage or sendTextMessage).
+[Info] <System> AndroidManifest sharedUserId Checking:
+           This app does not use "android.uid.system" sharedUserId.
+[Info] <SSL_Security> SSL Implementation Checking (Verifying Host Name in Custom Classes):
+           Self-defined HOSTNAME VERIFIER checking OK.
+[Info] <SSL_Security> SSL Implementation Checking (Verifying Host Name in Fields):
+           Critical vulnerability "ALLOW_ALL_HOSTNAME_VERIFIER" field setting or "AllowAllHostnameVerifier" class instance not found.
+[Info] <SSL_Security> SSL Implementation Checking (Insecure component):
+           Did not detect SSLSocketFactory by insecure method "getInsecure".
+[Info] <SSL_Security> SSL Implementation Checking (HttpHost):
+           DEFAULT_SCHEME_NAME for HttpHost check: OK
+[Info] <SSL_Security> SSL Connection Checking:
+           Did not discover urls that are not under SSL (Notice: if you encrypt the url string, we can not discover that).
+[Info] <SSL_Security> SSL Implementation Checking (WebViewClient for WebView):
+           Did not detect critical usage of "WebViewClient"(MITM Vulnerability).
+[Info] <SSL_Security> SSL Certificate Verification Checking:
+           Did not find vulnerable X509Certificate code.
+[Info]  Security Classes Checking:
+           Did not detect class names containing security related string.
+[Info]  Unnecessary Permission Checking:
+           Permission 'android.permission.ACCESS_MOCK_LOCATION' sets correctly.
+[Info]  Accessing the Internet Checking:
+           No HTTP-related connection codes found.
+[Info]  AndroidManifest System Use Permission Checking:
+           No system-level critical use-permission found.
+[Info] <WebView> WebView Local File Access Attacks Checking:
+           Did not find potentially critical local file access settings.
+[Info] <WebView> WebView Potential XSS Attacks Checking:
+           Did not detect "setJavaScriptEnabled(true)" in WebView.
+[Info] <WebView><Remote Code Execution><#CVE-2013-4710#> WebView RCE Vulnerability Checking:
+           WebView addJavascriptInterface vulnerabilities not found.
+------------------------------------------------------------
+AndroBugs analyzing time: 0.36851 secs
+Total elapsed time: 2.337398 secs
