@@ -95,10 +95,22 @@ function ListProjeto($email){
 	}	
 }
 
+function LerProjeto($email,$projeto){
+    global $conn;
+
+    $sql = "SELECT * FROM projeto WHERE email = '$email' and id = '$projeto' ";
+    $result = $conn->query($sql);
+
+    if($result->num_rows >= 1 ) {
+        return $result;
+    }else{
+        return null;
+    }
+}
 function ListProjetoRel($email, $projeto){
 	global $conn;
 
-	$sql = "SELECT * FROM projeto_rel WHERE email = '$email' and id_fk_projeto = '$projeto' ORDER BY date_added DESC LIMIT 50";
+	$sql = "SELECT * FROM projeto_rel WHERE email = '$email' and id_fk_projeto = '$projeto' ORDER BY date_added DESC ";
 	$result = $conn->query($sql);
 
 	if($result->num_rows >= 1 ) {

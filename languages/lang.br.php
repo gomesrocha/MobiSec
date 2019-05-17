@@ -88,6 +88,10 @@ $lang['CADASTRAR_HEADING'] = 'Plano de Teste';
 $lang['CADASTRAR_TITLE'] = 'Titulo';
 $lang['CADASTRAR_ACTIVITYS'] = 'Telas';
 $lang['CADASTRAR_SELECT'] = 'Selecione Permissões';
+$lang['CADASTRAR_PERMI1'] = 'Análise Sistemática das Permissões';
+$lang['CADASTRAR_PERMI2'] = 'Análise de Vulnerabilidade com Androbugs';
+$lang['CADASTRAR_PERMI3'] = 'Análise de Malware do Relatorio do Androbugs';
+$lang['CADASTRAR_PERMI4'] = 'Análise de Vulnerabilidade com Androwarn';
 $lang['CADASTRAR_BTN_REG'] = 'Cadastrar';
 $lang['CADASTRAR_ERR_JA_CAD'] = ' já cadastrado!';
 
@@ -98,7 +102,12 @@ $lang['TEST_TEXT2'] = 'Selecione o aplicativo para enviar';
 $lang['TEST_TEXT3'] = 'Sistema aceita apenas arquivos com extensão: APK e sem limite de tamanho.';
 $lang['TEST_TEXT4'] = 'Teste de Vulnerabilidade';
 $lang['TEST_TEXT5'] = 'Nao planejado';
+$lang['TEST_PERMI1'] = 'Análise Sistemática das Permissões';
+$lang['TEST_PERMI2'] = 'Análise de Vulnerabilidade com Androbugs';
+$lang['TEST_PERMI3'] = 'Análise de Malware do Relatorio do Androbugs';
+$lang['TEST_PERMI4'] = 'Análise de Vulnerabilidade com Androwarn';
 $lang['TEST_BTN_ENVIA'] = 'Envio de Aplicativo';
+$lang['TEST_BTN_CARREGAR'] = 'Carregar Plano de Teste';
 $lang['TEST_ERRO1'] = 'Apk já está no banco de dados, renomeie!';
 $lang['TEST_ERRO2'] = 'Desculpe, apenas APK.';
 $lang['TEST_ERRO3'] = 'Houve erro na transferencia do arquivo.';
@@ -106,6 +115,7 @@ $lang['TEST_ERRO4'] = 'Falha no Androguard, XML não gerado!';
 $lang['TEST_SUCESS1'] = 'O arquivo ';
 $lang['TEST_SUCESS2'] = ' foi enviado com sucesso.';
 $lang['TEST_SUCESS3'] = 'XML gerado com sucesso, veja o relatório.';
+
 
 //REPORT
 $lang['REPORT_HEADING'] = 'Avalie se o aplicativo está em conformidade com o plano de teste.';

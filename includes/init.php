@@ -3,6 +3,7 @@ session_start();
 
 include("db.php");
 include("functions.php");
+include("permissoes.php");
 
 if(isSet($_GET['lang']))
 {

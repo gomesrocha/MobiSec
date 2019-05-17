@@ -4,7 +4,7 @@ include_once "header.php";
 
 <?php 
 if(!logged_in()) {
-	redirect("index.php");
+	redirect("logout.php");
 }
 
 ?>
@@ -26,55 +26,99 @@ if(!logged_in()) {
 								<div class="panel-body no-padding">
 									<div class="row">
 										<div class="col-xs-12 col-sm-12 col-md-10 col-sm-offset-1 col-md-offset-1">
-											<?php 
-											if (isset($_POST['submit'])) {	
- 
-												include 'includes/envia.php';											
-											} 
-											?>
-											<form class="form-horizontal" data-toggle="validator" role="form" method="post" action="testar.php" enctype="multipart/form-data" name="form1" id="form1">
-												<?php display_message(); ?>
+											<form class="form-horizontal" data-toggle="validator" role="form" method="post" action="" enctype="multipart/form-data" name="form1" id="form1">
+                                                <?php
+                                                if (isset($_POST['envia'])) {
+                                                    include 'includes/envia.php';
+                                                }
+                                                display_message();
+                                                ?>
 												<div class="form-group">
 													<label for="projeto" class="col-lg-4 control-label"><?php echo $lang['TEST_TEXT1']; ?></label>
-													<div class="col-lg-8">
+                                                    <div class="col-lg-5">
 														<select id="projeto" name="projeto" class="selectpicker show-tick form-control" data-live-search="true">
-															<?php $result = ListProjeto($_SESSION['email']); ?>
+                                                            <option value=""></option>
+                                                            <?php $result = ListProjeto($_SESSION['email']); ?>
 															<?php if ($result != null){ ?>
 																<?php while($aux_query = $result->fetch_assoc()) { 
-																		if ($aux_query["titulo"] != "unplanned" ){
+                                                                        $projetosel = $_POST['projeto'];
+																        if ($aux_query["id"] != $projetosel ){
 																		?>
 																			<option value="<?php echo $aux_query["id"] ?>"><?php echo $aux_query["titulo"] ?></option>
 																		<?php 
-																		} 
-																	  }  
+																		}else{
+                                                                        ?>
+                                                                            <option value="<?php echo $aux_query["id"] ?>" selected ><?php echo $aux_query["titulo"] ?></option>
+                                                                        <?php
+                                                                        }
+																	  }
 																} 
 															?>
 														</select>
 													</div>
+                                                    <div class="col-lg-3">
+                                                        <input type="submit" name="carregar" value="<?php echo $lang['TEST_BTN_CARREGAR']; ?>" class="btn btn-primary btn-block btn-lg" tabindex="7">
+                                                    </div>
 												</div>
 												<div class="form-group">
 													<label class="col-md-4 control-label" for="fileToUpload"><?php echo $lang['TEST_TEXT2']; ?></label>  
 														<div class="col-md-8">
-														<input id="fileToUpload" name="fileToUpload" type="file" class="form-control input-md" required="">
+														<input id="fileToUpload" name="fileToUpload" type="file" class="form-control input-md" >
 														<span class="help-block"><?php echo $lang['TEST_TEXT3']; ?></span>  
 													</div>
 												</div>
-												<!--<div class="form-group clearfix">
-													<div class="col-md-4"></div>
-													<label class="fancy-checkbox element-left">
-														<input id="malware" type="checkbox" name="malware" value="1">
-														<span><?php //echo $lang['TEST_TEXT4']; ?></span>
-													</label>
-												</div>-->
-												<div class="form-group clearfix">
-													<div class="col-md-4"></div>
-													<label class="fancy-checkbox element-left">
-														<input id="unplanned" type="checkbox" name="unplanned" value="1">
-														<span><?php echo $lang['TEST_TEXT5']; ?></span>
-													</label>
-												</div>
+
+                                                <?php
+                                                if (isset($_POST['carregar'])) {
+                                                    $project1 = $_POST['projeto'];
+                                                    $result1 = LerProjeto($_SESSION['email'],$project1);
+
+                                                    $aux_query1 = $result1->fetch_assoc();
+                                                    $analise1 = $aux_query1["analise_siste_permi"];
+                                                    $analise2 = $aux_query1["analise_vulne_abugs"];
+                                                    $analise3 = $aux_query1["analise_mawla_abugs"];
+                                                    $analise4 = $aux_query1["analise_vulne_awarn"];
+                                                }
+                                                ?>
+
+                                                <div class="form-group clearfix">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                        <label class="fancy-checkbox element-left">
+                                                            <input id="analisepermi1" type="checkbox" name="analisepermi1" value="1" <?php if ($analise1 == 1){echo 'checked';}?>>
+                                                            <span><?php echo $lang['CADASTRAR_PERMI1']; ?></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group clearfix">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                        <label class="fancy-checkbox element-left">
+                                                            <input id="analisepermi2" type="checkbox" name="analisepermi2" value="1" <?php if ($analise2 == 1){echo 'checked';}?>>
+                                                            <span><?php echo $lang['CADASTRAR_PERMI2']; ?></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group clearfix">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                        <label class="fancy-checkbox element-left">
+                                                            <input id="analisepermi3" type="checkbox" name="analisepermi3" value="1" <?php if ($analise3 == 1){echo 'checked';}?>>
+                                                            <span><?php echo $lang['CADASTRAR_PERMI3']; ?></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group clearfix">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                                        <label class="fancy-checkbox element-left">
+                                                            <input id="analisepermi4" type="checkbox" name="analisepermi4" value="1" <?php if ($analise4 == 1){echo 'checked';}?>>
+                                                            <span><?php echo $lang['CADASTRAR_PERMI4']; ?></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
 												<div class="row">
-													<div class="col-xs-12 col-md-4"><input type="submit" name="submit" value="<?php echo $lang['TEST_BTN_ENVIA']; ?>" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+													<div class="col-xs-12 col-md-4"><input type="submit" name="envia" value="<?php echo $lang['TEST_BTN_ENVIA']; ?>" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
 												</div>
 												<br>
 											</form>

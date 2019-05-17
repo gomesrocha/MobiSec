@@ -3,7 +3,7 @@ include_once "header.php";
 ?>
 <?php 
 if(!logged_in()) {
-	redirect("index.php");
+	redirect("logout.php");
 }
 ?>
 		<!-- MAIN -->
@@ -40,7 +40,7 @@ if(!logged_in()) {
 													echo '<tr data-toggle="collapse" data-target="#'.$aux_query["id"].'" class="accordion-toggle">';
 													echo '  <td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td>';
 													echo '  <td style="display: none;">'.$aux_query["id"].'</td>';
-													echo '  <td>'.$aux_query["titulo"].'</td>';
+													echo '  <td><a href="dashboard.php?proj='.$aux_query["id"].'&projr=0 ">'.$aux_query["titulo"].'</a></td>';
 													echo '  <td>'.$aux_query["qtdactiv"].'</td>';
 													echo '  <td>'.$aux_query["date_added"].'</td>';
 													echo '</tr>';
@@ -55,8 +55,10 @@ if(!logged_in()) {
 													   echo '			<tr>';
 													   echo '				<td></td>';
 													   echo '				<td style="display: none;">'.$auxs_query["id"].'</td>';
-													   echo '				<td>'.$auxs_query["permissao"].'</td>';
-													   echo '			</tr>';}	
+                                                       echo '				<td>'.$auxs_query["permissao"].'</td>';
+                                                       echo '				<td>'.$permissaodanger[$auxs_query["permissao"]].'</td>';
+                                                       echo '				<td>'.$permissaodescricao[$auxs_query["permissao"]].'</td>';
+													   echo '			</tr>';}
 													   echo '		</tbody>';
 													   echo '	 </table>';
 													   echo '	 </div>';

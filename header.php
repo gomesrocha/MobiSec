@@ -65,7 +65,7 @@ include_once "includes/init.php";
 						<li><a href="admin.php" class=""><i class="lnr lnr-home"></i> <span><?php echo $lang['MENU_ADMIN']; ?></span></a></li>
 						<li><a href="cadastrar.php" class=""><i class="lnr lnr-code"></i> <span><?php echo $lang['MENU_REGISTER']; ?></span></a></li>
 						<li><a href="testar.php" class=""><i class="lnr lnr-cog"></i> <span><?php echo $lang['MENU_TEST']; ?></span></a></li>
-						<li><a href="relatorio.php" class=""><i class="lnr lnr-printer"></i> <span><?php echo $lang['MENU_REPORT']; ?></span></a></li>
+						<!--<li><a href="relatorio.php" class=""><i class="lnr lnr-printer"></i> <span><?php echo $lang['MENU_REPORT']; ?></span></a></li>-->
 					</ul>
 				</nav>
 			</div>

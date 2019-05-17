@@ -1,11 +1,18 @@
 <?php
+
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
 	$titulo				= $_POST['titulo'];
 	$QtdActiv			= $_POST['QtdActiv'];
 	$Email              = $_SESSION['email'];
-	
-	$errors = [];
+    $analisepermi1      = $_POST["analisepermi1"];
+    $analisepermi2      = $_POST["analisepermi2"];
+    $analisepermi3      = $_POST["analisepermi3"];
+    $analisepermi4      = $_POST["analisepermi4"];
+
+    $errors = [];
 	$existe = ValProjeto($Email, $titulo);
 
 	if ($existe != null)
@@ -18,8 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 			validation_errors($error);
 		}
 	}else{
-		$sql = "INSERT INTO projeto (titulo, qtdactiv, email,date_added)
-		VALUES ('$titulo', '$QtdActiv', '$Email', now())";
+		$sql = "INSERT INTO projeto (titulo, qtdactiv, email,date_added, analise_siste_permi, analise_vulne_abugs,	analise_mawla_abugs,	analise_vulne_awarn)
+		VALUES ('$titulo', '$QtdActiv', '$Email', now(), '$analisepermi1', '$analisepermi2', '$analisepermi3', '$analisepermi4')";
 
 		if ($conn->query($sql) === TRUE) {
 			$last_id = $conn->insert_id;
