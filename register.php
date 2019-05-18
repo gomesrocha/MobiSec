@@ -3,9 +3,7 @@
 include_once "includes/init.php";
 include_once "includes/register.inc.php";
 
-if(!logged_in()) {
-    redirect("logout.php");
-}
+
 ?>
 
 <!doctype html>
