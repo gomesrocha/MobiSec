@@ -107,10 +107,15 @@ if ($uploadOk == 0) {
                         set_message("<p>Error: " . $sql_perm . "<br>" . $conn->error . "</p>");
                     }
                 }
-                $sqlUp = "UPDATE projeto_rel SET date_fim = now() WHERE id =  $last_id ";
+
                 if ($conn->query($sqlUp) === FALSE) {
                     set_message("<p>Error: " . $sqlUp . "<br>" . $conn->error . "</p>");
                 }
+
+                if ($analyze1 == 1 ){
+
+                }
+
                 if ($analyze2 == 1 or $analyze3 == 1){
                     $cmdmalware = "python ./androbugs/androbugs.py -f " . " /var/www/html/mobisec/" . $target_file . " -e 2 " . " -o  " . " ./" . $dir . "/";
                     shell_exec($cmdmalware);
@@ -122,10 +127,10 @@ if ($uploadOk == 0) {
 
                 if ($analyze4 == 1){
                     $cmdwarn = "python ./androwarn/androwarn.py -i " . " /var/www/html/mobisec/" . $target_file .  " -o  " . " ./" . $dir . "/ -v 3 -r txt" ;
-                    //echo $cmdwarn;
                     shell_exec($cmdwarn);
                 }
 
+                $sqlUp = "UPDATE projeto_rel SET date_fim = now() WHERE id =  $last_id ";
             ?>
                 <div class="alert alert-success alert-dismissable fade in">
                 <a href="/" class="close" data-dismiss="alert" aria-label="close">&times;</a>
